@@ -1379,6 +1379,9 @@ textarea.contact__input {
 
 /*=============== ADDITIONAL MOBILE TWEAKS ===============*/
 @media screen and (max-width: 767px) {
+  .cursor {
+    display: none !important;
+  }
   .header.bg-header .nav {
     padding-inline: 1.25rem;
     border-radius: 2rem;

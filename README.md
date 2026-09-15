@@ -1,16 +1,24 @@
 <div align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=30&pause=1000&color=27C93F&center=true&vCenter=true&width=600&lines=%3E_INITIATING_TERMINAL_OS...;%3E_NEURAL_INTERFACE_ONLINE;%3E_WELCOME_TO_MY_PORTFOLIO" alt="Typing SVG" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0D1117&height=150&section=header&text=Terminal_OS_Active&fontSize=50&fontColor=27C93F&animation=twinkling&fontAlignY=35" />
+</div>
+
+<div align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1000&color=27C93F&center=true&vCenter=true&width=600&lines=%3E_ACCESSING_MAINFRAME...;%3E_NEURAL_INTERFACE_ONLINE;%3E_LOADING_PORTFOLIO_SYSTEM" alt="Typing SVG" />
 </div>
 
 <p align="center">
   <a href="https://portfolio-exepngsam.vercel.app">
-    <img src="https://img.shields.io/badge/Status-Online-27C93F?style=for-the-badge&logo=vercel" alt="Status" />
+    <img src="https://img.shields.io/badge/Status-Live_On_Vercel-27C93F?style=for-the-badge&logo=vercel" alt="Status" />
   </a>
 </p>
 
 ## 🚀 System Architecture
 
 Welcome to the **Terminal Portfolio OS**. Built with a raw, brutalist hacker aesthetic, this isn't just a static webpage—it's an interactive terminal environment.
+
+<div align="center">
+  <img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" alt="Matrix Terminal" width="700" style="border-radius:10px; border:2px solid #27C93F"/>
+</div>
 
 - **Interactive Neural Interface:** An 800-node particle engine running in pure HTML5 Canvas. A highly dense 3D sphere rotates in real-time, responding dynamically to cursor proximity with magnetic attraction and repulsion physics.
 - **Local AI Chatbot:** An integrated, rule-based conversation engine. Interact with my portfolio via terminal commands and conversational queries.

@@ -1376,3 +1376,45 @@ textarea.contact__input {
 .chatbot-input-area button:hover {
   background-color: var(--white-color);
 }
+
+/*=============== ADDITIONAL MOBILE TWEAKS ===============*/
+@media screen and (max-width: 767px) {
+  .header.bg-header .nav {
+    padding-inline: 1.25rem;
+    border-radius: 2rem;
+  }
+  .home__img-box {
+    width: 220px;
+    height: 280px;
+  }
+  .about__terminal {
+    font-size: 0.8rem;
+  }
+  .terminal__body {
+    padding: 1rem;
+  }
+  .terminal__title {
+    font-size: 0.75rem;
+    margin-left: -20px;
+  }
+  .neural__screen {
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .container {
+    margin-inline: 1rem;
+  }
+  .home__img-box {
+    width: 180px;
+    height: 220px;
+  }
+  .home__title {
+    font-size: 1.75rem;
+  }
+  .chatbot-container {
+    width: 95vw;
+    right: 2.5vw;
+  }
+}

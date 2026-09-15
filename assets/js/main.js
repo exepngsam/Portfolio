@@ -252,22 +252,6 @@ bentoCards.forEach(card => {
 const contactForm = document.getElementById('contact-form'),
       contactMessage = document.getElementById('contact-message');
 
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Simulating sending email
-        contactMessage.textContent = 'Message sent successfully ✅';
-        contactMessage.style.color = 'var(--first-color)';
-        
-        setTimeout(() => {
-            contactMessage.textContent = '';
-        }, 5000);
-        
-        contactForm.reset();
-    });
-}
-
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 const sr = ScrollReveal({
     origin: 'bottom', // Start animations slightly from bottom for a natural lift

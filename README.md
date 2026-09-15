@@ -7,7 +7,7 @@
 </div>
 
 <p align="center">
-  <a href="https://portfolio-exepngsam.vercel.app">
+  <a href="https://portfolio19s.vercel.app/">
     <img src="https://img.shields.io/badge/Status-Live_On_Vercel-27C93F?style=for-the-badge&logo=vercel" alt="Status" />
   </a>
 </p>

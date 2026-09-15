@@ -1,499 +1,464 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Soumyajit Jena - AI & ML Enthusiast Portfolio"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--=============== REMIXICONS ===============-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Soumyajit Jena - AI & ML Enthusiast Portfolio" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--=============== SWIPER CSS ===============-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
-    />
+  <!--=============== REMIXICONS ===============-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" />
 
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/styles.css" />
+  <!--=============== SWIPER CSS ===============-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 
-    <title>Soumyajit Jena | Portfolio</title>
-  </head>
-  <body>
-    <!--==================== ANIMATED BACKGROUND ====================-->
-    <div class="bg-matrix">
-      <canvas id="dot-matrix" class="dot-matrix"></canvas>
-      <div class="matrix-overlay"></div>
-    </div>
+  <!--=============== CSS ===============-->
+  <link rel="stylesheet" href="assets/css/styles.css" />
 
-    <!--==================== HEADER & NAV ====================-->
-    <header class="header" id="header">
-      <nav class="nav container">
-        <a href="#" class="nav__logo">Soumyajit</a>
+  <title>Soumyajit Jena | Portfolio</title>
+  <googleea3e2eda80bce91b.html> </googleea3e2eda80bce91b.html>
+</head>
 
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list">
-            <li><a href="#home" class="nav__link active-link">Home</a></li>
-            <li><a href="#about" class="nav__link">About</a></li>
-            <li><a href="#work" class="nav__link">Works</a></li>
-            <li><a href="#service" class="nav__link">My Services</a></li>
-            <li><a href="#skills" class="nav__link">Skills</a></li>
-            <li><a href="#contact" class="nav__link">Contact</a></li>
+<body>
+  <!--==================== ANIMATED BACKGROUND ====================-->
+  <div class="bg-matrix">
+    <canvas id="dot-matrix" class="dot-matrix"></canvas>
+    <div class="matrix-overlay"></div>
+  </div>
+
+  <!--==================== HEADER & NAV ====================-->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#" class="nav__logo">Soumyajit</a>
+
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+          <li><a href="#home" class="nav__link active-link">Home</a></li>
+          <li><a href="#about" class="nav__link">About</a></li>
+          <li><a href="#work" class="nav__link">Works</a></li>
+          <li><a href="#service" class="nav__link">My Services</a></li>
+          <li><a href="#skills" class="nav__link">Skills</a></li>
+          <li><a href="#contact" class="nav__link">Contact</a></li>
+        </ul>
+
+        <!-- Close -->
+        <button class="nav__close" id="nav-close" aria-label="Close menu">
+          <i class="ri-close-large-line"></i>
+        </button>
+      </div>
+
+      <div class="nav__buttons" style="display: flex; align-items: center; column-gap: 1rem;">
+        <!-- Theme change button -->
+        <i class="ri-moon-line change-theme" id="theme-button"
+          style="font-size: 1.25rem; color: var(--white-color); cursor: pointer; transition: color .4s;"></i>
+
+        <!-- Toggle -->
+        <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!--==================== MAIN ====================-->
+  <main class="main">
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor" id="cursor"></div>
+
+    <!--==================== HOME SECTION ====================-->
+    <section class="home section" id="home">
+      <div class="home__container container grid">
+        <div class="home__data">
+          <h3 class="home__subtitle">Hi! I'm Soumyajit</h3>
+          <h1 class="home__title">
+            AI & ML <br />
+            <span id="home-typed">Enthusiast</span>
+          </h1>
+          <p class="home__description">
+            B.Tech Student in Computer Science Engineering. Passionate about
+            building intelligent systems, transforming complex problems into
+            simple designs, and creating web experiences.
+          </p>
+        </div>
+
+        <div class="home__circular">
+          <div class="home__circular-text">EXPLORE - MORE - LET'S -</div>
+        </div>
+      </div>
+    </section>
+
+    <!--==================== ABOUT SECTION ====================-->
+    <section class="about section" id="about">
+      <div class="about__container container grid">
+        <div class="about__data">
+          <h2 class="about__title">
+            About Me: Young developer who enjoys <span>AI & ML</span> and
+            <span>Web Development</span>, passionate about my work,
+            disciplined, and focused on building intelligent solutions.
+          </h2>
+          <p class="about__description">
+            If you have a project in mind, check out my work and contact me to
+            work together. Best of luck!
+          </p>
+          <a href="#contact" class="button">Contact me</a>
+        </div>
+
+        <!-- Terminal UI -->
+        <div class="about__terminal">
+          <div class="terminal__header">
+            <div class="terminal__buttons">
+              <span class="terminal__btn close"></span>
+              <span class="terminal__btn minimize"></span>
+              <span class="terminal__btn maximize"></span>
+            </div>
+            <div class="terminal__title">bash &mdash; soumyajit@neural-core: ~</div>
+          </div>
+          <div class="terminal__body">
+            <div class="terminal__line">
+              <span class="prompt">root@soumyajit:~$</span> cat agent_profile.json
+            </div>
+            <div class="terminal__line">{</div>
+            <div class="terminal__line indent">
+              <span class="key">"engineer"</span>: <span class="string">"Soumyajit Jena"</span>,
+            </div>
+            <div class="terminal__line indent">
+              <span class="key">"domain"</span>: <span class="string">"AI, Deep Learning & Web Systems"</span>,
+            </div>
+            <div class="terminal__line indent">
+              <span class="key">"primary_stack"</span>: [<span class="string">"PyTorch"</span>, <span
+                class="string">"Transformers"</span>, <span class="string">"FastAPI"</span>, <span
+                class="string">"TypeScript"</span>],
+            </div>
+            <div class="terminal__line indent">
+              <span class="key">"architectures"</span>: [<span class="string">"Multi-Agent MoE"</span>, <span
+                class="string">"NeRF 3D"</span>, <span class="string">"PPO/DQN"</span>],
+            </div>
+            <div class="terminal__line indent">
+              <span class="key">"philosophy"</span>: <span class="string">"Mathematical Rigor + Pure Zero-Bloat
+                Execution"</span>,
+            </div>
+            <div class="terminal__line indent">
+              <span class="key">"current_status"</span>: <span class="string">"Open for High-Impact Innovation"</span>
+            </div>
+            <div class="terminal__line">}</div>
+            <div class="terminal__line empty"><br></div>
+            <div class="terminal__line">
+              <span class="prompt">root@soumyajit:~$</span> ./check_inference_readiness.sh --verbose
+            </div>
+            <div class="terminal__line empty"><br></div>
+            <div class="terminal__line success">
+              [SUCCESS] All GPU tensors mapped. Ready to deploy intelligent systems.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--==================== WORK SECTION ====================-->
+    <section class="work section" id="work">
+      <div class="work__container container">
+        <h2 class="section__title">View My <span>Work</span></h2>
+
+        <div class="work__content swiper">
+          <div class="swiper-wrapper">
+            <!-- Project 1 -->
+            <article class="work__card swiper-slide">
+              <div class="work__img-box">
+                <img src="assets/img/nexora.jpg" alt="Nexora Platform" class="work__img" />
+              </div>
+              <div class="work__info">
+                <h3 class="work__number">01</h3>
+                <h3 class="work__name">Nexora</h3>
+                <p class="work__description">
+                  NEXORA 🚀 — Autonomous AI coordination platform that turns incidents into action. Powered by
+                  Featherless AI and Caspian.
+                </p>
+                <a href="https://nexora-three-mu.vercel.app/" target="_blank" class="work__button"><i
+                    class="ri-arrow-right-line"></i> Demo</a>
+              </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="work__card swiper-slide">
+              <div class="work__img-box">
+                <img src="assets/img/civicfix.jpg" alt="CivicFix AI Platform" class="work__img" />
+              </div>
+              <div class="work__info">
+                <h3 class="work__number">02</h3>
+                <h3 class="work__name">CivicFix AI</h3>
+                <p class="work__description">
+                  AI-powered civic issue reporting and resolution platform built with AWS, featuring intelligent issue
+                  classification.
+                </p>
+                <a href="https://civicfix-ai-roan.vercel.app/" target="_blank" class="work__button"><i
+                    class="ri-arrow-right-line"></i> Demo</a>
+              </div>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="work__card swiper-slide">
+              <div class="work__img-box">
+                <img src="assets/img/truthseal.jpg" alt="TruthSeal-AI Platform" class="work__img" />
+              </div>
+              <div class="work__info">
+                <h3 class="work__number">03</h3>
+                <h3 class="work__name">TruthSeal-AI</h3>
+                <p class="work__description">
+                  TruthSeal AI — A digital trust platform combining cryptographic verification, AI-powered media
+                  forensics, provenance tracking, and credential revocation to detect tampered media.
+                </p>
+                <a href="https://truth-seal-ai.vercel.app/" target="_blank" class="work__button"><i
+                    class="ri-arrow-right-line"></i> Demo</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+
+    <!--==================== SERVICES SECTION ====================-->
+    <section class="services section" id="service">
+      <div class="services__container container grid">
+        <h2 class="section__title"><span>My</span> Services</h2>
+
+        <div class="services__content bento-grid">
+          <article class="bento-card services__bento-card">
+            <div class="bento-card__bg"></div>
+            <div class="bento-card__content">
+              <i class="ri-code-box-line services__icon"></i>
+              <h3 class="services__name">Web Developer</h3>
+              <p class="services__description">
+                Building modern, responsive, and high-performance websites with a focus on seamless user experiences.
+              </p>
+              <ul class="services__list">
+                <li class="services__item"><i class="ri-check-line"></i> Frontend Development</li>
+                <li class="services__item"><i class="ri-check-line"></i> Backend Systems</li>
+                <li class="services__item"><i class="ri-check-line"></i> Performance Optimization</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="bento-card services__bento-card">
+            <div class="bento-card__bg"></div>
+            <div class="bento-card__content">
+              <i class="ri-brain-line services__icon"></i>
+              <h3 class="services__name">AI & ML Engineer</h3>
+              <p class="services__description">
+                Designing intelligent systems and leveraging machine learning to solve complex computational problems.
+              </p>
+              <ul class="services__list">
+                <li class="services__item"><i class="ri-check-line"></i> Predictive Modeling</li>
+                <li class="services__item"><i class="ri-check-line"></i> Data Analysis</li>
+                <li class="services__item"><i class="ri-check-line"></i> Deep Learning</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!--==================== SKILLS SECTION ====================-->
+    <section class="skills section" id="skills">
+      <div class="skills__container container grid">
+        <div class="skills__info">
+          <h2 class="section__title">My <span>Skills</span></h2>
+          <p class="skills__description">
+            My skills are those I've learned and developed over the years. By
+            studying, focusing, and being consistent in what I love most.
+          </p>
+        </div>
+
+        <div class="skills__content grid">
+          <div class="skills__group">
+            <h3 class="skills__title">Web Development</h3>
+            <div class="skills__list">
+              <div class="skills__item">HTML & CSS</div>
+              <div class="skills__item">JavaScript</div>
+              <div class="skills__item">React / Next.js</div>
+              <div class="skills__item">Node.js</div>
+              <div class="skills__item">SQL / MongoDB</div>
+            </div>
+          </div>
+
+          <div class="skills__group">
+            <h3 class="skills__title">AI & Machine Learning</h3>
+            <div class="skills__list">
+              <div class="skills__item">Python</div>
+              <div class="skills__item">TensorFlow</div>
+              <div class="skills__item">PyTorch</div>
+              <div class="skills__item">Pandas / Numpy</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--==================== NEURAL SECTION ====================-->
+    <section class="neural section" id="neural">
+      <h2 class="section__title">Neural <span>Interface</span></h2>
+
+      <div class="neural__container container grid">
+
+        <div class="neural__info">
+          <h3 class="neural__info-title">> MODEL_TRAINING: <span>ACTIVE</span></h3>
+          <ul class="neural__info-list">
+            <li><span class="highlight">[EPOCH]</span> <span id="epoch-count">142</span> / 500</li>
+            <li><span class="highlight">[LOSS]</span> <span id="loss-value">0.0124</span></li>
+            <li><span class="highlight">[ACCURACY]</span> <span id="accuracy-value">98.7%</span></li>
+            <li><span class="highlight">[TOPOLOGY]</span> Dynamic Synaptic Mesh</li>
           </ul>
 
-          <!-- Close -->
-          <button class="nav__close" id="nav-close" aria-label="Close menu">
-            <i class="ri-close-large-line"></i>
-          </button>
+          <p class="neural__info-desc">
+            > Deep learning topology visualizing in real-time.<br>
+            > Hover cursor over the interface to interact with synaptic connections.<br>
+            > Left Click on canvas to toggle magnetic attraction/repulsion.
+          </p>
         </div>
 
-        <div class="nav__buttons" style="display: flex; align-items: center; column-gap: 1rem;">
-          <!-- Theme change button -->
-          <i class="ri-moon-line change-theme" id="theme-button" style="font-size: 1.25rem; color: var(--white-color); cursor: pointer; transition: color .4s;"></i>
-
-          <!-- Toggle -->
-          <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">
-            <i class="ri-menu-line"></i>
-          </button>
-        </div>
-      </nav>
-    </header>
-
-    <!--==================== MAIN ====================-->
-    <main class="main">
-      <!-- CUSTOM CURSOR -->
-      <div class="cursor" id="cursor"></div>
-
-      <!--==================== HOME SECTION ====================-->
-      <section class="home section" id="home">
-        <div class="home__container container grid">
-          <div class="home__data">
-            <h3 class="home__subtitle">Hi! I'm Soumyajit</h3>
-            <h1 class="home__title">
-              AI & ML <br />
-              <span id="home-typed">Enthusiast</span>
-            </h1>
-            <p class="home__description">
-              B.Tech Student in Computer Science Engineering. Passionate about
-              building intelligent systems, transforming complex problems into
-              simple designs, and creating web experiences.
-            </p>
+        <div class="neural__terminal">
+          <div class="neural__header">
+            <span class="neural__dot"></span>
+            <span class="neural__dot"></span>
+            <span class="neural__dot"></span>
+            <span class="neural__title">viz_engine.exe - Interactive</span>
           </div>
-
-          <div class="home__circular">
-            <div class="home__circular-text">EXPLORE - MORE - LET'S -</div>
+          <div class="neural__screen">
+            <canvas id="neural-canvas" width="400" height="400"></canvas>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!--==================== ABOUT SECTION ====================-->
-      <section class="about section" id="about">
-        <div class="about__container container grid">
-          <div class="about__data">
-            <h2 class="about__title">
-              About Me: Young developer who enjoys <span>AI & ML</span> and
-              <span>Web Development</span>, passionate about my work,
-              disciplined, and focused on building intelligent solutions.
-            </h2>
-            <p class="about__description">
-              If you have a project in mind, check out my work and contact me to
-              work together. Best of luck!
-            </p>
-            <a href="#contact" class="button">Contact me</a>
-          </div>
+    <!--==================== CONTACT SECTION ====================-->
+    <section class="contact section" id="contact">
+      <div class="contact__container container grid">
+        <h2 class="section__title">Contact <span>Me</span></h2>
 
-          <!-- Terminal UI -->
-          <div class="about__terminal">
-            <div class="terminal__header">
-              <div class="terminal__buttons">
-                <span class="terminal__btn close"></span>
-                <span class="terminal__btn minimize"></span>
-                <span class="terminal__btn maximize"></span>
-              </div>
-              <div class="terminal__title">bash &mdash; soumyajit@neural-core: ~</div>
+        <div class="contact__content grid">
+          <div class="contact__info">
+            <div class="contact__card">
+              <i class="ri-mail-line contact__icon"></i>
+              <h3 class="contact__title">Email</h3>
+              <span class="contact__address">soumyajit19pvt@gmail.com</span>
             </div>
-            <div class="terminal__body">
-              <div class="terminal__line">
-                <span class="prompt">root@soumyajit:~$</span> cat agent_profile.json
-              </div>
-              <div class="terminal__line">{</div>
-              <div class="terminal__line indent">
-                <span class="key">"engineer"</span>: <span class="string">"Soumyajit Jena"</span>,
-              </div>
-              <div class="terminal__line indent">
-                <span class="key">"domain"</span>: <span class="string">"AI, Deep Learning & Web Systems"</span>,
-              </div>
-              <div class="terminal__line indent">
-                <span class="key">"primary_stack"</span>: [<span class="string">"PyTorch"</span>, <span class="string">"Transformers"</span>, <span class="string">"FastAPI"</span>, <span class="string">"TypeScript"</span>],
-              </div>
-              <div class="terminal__line indent">
-                <span class="key">"architectures"</span>: [<span class="string">"Multi-Agent MoE"</span>, <span class="string">"NeRF 3D"</span>, <span class="string">"PPO/DQN"</span>],
-              </div>
-              <div class="terminal__line indent">
-                <span class="key">"philosophy"</span>: <span class="string">"Mathematical Rigor + Pure Zero-Bloat Execution"</span>,
-              </div>
-              <div class="terminal__line indent">
-                <span class="key">"current_status"</span>: <span class="string">"Open for High-Impact Innovation"</span>
-              </div>
-              <div class="terminal__line">}</div>
-              <div class="terminal__line empty"><br></div>
-              <div class="terminal__line">
-                <span class="prompt">root@soumyajit:~$</span> ./check_inference_readiness.sh --verbose
-              </div>
-              <div class="terminal__line empty"><br></div>
-              <div class="terminal__line success">
-                [SUCCESS] All GPU tensors mapped. Ready to deploy intelligent systems.
-              </div>
+            <div class="contact__card">
+              <i class="ri-github-line contact__icon"></i>
+              <h3 class="contact__title">GitHub</h3>
+              <span class="contact__address">github.com/exepngsam</span>
+            </div>
+            <div class="contact__card">
+              <i class="ri-twitter-x-line contact__icon"></i>
+              <h3 class="contact__title">X (Twitter)</h3>
+              <span class="contact__address">@exesam19</span>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!--==================== WORK SECTION ====================-->
-      <section class="work section" id="work">
-        <div class="work__container container">
-          <h2 class="section__title">View My <span>Work</span></h2>
-
-          <div class="work__content swiper">
-            <div class="swiper-wrapper">
-              <!-- Project 1 -->
-              <article class="work__card swiper-slide">
-                <div class="work__img-box">
-                  <img
-                    src="assets/img/nexora.jpg"
-                    alt="Nexora Platform"
-                    class="work__img"
-                  />
-                </div>
-                <div class="work__info">
-                  <h3 class="work__number">01</h3>
-                  <h3 class="work__name">Nexora</h3>
-                  <p class="work__description">
-                    NEXORA 🚀 — Autonomous AI coordination platform that turns incidents into action. Powered by Featherless AI and Caspian.
-                  </p>
-                  <a href="https://nexora-three-mu.vercel.app/" target="_blank" class="work__button"
-                    ><i class="ri-arrow-right-line"></i> Demo</a
-                  >
-                </div>
-              </article>
-
-              <!-- Project 2 -->
-              <article class="work__card swiper-slide">
-                <div class="work__img-box">
-                  <img
-                    src="assets/img/civicfix.jpg"
-                    alt="CivicFix AI Platform"
-                    class="work__img"
-                  />
-                </div>
-                <div class="work__info">
-                  <h3 class="work__number">02</h3>
-                  <h3 class="work__name">CivicFix AI</h3>
-                  <p class="work__description">
-                    AI-powered civic issue reporting and resolution platform built with AWS, featuring intelligent issue classification.
-                  </p>
-                  <a href="https://civicfix-ai-roan.vercel.app/" target="_blank" class="work__button"
-                    ><i class="ri-arrow-right-line"></i> Demo</a
-                  >
-                </div>
-              </article>
-
-              <!-- Project 3 -->
-              <article class="work__card swiper-slide">
-                <div class="work__img-box">
-                  <img
-                    src="assets/img/truthseal.jpg"
-                    alt="TruthSeal-AI Platform"
-                    class="work__img"
-                  />
-                </div>
-                <div class="work__info">
-                  <h3 class="work__number">03</h3>
-                  <h3 class="work__name">TruthSeal-AI</h3>
-                  <p class="work__description">
-                    TruthSeal AI — A digital trust platform combining cryptographic verification, AI-powered media forensics, provenance tracking, and credential revocation to detect tampered media.
-                  </p>
-                  <a href="https://truth-seal-ai.vercel.app/" target="_blank" class="work__button"
-                    ><i class="ri-arrow-right-line"></i> Demo</a
-                  >
-                </div>
-              </article>
-            </div>
-
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>
-      </section>
-
-      <!--==================== SERVICES SECTION ====================-->
-      <section class="services section" id="service">
-        <div class="services__container container grid">
-          <h2 class="section__title"><span>My</span> Services</h2>
-
-          <div class="services__content bento-grid">
-            <article class="bento-card services__bento-card">
-              <div class="bento-card__bg"></div>
-              <div class="bento-card__content">
-                <i class="ri-code-box-line services__icon"></i>
-                <h3 class="services__name">Web Developer</h3>
-                <p class="services__description">
-                  Building modern, responsive, and high-performance websites with a focus on seamless user experiences.
-                </p>
-                <ul class="services__list">
-                  <li class="services__item"><i class="ri-check-line"></i> Frontend Development</li>
-                  <li class="services__item"><i class="ri-check-line"></i> Backend Systems</li>
-                  <li class="services__item"><i class="ri-check-line"></i> Performance Optimization</li>
-                </ul>
-              </div>
-            </article>
-
-            <article class="bento-card services__bento-card">
-              <div class="bento-card__bg"></div>
-              <div class="bento-card__content">
-                <i class="ri-brain-line services__icon"></i>
-                <h3 class="services__name">AI & ML Engineer</h3>
-                <p class="services__description">
-                  Designing intelligent systems and leveraging machine learning to solve complex computational problems.
-                </p>
-                <ul class="services__list">
-                  <li class="services__item"><i class="ri-check-line"></i> Predictive Modeling</li>
-                  <li class="services__item"><i class="ri-check-line"></i> Data Analysis</li>
-                  <li class="services__item"><i class="ri-check-line"></i> Deep Learning</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!--==================== SKILLS SECTION ====================-->
-      <section class="skills section" id="skills">
-        <div class="skills__container container grid">
-          <div class="skills__info">
-            <h2 class="section__title">My <span>Skills</span></h2>
-            <p class="skills__description">
-              My skills are those I've learned and developed over the years. By
-              studying, focusing, and being consistent in what I love most.
-            </p>
-          </div>
-
-          <div class="skills__content grid">
-            <div class="skills__group">
-              <h3 class="skills__title">Web Development</h3>
-              <div class="skills__list">
-                <div class="skills__item">HTML & CSS</div>
-                <div class="skills__item">JavaScript</div>
-                <div class="skills__item">React / Next.js</div>
-                <div class="skills__item">Node.js</div>
-                <div class="skills__item">SQL / MongoDB</div>
-              </div>
-            </div>
-
-            <div class="skills__group">
-              <h3 class="skills__title">AI & Machine Learning</h3>
-              <div class="skills__list">
-                <div class="skills__item">Python</div>
-                <div class="skills__item">TensorFlow</div>
-                <div class="skills__item">PyTorch</div>
-                <div class="skills__item">Pandas / Numpy</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!--==================== NEURAL SECTION ====================-->
-      <section class="neural section" id="neural">
-        <h2 class="section__title">Neural <span>Interface</span></h2>
-        
-        <div class="neural__container container grid">
-          
-          <div class="neural__info">
-            <h3 class="neural__info-title">> MODEL_TRAINING: <span>ACTIVE</span></h3>
-            <ul class="neural__info-list">
-              <li><span class="highlight">[EPOCH]</span> <span id="epoch-count">142</span> / 500</li>
-              <li><span class="highlight">[LOSS]</span> <span id="loss-value">0.0124</span></li>
-              <li><span class="highlight">[ACCURACY]</span> <span id="accuracy-value">98.7%</span></li>
-              <li><span class="highlight">[TOPOLOGY]</span> Dynamic Synaptic Mesh</li>
-            </ul>
-            
-            <p class="neural__info-desc">
-              > Deep learning topology visualizing in real-time.<br>
-              > Hover cursor over the interface to interact with synaptic connections.<br>
-              > Left Click on canvas to toggle magnetic attraction/repulsion.
-            </p>
-          </div>
-
-          <div class="neural__terminal">
-            <div class="neural__header">
-              <span class="neural__dot"></span>
-              <span class="neural__dot"></span>
-              <span class="neural__dot"></span>
-              <span class="neural__title">viz_engine.exe - Interactive</span>
-            </div>
-            <div class="neural__screen">
-              <canvas id="neural-canvas" width="400" height="400"></canvas>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!--==================== CONTACT SECTION ====================-->
-      <section class="contact section" id="contact">
-        <div class="contact__container container grid">
-          <h2 class="section__title">Contact <span>Me</span></h2>
-
-          <div class="contact__content grid">
-            <div class="contact__info">
-              <div class="contact__card">
-                <i class="ri-mail-line contact__icon"></i>
-                <h3 class="contact__title">Email</h3>
-                <span class="contact__address">soumyajit19pvt@gmail.com</span>
-              </div>
-              <div class="contact__card">
-                <i class="ri-github-line contact__icon"></i>
-                <h3 class="contact__title">GitHub</h3>
-                <span class="contact__address">github.com/exepngsam</span>
-              </div>
-              <div class="contact__card">
-                <i class="ri-twitter-x-line contact__icon"></i>
-                <h3 class="contact__title">X (Twitter)</h3>
-                <span class="contact__address">@exesam19</span>
-              </div>
-            </div>
-
-            <form action="https://formsubmit.co/soumyajit19pvt@gmail.com" method="POST" class="contact__form" id="contact-form">
-              <input type="hidden" name="_captcha" value="false">
-              <div class="contact__input-group">
-                <div class="contact__input-box">
-                  <label for="" class="contact__label">Name</label>
-                  <input
-                    type="text"
-                    name="user_name"
-                    required
-                    placeholder="John Doe"
-                    class="contact__input"
-                  />
-                </div>
-                <div class="contact__input-box">
-                  <label for="" class="contact__label">Email</label>
-                  <input
-                    type="email"
-                    name="user_email"
-                    required
-                    placeholder="john@email.com"
-                    class="contact__input"
-                  />
-                </div>
+          <form action="https://formsubmit.co/soumyajit19pvt@gmail.com" method="POST" class="contact__form"
+            id="contact-form">
+            <input type="hidden" name="_captcha" value="false">
+            <div class="contact__input-group">
+              <div class="contact__input-box">
+                <label for="" class="contact__label">Name</label>
+                <input type="text" name="user_name" required placeholder="John Doe" class="contact__input" />
               </div>
               <div class="contact__input-box">
-                <label for="" class="contact__label">Message</label>
-                <textarea
-                  name="user_message"
-                  required
-                  placeholder="Hello there!"
-                  class="contact__input"
-                ></textarea>
+                <label for="" class="contact__label">Email</label>
+                <input type="email" name="user_email" required placeholder="john@email.com" class="contact__input" />
               </div>
+            </div>
+            <div class="contact__input-box">
+              <label for="" class="contact__label">Message</label>
+              <textarea name="user_message" required placeholder="Hello there!" class="contact__input"></textarea>
+            </div>
 
-              <p class="contact__message" id="contact-message"></p>
+            <p class="contact__message" id="contact-message"></p>
 
-              <button type="submit" class="button contact__button">
-                Send Message
-              </button>
-            </form>
-          </div>
+            <button type="submit" class="button contact__button">
+              Send Message
+            </button>
+          </form>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!--==================== ASCII ART SECTION ====================-->
-      <section class="ascii-art section" style="padding-top: 0; overflow: hidden; display: flex; justify-content: center;">
-        <canvas id="ascii-canvas" style="width: 100%; max-width: 1000px; height: 300px; display: block; margin-inline: auto; opacity: 1;"></canvas>
-      </section>
-    </main>
+    <!--==================== ASCII ART SECTION ====================-->
+    <section class="ascii-art section"
+      style="padding-top: 0; overflow: hidden; display: flex; justify-content: center;">
+      <canvas id="ascii-canvas"
+        style="width: 100%; max-width: 1000px; height: 300px; display: block; margin-inline: auto; opacity: 1;"></canvas>
+    </section>
+  </main>
 
-    <!--==================== FOOTER ====================-->
-    <footer class="footer">
-      <div class="footer__container container grid">
-        <div class="footer__data">
-          <h2 class="footer__title">
-            COLLABORATE WITH SOUMYAJIT AND START YOUR JOURNEY IN AI & ML TODAY.
-          </h2>
-          <ul class="footer__links">
-            <li><a href="#work" class="footer__link">Work</a></li>
-            <li><a href="#service" class="footer__link">Services</a></li>
-            <li><a href="#skills" class="footer__link">Skills</a></li>
-          </ul>
-          <div class="footer__socials">
-            <a
-              href="https://www.linkedin.com/in/soumyajit-jena-19s"
-              target="_blank"
-              class="footer__social"
-              ><i class="ri-linkedin-fill"></i
-            ></a>
-            <a href="https://github.com/exepngsam" target="_blank" class="footer__social"
-              ><i class="ri-github-fill"></i
-            ></a>
-            <a href="https://x.com/exesam19" target="_blank" class="footer__social"
-              ><i class="ri-twitter-x-fill"></i
-            ></a>
-          </div>
+  <!--==================== FOOTER ====================-->
+  <footer class="footer">
+    <div class="footer__container container grid">
+      <div class="footer__data">
+        <h2 class="footer__title">
+          COLLABORATE WITH SOUMYAJIT AND START YOUR JOURNEY IN AI & ML TODAY.
+        </h2>
+        <ul class="footer__links">
+          <li><a href="#work" class="footer__link">Work</a></li>
+          <li><a href="#service" class="footer__link">Services</a></li>
+          <li><a href="#skills" class="footer__link">Skills</a></li>
+        </ul>
+        <div class="footer__socials">
+          <a href="https://www.linkedin.com/in/soumyajit-jena-19s" target="_blank" class="footer__social"><i
+              class="ri-linkedin-fill"></i></a>
+          <a href="https://github.com/exepngsam" target="_blank" class="footer__social"><i
+              class="ri-github-fill"></i></a>
+          <a href="https://x.com/exesam19" target="_blank" class="footer__social"><i class="ri-twitter-x-fill"></i></a>
         </div>
-        <span class="footer__copy"
-          >&#169; All Rights Reserved By Soumyajit Jena</span
-        >
       </div>
-    </footer>
-
-    <!--========== SCROLL UP ==========-->
-    <a href="#" class="scrollup" id="scroll-up">
-      <i class="ri-arrow-up-line"></i>
-    </a>
-
-    <!--========== CHATBOT ==========-->
-    <div class="chatbot-container" id="chatbot-container">
-      <div class="chatbot-header">
-        <div class="chatbot-title">
-          <i class="ri-robot-2-line"></i> AI Assistant
-        </div>
-        <i class="ri-close-line chatbot-close" id="chatbot-close"></i>
-      </div>
-      <div class="chatbot-messages" id="chatbot-messages">
-        <!-- Messages will be injected here -->
-        <div class="chatbot-message ai">Hi! I'm Soumyajit's personal AI assistant. How can I help you today?</div>
-      </div>
-      <div class="chatbot-input-area">
-        <input type="text" id="chatbot-input" placeholder="Ask me anything..." autocomplete="off">
-        <button id="chatbot-send"><i class="ri-send-plane-fill"></i></button>
-      </div>
+      <span class="footer__copy">&#169; All Rights Reserved By Soumyajit Jena</span>
     </div>
-    
-    <button class="chatbot-toggle" id="chatbot-toggle">
-      <i class="ri-chat-smile-3-line"></i>
-    </button>
+  </footer>
 
-    <!--=============== SCROLLREVEAL ===============-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js"></script>
+  <!--========== SCROLL UP ==========-->
+  <a href="#" class="scrollup" id="scroll-up">
+    <i class="ri-arrow-up-line"></i>
+  </a>
 
-    <!--=============== TYPED JS ===============-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.min.js"></script>
+  <!--========== CHATBOT ==========-->
+  <div class="chatbot-container" id="chatbot-container">
+    <div class="chatbot-header">
+      <div class="chatbot-title">
+        <i class="ri-robot-2-line"></i> AI Assistant
+      </div>
+      <i class="ri-close-line chatbot-close" id="chatbot-close"></i>
+    </div>
+    <div class="chatbot-messages" id="chatbot-messages">
+      <!-- Messages will be injected here -->
+      <div class="chatbot-message ai">Hi! I'm Soumyajit's personal AI assistant. How can I help you today?</div>
+    </div>
+    <div class="chatbot-input-area">
+      <input type="text" id="chatbot-input" placeholder="Ask me anything..." autocomplete="off">
+      <button id="chatbot-send"><i class="ri-send-plane-fill"></i></button>
+    </div>
+  </div>
 
-    <!--=============== SWIPER JS ===============-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+  <button class="chatbot-toggle" id="chatbot-toggle">
+    <i class="ri-chat-smile-3-line"></i>
+  </button>
 
-    <!--=============== EMAIL JS ===============-->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!--=============== SCROLLREVEAL ===============-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js"></script>
 
-    <!--=============== MAIN JS ===============-->
-    <script src="assets/js/main.js"></script>
+  <!--=============== TYPED JS ===============-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.min.js"></script>
 
-    <!--=============== CHATBOT JS ===============-->
-    <script src="assets/js/chatbot.js"></script>
-  </body>
+  <!--=============== SWIPER JS ===============-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+
+  <!--=============== EMAIL JS ===============-->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!--=============== MAIN JS ===============-->
+  <script src="assets/js/main.js"></script>
+
+  <!--=============== CHATBOT JS ===============-->
+  <script src="assets/js/chatbot.js"></script>
+</body>
+
 </html>

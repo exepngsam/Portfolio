@@ -1,0 +1,282 @@
+========== HEADER & NAV ==========
+✅.nav__logo
+Bianca
+
+✅.nav__link
+Home - Works - My Services - Skills - Contact me
+
+
+========== HOME SECTION ==========
+✅.home__subtitle
+Hi! I'm Bianca - Based on Peru
+
+✅.home__title
+Creative Designer & <br>
+<span id="home-typed">Web Developer</span>
+
+✅.home__description
+I build designs and websites that solve problems, inspiring success.
+
+✅.home__text
+EXPLORE - MORE - LET'S -
+
+***** HOME TEXT CIRCULAR JS COMMENTS *****
+// Converts text into an array of characters
+
+// Angle for each character; length counts the number of characters
+
+// Clears the original content
+
+// Iterates through each character
+
+// Creates a <span> for each letter
+
+// Inserts each character into the span
+
+// Rotates each letter based on its index to form the circle
+
+// Appends the span to the main container
+
+***** HOME TYPED JS COMMENTS *****
+// Insert professions
+
+
+========== ABOUT SECTION ==========
+✅.about__title
+About Me: Young freelancer who enjoys <span>web design</span> 
+and <span>development</span>, passionate about my work, disciplined, 
+and successful.
+
+✅.about__description
+If you have a project in mind, check out my work and contact me 
+to work together. Best of luck!
+
+✅.about__button
+Contact me
+
+
+========== WORK SECTION ==========
+✅.section__title
+View My <span>Work</span>
+
+✅.work__number ✅.work__name 
+01
+Restaurant Website
+
+02
+Design For Agriculture
+
+03
+Chicken Shop Website
+
+04
+Complete Systems For Mining
+
+05
+SEO Medicine Website
+
+
+✅.work__description
+Professional website for a company, using HTML, CSS, JavaScript, 
+Gsap, Figma, Database and others.
+
+
+========== SERVICES SECTION ==========
+✅.section__title
+<span>My</span> Services
+
+✅.services__name
+Website Developer
+Backend Developer
+Web Designer
+SEO Specialist
+
+✅.services__description
+The service I offer to companies and clients involves working 
+on professional, high-quality projects, doing what I am most 
+passionate about.
+
+✅.services__item
+Web development
+Web performance
+Database
+Basic SEO
+Designer
+Responsive design
+
+***** SERVICES ACCORDION JS COMMENTS *****
+// It iterates over each button found
+
+// Get the class of the clicked button (.services__card) and ⬇
+
+// Check already has the services-open class (Returns true or false)
+
+// Close all other services data
+
+// If the clicked card was closed, it opens it
+
+
+========== SKILLS SECTION ==========
+✅.section__title
+My <span>Skills</span>
+
+✅.skills__description
+My skills are those I've learned and developed over the years. By studying, 
+focusing, and being consistent in what I love most.
+
+✅.skills__title ✅.skills__item
+Frontend
+  HTML
+  CSS
+  JavaScript
+  React
+  Sass
+  Git
+  GitHub
+
+Backend
+  Lavarel
+  PostgreSQL
+  Node Js
+  Supabase
+  Socket.io
+
+Design
+  Figma
+  Blender
+  After effects
+  Photoshop
+  Ilustrator
+  Framer
+
+/* More icons */
+More icons at https://svgl.app/ - https://svglogos.dev/
+
+
+========== TESTIMONIALS SECTION ==========
+✅.section__title
+<span>What</span> They Say
+
+✅.testimonials__number
+5.0
+
+✅.testimonials__description
+“This young man is very disciplined; he delivered a professional and 
+high-quality project. He is always in contact and active regarding 
+time, Good work.”
+
+✅.testimonials__name
+Sara The
+Elemar Rice
+Rita Treds
+Augus Drix
+
+***** TESTIMONIALS CARDS JS COMMENTS *****
+// Get all testimonial sliders
+
+// Get the child testimonial sliders and create a copy of all cards
+
+// (... spread operato), converts the collection into an array
+
+// Get all the testimonial sliders
+
+// Duplicate the card and append it at the end
+
+
+========== CONTACT SECTION ==========
+✅.section__title
+Contact <span>Me</span>
+
+✅.contact__label
+Name
+Email
+Message
+
+✅.contact__button
+Send Message
+
+✅.contact__title ✅.contact__address
+Email (mailto:bianca123@email.com)
+  bianca123@email.com
+
+Phone number (tel:+99 1234567890)
+  +99 1234567890
+
+Location (https://maps.app.goo.gl/DcjYxRjxrkb3DHTo9)
+  Lima - Peru, Av. District #123
+
+<!-- Insert your location in Google Maps (https://www.google.com/maps) -->
+<!-- Share -> Copy link -->
+
+***** CONTACT JS COMMENTS *****
+The code for sending emails is a sample test.
+
+Create your account at https://www.emailjs.com/ 
+and follow the instructions in the video and images 
+to send emails with your account.
+
+// Prevent the page from reloading
+
+// serviceID - templateID - #form - publicKey
+
+  // Show sent message
+    Message sent successfully ✅
+
+  // Clear input fields
+
+  // Show error message
+    Message not sent (service error) ❌
+
+  // Remove message after five seconds
+
+Subject *
+New message from {{user_name}}
+
+Content *
+Names: {{user_name}}
+
+Email: {{user_email}}
+
+Message: {{user_message}}
+
+Best wishes,
+EmailJS team
+
+
+========== FOOTER ==========
+✅.footer__title
+COLLABORATE WITH BIANCA AND START YOUR 
+JOURNEY IN CREATIVE DESIGN TODAY.
+
+✅.footer__links
+Work - Services - Skills
+
+https://www.facebook.com/bedimcode
+https://www.instagram.com/bedimcode/
+https://www.linkedin.com/
+https://github.com/bedimcode
+
+✅.footer__copy
+&#169; All Rights Reserved By Bedimcode
+
+***** CUSTOM CURSOR JS COMMENTS *****
+// Store mouse position
+
+// Horizontal position (X-axis)
+
+// Vertical position (Y-axis)
+
+// Centers the element at the pointer
+
+// Repeats the function with each movement
+
+// Detects mouse movement and updates positions
+
+// Save position X
+
+// Save position Y
+
+/* Hide custom cursor on links */
+// Mouse enters the link and hides the cursor
+
+// Mouse exits the link and shows the cursor

@@ -1077,6 +1077,31 @@ textarea.contact__input {
   bottom: 3rem;
 }
 
+/*=============== ASCII ART SECTION ===============*/
+.ascii-art {
+  padding-top: 0;
+  padding-bottom: 2rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ascii-canvas {
+  width: 100%;
+  max-width: 1000px;
+  height: 300px;
+  display: block;
+  margin-inline: auto;
+  opacity: 1;
+}
+
+@media (width <= 576px) {
+  .ascii-canvas {
+    height: 320px;
+  }
+}
+
 /*=============== BREAKPOINTS ===============*/
 @media (width >= 576px) {
   .home__container,

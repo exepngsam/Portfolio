@@ -129,6 +129,13 @@ if (cursor && canvas) {
         mouseY = e.clientY;
     }, { passive: true });
 
+    document.addEventListener('touchmove', e => {
+        if (e.touches && e.touches.length > 0) {
+            mouseX = e.touches[0].clientX;
+            mouseY = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
     let scrollY = window.scrollY;
     window.addEventListener('scroll', () => {
         scrollY = window.scrollY;
@@ -309,15 +316,7 @@ const asciiCanvas = document.getElementById('ascii-canvas');
 if (asciiCanvas) {
     const ctx = asciiCanvas.getContext('2d');
     
-    let width, height;
-    const resizeAscii = () => {
-        width = asciiCanvas.width = asciiCanvas.parentElement.clientWidth;
-        height = asciiCanvas.height = 300;
-    };
-    window.addEventListener('resize', resizeAscii);
-    resizeAscii();
-
-    // The characters from the user's reference, from darkest/thinnest to brightest/densest
+    // The characters from darkest/thinnest to brightest/densest
     const chars = " .,-~:;=!*#$";
     let time = 0;
 
@@ -337,37 +336,76 @@ if (asciiCanvas) {
         "}"
     ];
 
+    let width, height, dpr, cellSize, fontSize, cols, rows;
+    let startX, startY, bioStartX, bioY, codeX, codeY, codeHeight;
+    const nameWidth = nameAscii[0].length;
+    const nameHeight = nameAscii.length;
+
+    const resizeAscii = () => {
+        dpr = window.devicePixelRatio || 1;
+        const parentWidth = asciiCanvas.parentElement ? asciiCanvas.parentElement.clientWidth : window.innerWidth;
+        // Keep max-width 1000px to match layout container
+        width = Math.min(1000, parentWidth);
+        // Slightly taller on narrow mobile screens (< 576px) to comfortably house the code block
+        height = width < 576 ? 320 : 300;
+
+        asciiCanvas.width = width * dpr;
+        asciiCanvas.height = height * dpr;
+        asciiCanvas.style.width = `${width}px`;
+        asciiCanvas.style.height = `${height}px`;
+
+        // Responsive grid calculation:
+        // Ensure at least (nameWidth + 2) = 54 columns fit on narrow screens
+        const minCols = nameWidth + 2;
+        cellSize = Math.min(12, Math.max(5, width / minCols));
+        fontSize = (cellSize * 0.95).toFixed(1);
+
+        cols = Math.floor(width / cellSize);
+        rows = Math.floor(height / cellSize);
+
+        startX = Math.floor((cols - nameWidth) / 2);
+
+        // Vertical centering: give extra room at bottom for code block if many rows
+        if (rows >= 36) {
+            startY = Math.floor((rows - nameHeight - 6) / 2);
+        } else {
+            startY = Math.floor((rows - nameHeight) / 2);
+        }
+
+        bioStartX = Math.floor((cols - bioText.length) / 2);
+        bioY = startY + nameHeight + 1;
+
+        codeHeight = codeLines.length;
+        codeY = rows - codeHeight - (rows > 30 ? 2 : 1);
+        codeX = cols >= 65 ? 4 : 2;
+    };
+
+    window.addEventListener('resize', resizeAscii);
+    window.addEventListener('orientationchange', () => setTimeout(resizeAscii, 100));
+    resizeAscii();
+
     const drawAsciiWave = () => {
-        // Clear background
+        if (!asciiCanvas.isConnected) return;
+
+        // Reset transform to handle high DPI crisp rendering
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         ctx.clearRect(0, 0, width, height);
-        
+
         // Determine color based on theme
         const isLight = document.body.classList.contains('light-theme');
         ctx.fillStyle = isLight ? '#000000' : '#ffffff';
-        ctx.font = 'bold 12px monospace';
+        ctx.font = `bold ${fontSize}px monospace`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
 
-        const cols = Math.floor(width / 12); 
-        const rows = Math.floor(height / 12); 
-        
-        // Calculate center position for the name
-        const nameWidth = nameAscii[0].length;
-        const nameHeight = nameAscii.length;
-        const startX = Math.floor((cols - nameWidth) / 2);
-        const startY = Math.floor((rows - nameHeight) / 2);
-        
-        // Calculate position for bio
-        const bioStartX = Math.floor((cols - bioText.length) / 2);
-        const bioY = startY + nameHeight + 1; // One row below the name
+        const halfCell = cellSize / 2;
 
         for (let y = 0; y < rows; y++) {
             for (let x = 0; x < cols; x++) {
-                
                 let drawNameChar = false;
                 let charToDraw = '';
                 let isHighlight = false;
-                
+
                 // Check if we are inside the bounding box of the ASCII name
                 if (x >= startX && x < startX + nameWidth && y >= startY && y < startY + nameHeight) {
                     const nameChar = nameAscii[y - startY][x - startX];
@@ -383,13 +421,13 @@ if (asciiCanvas) {
                     charToDraw = bioText[x - bioStartX];
                     isHighlight = true;
                 }
-                // Check if we are drawing the live program code on the left (if screen is wide enough)
-                else if (cols > 70 && x >= 4 && x < 30 && y >= rows - codeLines.length - 2 && y < rows - 2) {
-                    const lineIdx = y - (rows - codeLines.length - 2);
+                // Check if we are drawing the live program code on the bottom-left (guaranteed no overlap)
+                else if (codeY > bioY + 1 && y >= codeY && y < codeY + codeHeight && x >= codeX && x < codeX + 30) {
+                    const lineIdx = y - codeY;
                     const line = codeLines[lineIdx];
-                    if (x - 4 < line.length) {
+                    if (x - codeX < line.length) {
                         drawNameChar = true;
-                        charToDraw = line[x - 4];
+                        charToDraw = line[x - codeX];
                         // Simulate typing or glitching
                         if (Math.random() < 0.01) {
                             charToDraw = chars[Math.floor(Math.random() * chars.length)];
@@ -397,43 +435,44 @@ if (asciiCanvas) {
                     }
                 }
 
+                const posX = x * cellSize + halfCell;
+                const posY = y * cellSize + halfCell;
+
                 if (drawNameChar) {
-                    // Draw the specific character
-                    ctx.globalAlpha = isHighlight ? 1.0 : 0.7;
+                    ctx.globalAlpha = isHighlight ? 1.0 : 0.75;
                     if (isHighlight) {
-                        ctx.shadowBlur = 8;
+                        ctx.shadowBlur = cellSize > 8 ? 8 : 4;
                         ctx.shadowColor = isLight ? '#000000' : '#ffffff';
                     } else {
                         ctx.shadowBlur = 0;
                     }
-                    ctx.fillText(charToDraw, x * 12 + 6, y * 12 + 6);
+                    ctx.fillText(charToDraw, posX, posY);
                     ctx.shadowBlur = 0; // reset
                 } else {
-                    // Draw the interference pattern background
+                    // Draw interference pattern background
                     const nx = (x / cols) * 20 - 10;
                     const ny = (y / rows) * 10 - 5;
-                    
+
                     const d1 = Math.sqrt(Math.pow(nx - Math.sin(time * 0.7) * 4, 2) + Math.pow(ny - Math.cos(time * 0.8) * 2, 2));
                     const d2 = Math.sqrt(Math.pow(nx + Math.cos(time * 0.5) * 4, 2) + Math.pow(ny + Math.sin(time * 0.6) * 2, 2));
                     const d3 = Math.sqrt(Math.pow(nx - Math.cos(time * 0.9) * 2, 2) + Math.pow(ny + Math.sin(time * 0.4) * 3, 2));
 
                     const v = Math.sin(d1 * 1.5 - time * 2) + Math.sin(d2 * 1.5 + time) + Math.cos(d3 * 1.5 - time);
-                    
+
                     let z = (v + 3) / 6;
                     if (z < 0) z = 0;
                     if (z > 1) z = 1;
-                    
-                    // Add some random noise to the background for the "live program" feel
+
+                    // Random glitch noise
                     if (Math.random() < 0.02) {
                         z = Math.random();
                     }
-                    
+
                     const charIndex = Math.floor(z * (chars.length - 1));
                     const char = chars[charIndex];
-                    
-                    // Make background significantly fainter to let the text pop
+
                     ctx.globalAlpha = 0.15;
-                    ctx.fillText(char, x * 12 + 6, y * 12 + 6);
+                    ctx.fillText(char, posX, posY);
                 }
             }
         }
@@ -442,7 +481,7 @@ if (asciiCanvas) {
         time += 0.05;
         requestAnimationFrame(drawAsciiWave);
     };
-    
+
     drawAsciiWave();
 }
 
@@ -473,6 +512,19 @@ if (neuralCanvas) {
     });
     
     neuralCanvas.addEventListener('mouseleave', () => {
+        mouse.active = false;
+    });
+
+    neuralCanvas.addEventListener('touchmove', (e) => {
+        if (e.touches && e.touches.length > 0) {
+            const rect = neuralCanvas.getBoundingClientRect();
+            mouse.x = (e.touches[0].clientX - rect.left) * (width / rect.width);
+            mouse.y = (e.touches[0].clientY - rect.top) * (height / rect.height);
+            mouse.active = true;
+        }
+    }, { passive: true });
+
+    neuralCanvas.addEventListener('touchend', () => {
         mouse.active = false;
     });
 

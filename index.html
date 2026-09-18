@@ -122,42 +122,41 @@
 
     <!--==================== LIQUID AMOEBA SPOTLIGHT REVEAL SECTION ====================-->
     <section class="reveal-section" id="reveal" aria-label="Interactive Reveal">
-      <!-- SVG Filter Definition for Living Liquid Amoeba Distortion -->
-      <svg width="0" height="0" style="position: absolute; pointer-events: none;">
-        <defs>
-          <filter id="amoebaDistort">
-            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise">
-              <animate attributeName="baseFrequency" dur="10s" values="0.01;0.022;0.014;0.01" repeatCount="indefinite" />
-            </feTurbulence>
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="45" xChannelSelector="R" yChannelSelector="G" />
-          </filter>
+      <div class="reveal-card" id="reveal-card" role="button" tabindex="0" aria-label="Hover pointer to reveal cybernetic suit, or click to toggle full view">
+        <svg class="reveal-canvas-svg" id="reveal-svg" viewBox="0 0 1200 680" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="amoebaDistort" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" result="noise">
+                <animate attributeName="baseFrequency" dur="10s" values="0.009;0.018;0.012;0.009" repeatCount="indefinite" />
+              </feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="35" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
 
-          <mask id="revealMask">
-            <g filter="url(#amoebaDistort)">
-              <circle id="reveal-mask-shape" cx="50%" cy="50%" r="0" fill="#ffffff" />
-            </g>
-          </mask>
-        </defs>
-      </svg>
+            <mask id="revealMask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">
+              <circle id="reveal-mask-shape" cx="600" cy="340" r="0" fill="#ffffff" filter="url(#amoebaDistort)" />
+            </mask>
+          </defs>
 
-      <div class="reveal-card" id="reveal-card">
-        <!-- Grayscale base layer -->
-        <img src="assets/img/cosmic_bg.jpg" alt="Neural Space Base" class="reveal-base-layer" />
+          <!-- Base Image (Human Cosmic Silhouette) -->
+          <image class="reveal-img-base" href="assets/img/cosmic_bg.jpg" width="1200" height="680" preserveAspectRatio="xMidYMid slice" />
 
-        <!-- High-res colored revealed layer masked by amoeba -->
-        <img src="assets/img/cosmic_bg.jpg" alt="Neural Space Active" class="reveal-top-layer" />
+          <!-- Top Image (Chrome Cybernetic Avatar) revealed through mask -->
+          <image class="reveal-img-top" href="assets/img/chrome_suit.jpg" width="1200" height="680" preserveAspectRatio="xMidYMid slice" mask="url(#revealMask)" />
 
-        <!-- Liquid glowing border -->
-        <svg class="reveal-svg-container">
-          <g class="reveal-edge-glow">
-            <circle id="reveal-edge" filter="url(#amoebaDistort)" cx="50%" cy="50%" r="0"></circle>
+          <!-- Glowing Liquid Edge -->
+          <g class="reveal-edge-glow" id="reveal-edge-group">
+            <circle id="reveal-edge" cx="600" cy="340" r="0" fill="none" stroke="#fffffff2" stroke-width="2.5" filter="url(#amoebaDistort)" />
           </g>
         </svg>
+
+        <!-- Top & Bottom Vignette Scrims -->
+        <span class="reveal-scrim reveal-scrim-top" aria-hidden="true"></span>
+        <span class="reveal-scrim reveal-scrim-bottom" aria-hidden="true"></span>
 
         <!-- Sliding Dual Editorial Caption -->
         <div class="reveal-caption">
           <span class="reveal-caption-base">Hover to Pierce the Veil • Autonomous Neural Core</span>
-          <span class="reveal-caption-top">Neural Intelligence Unleashed • High-Performance Systems</span>
+          <span class="reveal-caption-top">Cybernetic Suit Unleashed • High-Performance Systems</span>
         </div>
       </div>
     </section>

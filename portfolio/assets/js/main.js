@@ -1,5 +1,6 @@
 /*==================================================
    DOSSIER EDITORIAL MOTION SYSTEM & INTERACTION ENGINE
+   Optimized for 60-120fps Zero-Lag Smooth Performance
 ==================================================*/
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -57,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroSection = document.getElementById('hero');
   const diveSection = document.getElementById('dive-section');
 
+  let scrollTicking = false;
   function updateScrollMetrics() {
     const scrollY = window.scrollY;
     const winHeight = window.innerHeight;
@@ -92,13 +94,23 @@ document.addEventListener('DOMContentLoaded', () => {
         root.style.setProperty('--dive-progress', diveProg.toFixed(4));
       }
     }
+
+    scrollTicking = false;
   }
 
-  window.addEventListener('scroll', updateScrollMetrics, { passive: true });
+  function requestScrollTick() {
+    if (!scrollTicking) {
+      requestAnimationFrame(updateScrollMetrics);
+      scrollTicking = true;
+    }
+  }
+
+  window.addEventListener('scroll', requestScrollTick, { passive: true });
   updateScrollMetrics();
 
   /*--------------------------------------------------
     3. VARIABLE FONT PROXIMITY ENGINE (Roboto Flex)
+       Cached layout metrics to prevent layout thrashing
   --------------------------------------------------*/
   const vftContainers = document.querySelectorAll('[data-variable-font-text]');
   const defaultBoldWght = 900;
@@ -122,46 +134,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isMouseOver = false;
     let animFrame = null;
+    let letterMetrics = [];
+
+    function cacheMetrics() {
+      letterMetrics = letters.map((span) => {
+        const rect = span.getBoundingClientRect();
+        return {
+          span,
+          cx: rect.left + rect.width / 2,
+          cy: rect.top + rect.height / 2
+        };
+      });
+    }
 
     function onMouseMove(e) {
       if (!isMouseOver) return;
       if (animFrame) cancelAnimationFrame(animFrame);
 
       animFrame = requestAnimationFrame(() => {
-        letters.forEach((letter) => {
-          const rect = letter.getBoundingClientRect();
-          const centerX = rect.left + rect.width / 2;
-          const centerY = rect.top + rect.height / 2;
-          const dist = Math.hypot(e.clientX - centerX, e.clientY - centerY);
+        for (let i = 0; i < letterMetrics.length; i++) {
+          const item = letterMetrics[i];
+          const dist = Math.hypot(e.clientX - item.cx, e.clientY - item.cy);
 
           if (dist < pinchRadius) {
             const factor = Math.max(0, 1 - dist / pinchRadius);
-            // Bend weight & width towards thin/compressed on proximity
             const wght = Math.round(defaultBoldWght + (pinchWght - defaultBoldWght) * factor);
             const wdth = Math.round(defaultBoldWdth + (pinchWdth - defaultBoldWdth) * factor);
-            letter.style.fontVariationSettings = `"wght" ${wght}, "wdth" ${wdth}`;
+            item.span.style.fontVariationSettings = `"wght" ${wght}, "wdth" ${wdth}`;
           } else {
-            letter.style.fontVariationSettings = `"wght" ${defaultBoldWght}, "wdth" ${defaultBoldWdth}`;
+            item.span.style.fontVariationSettings = `"wght" ${defaultBoldWght}, "wdth" ${defaultBoldWdth}`;
           }
-        });
+        }
       });
     }
 
     function onMouseLeave() {
       isMouseOver = false;
       if (animFrame) cancelAnimationFrame(animFrame);
-      letters.forEach((letter) => {
-        letter.style.fontVariationSettings = `"wght" ${defaultBoldWght}, "wdth" ${defaultBoldWdth}`;
-      });
+      for (let i = 0; i < letters.length; i++) {
+        letters[i].style.fontVariationSettings = `"wght" ${defaultBoldWght}, "wdth" ${defaultBoldWdth}`;
+      }
     }
 
     container.addEventListener('mouseenter', () => {
       isMouseOver = true;
+      cacheMetrics();
     });
     window.addEventListener('mousemove', (e) => {
       if (isMouseOver) onMouseMove(e);
-    });
+    }, { passive: true });
     container.addEventListener('mouseleave', onMouseLeave);
+    window.addEventListener('resize', cacheMetrics, { passive: true });
   });
 
   /*--------------------------------------------------
@@ -225,84 +248,129 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /*--------------------------------------------------
     6. LIQUID AMOEBA SPOTLIGHT REVEAL
+       Pure SVG mask with cosmic human to chrome cyber suit transition
   --------------------------------------------------*/
   const revealCard = document.getElementById('reveal-card');
   const revealMaskShape = document.getElementById('reveal-mask-shape');
   const revealEdge = document.getElementById('reveal-edge');
+  const revealEdgeGroup = document.getElementById('reveal-edge-group');
 
   if (revealCard && revealMaskShape && revealEdge) {
-    let revealActive = false;
+    let isHovering = false;
+    let isForced = false;
     let targetR = 0;
     let currentR = 0;
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
+    let targetX = 600;
+    let targetY = 340;
+    let currentX = 600;
+    let currentY = 340;
+
+    function getSvgCoords(clientX, clientY) {
+      const rect = revealCard.getBoundingClientRect();
+      const normX = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      const normY = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height));
+      return {
+        x: normX * 1200,
+        y: normY * 680
+      };
+    }
 
     revealCard.addEventListener('mouseenter', (e) => {
-      revealActive = true;
+      isHovering = true;
       revealCard.classList.add('is-active');
-      targetR = 170;
-      const rect = revealCard.getBoundingClientRect();
-      targetX = e.clientX - rect.left;
-      targetY = e.clientY - rect.top;
+      if (!isForced) {
+        targetR = 210;
+      }
+      const coords = getSvgCoords(e.clientX, e.clientY);
+      targetX = coords.x;
+      targetY = coords.y;
       currentX = targetX;
       currentY = targetY;
     });
 
     revealCard.addEventListener('mousemove', (e) => {
-      const rect = revealCard.getBoundingClientRect();
-      targetX = e.clientX - rect.left;
-      targetY = e.clientY - rect.top;
-    });
+      const coords = getSvgCoords(e.clientX, e.clientY);
+      targetX = coords.x;
+      targetY = coords.y;
+    }, { passive: true });
 
     revealCard.addEventListener('mouseleave', () => {
-      revealActive = false;
-      revealCard.classList.remove('is-active');
-      targetR = 0;
+      isHovering = false;
+      if (!isForced) {
+        revealCard.classList.remove('is-active');
+        targetR = 0;
+      }
     });
 
-    // Touch events for mobile
+    // Click to toggle full reveal mode (Suit revealed vs concealed)
+    revealCard.addEventListener('click', () => {
+      isForced = !isForced;
+      if (isForced) {
+        revealCard.classList.add('is-active');
+        targetR = 1400;
+      } else {
+        targetR = isHovering ? 210 : 0;
+        if (!isHovering) revealCard.classList.remove('is-active');
+      }
+    });
+
+    // Mobile touch interaction
     revealCard.addEventListener('touchstart', (e) => {
-      revealActive = true;
+      isHovering = true;
       revealCard.classList.add('is-active');
-      targetR = 150;
-      const rect = revealCard.getBoundingClientRect();
-      targetX = e.touches[0].clientX - rect.left;
-      targetY = e.touches[0].clientY - rect.top;
-      currentX = targetX;
-      currentY = targetY;
+      targetR = isForced ? 1400 : 190;
+      if (e.touches && e.touches[0]) {
+        const coords = getSvgCoords(e.touches[0].clientX, e.touches[0].clientY);
+        targetX = coords.x;
+        targetY = coords.y;
+        currentX = targetX;
+        currentY = targetY;
+      }
     }, { passive: true });
 
     revealCard.addEventListener('touchmove', (e) => {
-      const rect = revealCard.getBoundingClientRect();
-      targetX = e.touches[0].clientX - rect.left;
-      targetY = e.touches[0].clientY - rect.top;
+      if (e.touches && e.touches[0]) {
+        const coords = getSvgCoords(e.touches[0].clientX, e.touches[0].clientY);
+        targetX = coords.x;
+        targetY = coords.y;
+      }
     }, { passive: true });
 
     revealCard.addEventListener('touchend', () => {
-      revealActive = false;
-      revealCard.classList.remove('is-active');
-      targetR = 0;
+      if (!isForced) {
+        isHovering = false;
+        revealCard.classList.remove('is-active');
+        targetR = 0;
+      }
     });
 
     function updateAmoeba() {
-      // Smooth lerp
-      currentX += (targetX - currentX) * 0.18;
-      currentY += (targetY - currentY) * 0.18;
-      currentR += (targetR - currentR) * 0.15;
+      // Smooth spring interpolation
+      currentX += (targetX - currentX) * 0.16;
+      currentY += (targetY - currentY) * 0.16;
+      currentR += (targetR - currentR) * 0.14;
 
-      revealMaskShape.setAttribute('cx', currentX.toFixed(2));
-      revealMaskShape.setAttribute('cy', currentY.toFixed(2));
-      revealMaskShape.setAttribute('r', currentR.toFixed(2));
+      const rVal = Math.max(0, currentR);
+      revealMaskShape.setAttribute('cx', currentX.toFixed(1));
+      revealMaskShape.setAttribute('cy', currentY.toFixed(1));
+      revealMaskShape.setAttribute('r', rVal.toFixed(1));
 
-      revealEdge.setAttribute('cx', currentX.toFixed(2));
-      revealEdge.setAttribute('cy', currentY.toFixed(2));
-      revealEdge.setAttribute('r', currentR.toFixed(2));
+      revealEdge.setAttribute('cx', currentX.toFixed(1));
+      revealEdge.setAttribute('cy', currentY.toFixed(1));
+      revealEdge.setAttribute('r', rVal.toFixed(1));
+
+      // Hide glowing stroke edge when radius is tiny or fully expanded
+      if (revealEdgeGroup) {
+        if (rVal < 2 || rVal > 1100) {
+          revealEdgeGroup.style.opacity = '0';
+        } else {
+          revealEdgeGroup.style.opacity = '1';
+        }
+      }
 
       requestAnimationFrame(updateAmoeba);
     }
-    updateAmoeba();
+    requestAnimationFrame(updateAmoeba);
   }
 
   /*--------------------------------------------------
@@ -326,17 +394,38 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPosX = mouseX;
     let currentPosY = mouseY;
     let isHoveringRoles = false;
+    let roleAnimRunning = false;
 
     window.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-    });
+    }, { passive: true });
+
+    function updateRoleCursorFollower() {
+      if (!isHoveringRoles) {
+        roleAnimRunning = false;
+        return;
+      }
+
+      currentPosX += (mouseX - currentPosX) * 0.16;
+      currentPosY += (mouseY - currentPosY) * 0.16;
+
+      rolesPreview.style.left = `${currentPosX}px`;
+      rolesPreview.style.top = `${currentPosY}px`;
+
+      requestAnimationFrame(updateRoleCursorFollower);
+    }
 
     const roleItems = rolesList.querySelectorAll('.roles-item');
     roleItems.forEach((item, index) => {
       item.addEventListener('mouseenter', () => {
         isHoveringRoles = true;
         rolesPreview.classList.add('active');
+
+        if (!roleAnimRunning) {
+          roleAnimRunning = true;
+          requestAnimationFrame(updateRoleCursorFollower);
+        }
 
         const media = roleMedia[index % roleMedia.length];
         if (media.type === 'video' && rolesPreviewVideo) {
@@ -360,17 +449,6 @@ document.addEventListener('DOMContentLoaded', () => {
       rolesPreview.classList.remove('active');
       if (rolesPreviewVideo) rolesPreviewVideo.pause();
     });
-
-    function updateRoleCursorFollower() {
-      currentPosX += (mouseX - currentPosX) * 0.16;
-      currentPosY += (mouseY - currentPosY) * 0.16;
-
-      rolesPreview.style.left = `${currentPosX}px`;
-      rolesPreview.style.top = `${currentPosY}px`;
-
-      requestAnimationFrame(updateRoleCursorFollower);
-    }
-    updateRoleCursorFollower();
   }
 
   /*--------------------------------------------------
@@ -454,34 +532,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /*--------------------------------------------------
     9. INTERACTIVE 3D NEURAL CANVAS & TELEMETRY
+       IntersectionObserver to only render when in view
   --------------------------------------------------*/
   const neuralCanvas = document.getElementById('neural-canvas');
-  if (neuralCanvas) {
-    const ctx = neuralCanvas.getContext('2d');
+  const neuralSection = document.getElementById('neural');
+
+  if (neuralCanvas && neuralSection) {
+    const ctx = neuralCanvas.getContext('2d', { alpha: false });
     let width = (neuralCanvas.width = 440);
     let height = (neuralCanvas.height = 440);
 
-    const particleCount = 650;
+    const particleCount = 380;
     const particles = [];
     let mouse = { x: width / 2, y: height / 2, active: false };
     let isRepelling = false;
+    let isVisible = false;
+    let isRendering = false;
 
-    // Canvas size responsiveness
     function resizeCanvas() {
       const rect = neuralCanvas.getBoundingClientRect();
-      width = neuralCanvas.width = rect.width;
-      height = neuralCanvas.height = rect.height;
+      if (rect.width > 0 && rect.height > 0) {
+        width = neuralCanvas.width = Math.round(rect.width);
+        height = neuralCanvas.height = Math.round(rect.height);
+      }
     }
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', resizeCanvas, { passive: true });
     resizeCanvas();
 
-    // Mouse events
+    // Intersection Observer to prevent CPU/GPU consumption offscreen
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && !isRendering) {
+          isRendering = true;
+          requestAnimationFrame(renderNeuralMesh);
+        }
+      });
+    }, { threshold: 0.05 });
+    observer.observe(neuralSection);
+
     neuralCanvas.addEventListener('mousemove', (e) => {
       const rect = neuralCanvas.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
       mouse.active = true;
-    });
+    }, { passive: true });
 
     neuralCanvas.addEventListener('mouseleave', () => {
       mouse.active = false;
@@ -491,7 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isRepelling = !isRepelling;
     });
 
-    // Initialize particles in a 3D sphere projection
+    // Initialize particles in 3D sphere projection
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * width,
@@ -500,12 +595,17 @@ document.addEventListener('DOMContentLoaded', () => {
         vy: 0,
         baseX: width / 2,
         baseY: height / 2,
-        radius: Math.random() * 1.5 + 0.6
+        radius: Math.random() * 1.4 + 0.6
       });
     }
 
     let time = 0;
     function renderNeuralMesh() {
+      if (!isVisible) {
+        isRendering = false;
+        return;
+      }
+
       ctx.fillStyle = '#030406';
       ctx.fillRect(0, 0, width, height);
 
@@ -525,51 +625,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
       for (let i = 0; i < particleCount; i++) {
         const p = particles[i];
+        p.vx += (p.baseX - p.x) * 0.018;
+        p.vy += (p.baseY - p.y) * 0.018;
 
-        // Spring towards base
-        p.vx += (p.baseX - p.x) * 0.015;
-        p.vy += (p.baseY - p.y) * 0.015;
-
-        // Mouse interaction
         if (mouse.active) {
           const dx = p.x - mouse.x;
           const dy = p.y - mouse.y;
-          const dist = Math.hypot(dx, dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (dist < 110) {
+          if (distSq < 110 * 110 && distSq > 1) {
+            const dist = Math.sqrt(distSq);
             const force = (110 - dist) / 110;
-            if (isRepelling) {
-              p.vx += (dx / dist) * force * 5;
-              p.vy += (dy / dist) * force * 5;
-            } else {
-              p.vx -= (dx / dist) * force * 2.5;
-              p.vy -= (dy / dist) * force * 2.5;
-            }
+            const factor = isRepelling ? force * 4.5 : -force * 2.5;
+            p.vx += (dx / dist) * factor;
+            p.vy += (dy / dist) * factor;
           }
         }
 
-        // Friction
-        p.vx *= 0.86;
-        p.vy *= 0.86;
+        p.vx *= 0.85;
+        p.vy *= 0.85;
         p.x += p.vx;
         p.y += p.vy;
 
         ctx.fillRect(p.x, p.y, p.radius * 2, p.radius * 2);
 
-        // Synaptic connections
-        for (let j = i + 1; j < Math.min(i + 10, particleCount); j++) {
+        // Synaptic connections (optimized for zero lag)
+        for (let j = i + 1; j < Math.min(i + 8, particleCount); j++) {
           const p2 = particles[j];
           const dxx = p.x - p2.x;
           const dyy = p.y - p2.y;
           const distSq = dxx * dxx + dyy * dyy;
 
-          if (distSq < 35 * 35) {
+          if (distSq < 34 * 34) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            const opacity = 1 - Math.sqrt(distSq) / 35;
-            ctx.strokeStyle = `rgba(239, 233, 216, ${opacity * 0.25})`;
-            ctx.lineWidth = 0.8;
+            const opacity = 1 - Math.sqrt(distSq) / 34;
+            ctx.strokeStyle = `rgba(239, 233, 216, ${opacity * 0.22})`;
+            ctx.lineWidth = 0.75;
             ctx.stroke();
           }
         }
@@ -591,7 +684,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       requestAnimationFrame(renderNeuralMesh);
     }
-    renderNeuralMesh();
 
     // Simulated training telemetry updates
     const epochEl = document.getElementById('epoch-count');
@@ -688,7 +780,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const userText = chatbotInput.value.trim();
       if (!userText) return;
 
-      // Add user message
       const userMsg = document.createElement('div');
       userMsg.className = 'chatbot-message user';
       userMsg.textContent = userText;
@@ -696,7 +787,6 @@ document.addEventListener('DOMContentLoaded', () => {
       chatbotInput.value = '';
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 
-      // Generate response
       setTimeout(() => {
         const lower = userText.toLowerCase();
         let match = aiKnowledge.find((k) =>

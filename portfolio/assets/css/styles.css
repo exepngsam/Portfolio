@@ -647,58 +647,63 @@ button {
   overflow: hidden;
   border: 1px solid var(--border-subtle);
   cursor: crosshair;
-  background: #090c14;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  background: #06070a;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  contain: layout paint;
+  touch-action: pan-y;
+  user-select: none;
 }
 
-/* Underneath Base Image / Artwork */
-.reveal-base-layer {
-  position: absolute;
-  inset: 0;
+.reveal-canvas-svg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  filter: grayscale(80%) brightness(0.4) contrast(1.2);
-  transition: filter 0.4s;
+  display: block;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-/* Top Spotlight Revealed Layer */
-.reveal-top-layer {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-  -webkit-mask: url(#revealMask);
-  mask: url(#revealMask);
+.reveal-canvas-svg image {
+  transition: filter 0.3s;
 }
 
-/* Dynamic SVG Mask Container */
-.reveal-svg-container {
+.reveal-img-base {
+  filter: grayscale(40%) brightness(0.7) contrast(1.15);
+}
+
+.reveal-card:hover .reveal-img-base,
+.reveal-card.is-active .reveal-img-base {
+  filter: grayscale(10%) brightness(0.85) contrast(1.15);
+}
+
+.reveal-img-top {
+  pointer-events: none;
+}
+
+.reveal-scrim {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  left: 0;
+  right: 0;
   pointer-events: none;
   z-index: 2;
-  overflow: visible;
 }
 
-.reveal-edge {
-  cx: var(--mx, 50%);
-  cy: var(--my, 50%);
-  r: var(--r, 0px);
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.95);
-  stroke-width: 2px;
+.reveal-scrim-top {
+  top: 0;
+  height: 25%;
+  background: linear-gradient(180deg, rgba(6, 7, 10, 0.7) 0%, transparent 100%);
+}
+
+.reveal-scrim-bottom {
+  bottom: 0;
+  height: 30%;
+  background: linear-gradient(0deg, rgba(6, 7, 10, 0.8) 0%, transparent 100%);
 }
 
 .reveal-edge-glow {
-  filter: drop-shadow(0 0 6px rgba(96, 165, 250, 0.8)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.6));
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 16px rgba(96, 165, 250, 0.75));
+  transition: opacity 0.25s;
 }
 
-/* Sliding Dual Editorial Caption */
 .reveal-caption {
   position: absolute;
   bottom: 24px;
@@ -710,7 +715,7 @@ button {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #fff;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
   pointer-events: none;
 }
 

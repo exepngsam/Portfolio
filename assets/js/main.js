@@ -8,15 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
     1. LENIS SMOOTH MOMENTUM SCROLLING & GSAP
   --------------------------------------------------*/
   let lenis;
-  if (typeof Lenis !== 'undefined') {
+  const isTouchOrMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.innerWidth <= 900;
+
+  if (typeof Lenis !== 'undefined' && !isTouchOrMobile) {
     lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
       infinite: false
     });
 
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(raf);
     }
 
-    // Anchor smooth scrolling
+    // Desktop anchor smooth scrolling via Lenis
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href');
@@ -43,7 +44,21 @@ document.addEventListener('DOMContentLoaded', () => {
           const targetEl = document.querySelector(targetId);
           if (targetEl) {
             e.preventDefault();
-            lenis.scrollTo(targetEl, { offset: -40, duration: 1.4 });
+            lenis.scrollTo(targetEl, { offset: -40, duration: 1.3 });
+          }
+        }
+      });
+    });
+  } else {
+    // Mobile native smooth anchor scrolling
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            targetEl.scrollIntoView({ behavior: 'smooth' });
           }
         }
       });
@@ -77,11 +92,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Hero lift & blur calculation
+    // Hero lift & blur calculation (disabled on mobile to ensure zero lag & maximum readability)
     if (heroSection) {
-      const heroHeight = heroSection.offsetHeight;
-      const heroBlurProgress = Math.min(1, Math.max(0, scrollY / (heroHeight * 0.75)));
-      root.style.setProperty('--hero-blur', heroBlurProgress.toFixed(4));
+      if (isTouchOrMobile) {
+        root.style.setProperty('--hero-blur', '0');
+      } else {
+        const heroHeight = heroSection.offsetHeight;
+        const heroBlurProgress = Math.min(1, Math.max(0, scrollY / (heroHeight * 0.75)));
+        root.style.setProperty('--hero-blur', heroBlurProgress.toFixed(4));
+      }
     }
 
     // Dive sticky section progress
@@ -384,9 +403,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (rolesList && rolesPreview) {
     const roleMedia = [
       { type: 'video', src: 'assets/img/creative.mp4' },
-      { type: 'image', src: 'assets/img/nexora.jpg' },
-      { type: 'image', src: 'assets/img/truthseal.jpg' },
-      { type: 'image', src: 'assets/img/yieldway.jpg' }
+      { type: 'image', src: 'assets/img/nexora_showcase.png' },
+      { type: 'image', src: 'assets/img/trustverse_showcase.png' },
+      { type: 'image', src: 'assets/img/agritech_showcase.png' }
     ];
 
     let mouseX = window.innerWidth / 2;
@@ -465,23 +484,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const projectDetails = {
     nexora: {
-      title: 'Nexora Autonomous AI Platform',
-      desc: 'NEXORA 🚀 is an autonomous AI incident coordination platform that turns incoming infrastructure incidents into verified resolutions in seconds. Built with Featherless AI, Caspian, and modern event-driven agent meshes.',
-      img: 'assets/img/nexora.jpg',
+      title: 'Nexora — Autonomous AI Coordination Platform',
+      desc: 'NEXORA 🚀 is an autonomous AI incident coordination platform that turns incoming infrastructure incidents into verified actions in real time. Equipped with distributed multi-agent meshes, telemetry synthesis, and automated self-healing pipelines.',
+      img: 'assets/img/nexora_showcase.png',
       demo: 'https://nexora-three-mu.vercel.app/',
       repo: 'https://github.com/exepngsam/nexora'
     },
     civicfix: {
-      title: 'CivicFix AI Smart Platform',
-      desc: 'CivicFix AI leverages computer vision and multimodal LLMs to automate civic infrastructure issue triage, road hazard detection, and municipal dispatch on AWS serverless architecture.',
-      img: 'assets/img/civicfix.jpg',
+      title: 'CivicFix & AgriTech — Serverless AI Infrastructure',
+      desc: 'High-throughput logistics and civic management engine optimizing real-time routing, farm inventory telemetry, and serverless AI infrastructure scaling on AWS.',
+      img: 'assets/img/agritech_showcase.png',
       demo: 'https://civicfix-ai-roan.vercel.app/',
       repo: 'https://github.com/exepngsam/CivicFix'
     },
     truthseal: {
-      title: 'TruthSeal AI Digital Trust Engine',
-      desc: 'TruthSeal AI provides cryptographic tamper detection, deepfake forensics, verifiable digital signatures, and provenance chain verification for mission-critical media and documents.',
-      img: 'assets/img/truthseal.jpg',
+      title: 'TruthSeal / TrustVerse — Verifiable Digital Integrity',
+      desc: 'Next-generation digital trust engine integrating cryptographic locks, real-time media forensics, and immutable provenance grids to detect deepfakes and verify content authenticity.',
+      img: 'assets/img/trustverse_showcase.png',
       demo: 'https://truth-seal-ai.vercel.app/',
       repo: 'https://github.com/exepngsam/TruthSeal-AI'
     },
@@ -542,7 +561,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = (neuralCanvas.width = 440);
     let height = (neuralCanvas.height = 440);
 
-    const particleCount = 380;
+    const isMobileDevice = window.innerWidth <= 768 || isTouchOrMobile;
+    const particleCount = isMobileDevice ? 140 : 360;
     const particles = [];
     let mouse = { x: width / 2, y: height / 2, active: false };
     let isRepelling = false;

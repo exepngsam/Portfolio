@@ -87,6 +87,13 @@ body {
   line-height: 1.5;
 }
 
+main {
+  position: relative;
+  z-index: 10;
+  background: var(--hero-bg);
+  width: 100%;
+}
+
 /* Subtle Global Grain/Noise Overlay */
 .fvb-noise {
   position: fixed;
@@ -1676,4 +1683,217 @@ textarea.contact-input {
   padding: 8px 14px;
   font-size: 1rem;
   cursor: pointer;
+}
+
+/*==================================================
+   ULTRA-SMOOTH ZERO-LAG MOBILE EXPERIENCE (< 900px)
+   - Eliminates footer pitch-black viewport bug
+   - Ensures native 120Hz momentum touch scrolling
+   - Fixes hero headline vanishing/blurring
+   - Responsive Bento Grid and typography
+==================================================*/
+@media (max-width: 900px) {
+  html, body {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+  }
+
+  main {
+    position: relative !important;
+    z-index: 10 !important;
+    background: var(--hero-bg) !important;
+    width: 100% !important;
+  }
+
+  /* Fixed footer panel replaced with normal relative flow on mobile */
+  .footer-reveal {
+    position: relative !important;
+    height: auto !important;
+    min-height: auto !important;
+    z-index: 10 !important;
+    background: #040507 !important;
+  }
+
+  .footer-panel {
+    position: relative !important;
+    height: auto !important;
+    min-height: 60vh !important;
+    z-index: 10 !important;
+    padding: 64px 6vw 36px !important;
+    background: #040507 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+  }
+
+  .footer-wordmark {
+    opacity: 1 !important;
+    transform: none !important;
+    font-size: clamp(40px, 14vw, 84px) !important;
+    margin-bottom: 24px !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  /* Hero adjustments for mobile - disable lift & blur to avoid vanishing text */
+  .hero {
+    min-height: 85vh !important;
+    padding-top: 110px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .hero-headline {
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    font-size: clamp(34px, 9vw, 64px) !important;
+    line-height: 1.05 !important;
+  }
+
+  .hero-since {
+    position: static !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    margin-bottom: 20px !important;
+    text-align: center !important;
+    font-size: 0.95rem !important;
+  }
+
+  .hero-rotating-word-container {
+    perspective: none !important;
+  }
+
+  .hero-lang {
+    margin-top: 24px !important;
+    padding: 6px 16px !important;
+    font-size: 0.85rem !important;
+    gap: 8px !important;
+  }
+
+  /* Reveal card mobile responsiveness */
+  .reveal-section {
+    padding: 50px 4vw !important;
+  }
+
+  .reveal-card {
+    height: clamp(260px, 44vh, 380px) !important;
+    border-radius: 14px !important;
+    cursor: default !important;
+  }
+
+  .reveal-caption {
+    font-size: 0.68rem !important;
+    bottom: 12px !important;
+    left: 14px !important;
+    right: 14px !important;
+  }
+
+  /* Dive tunnel mobile optimization */
+  .dive-section {
+    height: 120vh !important;
+  }
+
+  .dive-journey-content {
+    padding: 0 5vw !important;
+  }
+
+  .dive-journey-title {
+    font-size: clamp(26px, 7vw, 42px) !important;
+  }
+
+  .dive-journey-desc {
+    font-size: 0.92rem !important;
+    margin-top: 16px !important;
+  }
+
+  /* Roles list mobile styling */
+  .roles-section {
+    min-height: auto !important;
+    padding: 60px 4vw !important;
+  }
+
+  .roles-cursor-preview {
+    display: none !important;
+  }
+
+  .roles-list {
+    gap: 12px !important;
+  }
+
+  .roles-item {
+    font-size: clamp(20px, 5.5vw, 32px) !important;
+    padding: 8px 12px !important;
+    gap: 10px !important;
+  }
+
+  .roles-list:hover .roles-item {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  /* Featured Works Grid mobile layout */
+  .fw-section {
+    padding: 60px 4vw !important;
+  }
+
+  .fw-heading {
+    font-size: clamp(30px, 7.5vw, 48px) !important;
+  }
+
+  .fw-grid {
+    gap: 20px !important;
+  }
+
+  .fw-card.span-12,
+  .fw-card.span-6 {
+    grid-column: span 12 !important;
+  }
+
+  .fw-card-media {
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  .fw-card-body {
+    padding: 18px 16px !important;
+  }
+
+  .fw-card-title {
+    font-size: 1.15rem !important;
+  }
+
+  .fw-card-desc {
+    font-size: 0.88rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .fw-card-actions {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .fw-btn {
+    padding: 8px 14px !important;
+    font-size: 0.78rem !important;
+  }
+
+  /* Chatbot widget mobile fit */
+  .chatbot-toggle {
+    bottom: 18px !important;
+    right: 18px !important;
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.25rem !important;
+  }
+
+  .chatbot-container {
+    bottom: 76px !important;
+    right: 12px !important;
+    left: 12px !important;
+    width: auto !important;
+    height: 68vh !important;
+    max-height: 520px !important;
+  }
 }

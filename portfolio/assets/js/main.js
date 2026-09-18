@@ -71,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
   const siteNav = document.getElementById('site-nav');
   const heroSection = document.getElementById('hero');
-  const diveSection = document.getElementById('dive-section');
 
   let scrollTicking = false;
   function updateScrollMetrics() {
@@ -100,17 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const heroHeight = heroSection.offsetHeight;
         const heroBlurProgress = Math.min(1, Math.max(0, scrollY / (heroHeight * 0.75)));
         root.style.setProperty('--hero-blur', heroBlurProgress.toFixed(4));
-      }
-    }
-
-    // Dive sticky section progress
-    if (diveSection) {
-      const diveRect = diveSection.getBoundingClientRect();
-      const diveTop = diveRect.top;
-      const diveHeight = diveSection.offsetHeight - winHeight;
-      if (diveHeight > 0) {
-        const diveProg = Math.min(1, Math.max(0, -diveTop / diveHeight));
-        root.style.setProperty('--dive-progress', diveProg.toFixed(4));
       }
     }
 

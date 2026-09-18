@@ -40,6 +40,7 @@
     <nav class="nav-center-menu" id="nav-center-menu">
       <a href="#hero" class="nav-link">Home</a>
       <a href="#reveal" class="nav-link">About</a>
+      <a href="#architecture" class="nav-link">Architecture</a>
       <a href="#roles" class="nav-link">Roles</a>
       <a href="#projects" class="nav-link">Projects</a>
       <a href="#neural" class="nav-link">Neural Core</a>
@@ -62,6 +63,7 @@
     </button>
     <a href="#hero" class="mobile-drawer-link">Home</a>
     <a href="#reveal" class="mobile-drawer-link">About</a>
+    <a href="#architecture" class="mobile-drawer-link">Architecture</a>
     <a href="#roles" class="mobile-drawer-link">Roles</a>
     <a href="#projects" class="mobile-drawer-link">Projects</a>
     <a href="#neural" class="mobile-drawer-link">Neural Core</a>
@@ -74,10 +76,13 @@
     <section class="hero" id="hero">
       <div class="hero-backdrop"></div>
 
-      <p class="hero-since">
-        AI Engineer & Full-Stack Developer
-        <span>B.Tech CSE • Odisha, India</span>
-      </p>
+      <div class="hero-since">
+        <p class="hero-since-title">AI Systems Architect & Research Engineer</p>
+        <div class="hero-since-badge">
+          <span class="hero-live-dot" aria-hidden="true"></span>
+          <span>AUTONOMOUS AGENTS • NEURAL VISION • DISTRIBUTED SCALE</span>
+        </div>
+      </div>
 
       <div class="hero-headline">
         <div>
@@ -166,24 +171,92 @@
       </div>
     </section>
 
-    <!--==================== STICKY DIVE TUNNEL SECTION ====================-->
-    <section class="dive-section" id="dive-section">
-      <div class="dive-sticky">
-        <div class="dive-bg-container">
-          <video class="dive-bg-video" src="assets/img/creative.mp4" autoplay loop muted playsinline poster="assets/img/cosmic_bg.jpg"></video>
-          <div class="dive-blur-grad"></div>
-          <div class="dive-noise"></div>
+    <!--==================== AI SYSTEMS ARCHITECTURE MATRIX ====================-->
+    <section class="arch-section" id="architecture">
+      <div class="container">
+        <div class="arch-header">
+          <p class="arch-eyebrow">01 — ARCHITECTURAL MANIFESTO</p>
+          <h2 class="arch-title">
+            ENGINEERING <span class="arch-title-span">intelligence</span> INTO SCALABLE REALITY
+          </h2>
+          <p class="arch-desc">
+            Transforming probabilistic neural models into resilient, deterministic production systems.
+            Bridging foundational AI research with zero-bloat, high-throughput cloud engineering.
+          </p>
         </div>
 
-        <div class="dive-journey-content">
-          <p class="dive-journey-eyebrow">01 — PHILOSOPHY & VISION</p>
-          <h2 class="dive-journey-title">
-            ENGINEERING <span class="dive-journey-title-span">intelligence</span> INTO SCALABLE SYSTEMS
-          </h2>
-          <p class="dive-journey-desc">
-            Passionate about transforming complex algorithmic problems into clean, high-performance architectures.
-            Bridging foundational AI research with modern, zero-bloat web engineering.
-          </p>
+        <div class="arch-grid">
+          <!-- Pillar 1: Autonomous Agent Mesh -->
+          <div class="arch-card">
+            <div class="arch-card-top">
+              <div class="arch-icon-box">
+                <i class="ri-git-merge-line"></i>
+              </div>
+              <span class="arch-badge">MULTI-AGENT MESH</span>
+            </div>
+            <h3 class="arch-card-title">Autonomous Orchestration</h3>
+            <p class="arch-card-desc">
+              Decentralized multi-agent swarms featuring dynamic role decomposition, automated self-healing execution loops, and real-time telemetry synthesis.
+            </p>
+            <div class="arch-card-footer">
+              <span class="arch-stat-tag"><i class="ri-flashlight-line"></i> &lt;42ms Triage</span>
+              <span class="arch-stat-tag"><i class="ri-cpu-line"></i> Zero-Bloat Runtime</span>
+            </div>
+          </div>
+
+          <!-- Pillar 2: Deep Learning & Computer Vision -->
+          <div class="arch-card">
+            <div class="arch-card-top">
+              <div class="arch-icon-box">
+                <i class="ri-scan-2-line"></i>
+              </div>
+              <span class="arch-badge">NEURAL FORENSICS</span>
+            </div>
+            <h3 class="arch-card-title">Computer Vision & Forensics</h3>
+            <p class="arch-card-desc">
+              Transformer-powered visual anomaly localization, real-time media tamper detection, and cryptographic provenance verification pipelines.
+            </p>
+            <div class="arch-card-footer">
+              <span class="arch-stat-tag"><i class="ri-shield-check-line"></i> 99.4% Precision</span>
+              <span class="arch-stat-tag"><i class="ri-speed-line"></i> 60 FPS Ingestion</span>
+            </div>
+          </div>
+
+          <!-- Pillar 3: Serverless Cloud Scale -->
+          <div class="arch-card">
+            <div class="arch-card-top">
+              <div class="arch-icon-box">
+                <i class="ri-cloud-line"></i>
+              </div>
+              <span class="arch-badge">EVENT-DRIVEN CLOUD</span>
+            </div>
+            <h3 class="arch-card-title">High-Throughput Scale</h3>
+            <p class="arch-card-desc">
+              Serverless microservices on AWS Lambda with edge-cached inference endpoints, elastic worker pools, and automated cost-optimized compute elasticity.
+            </p>
+            <div class="arch-card-footer">
+              <span class="arch-stat-tag"><i class="ri-server-line"></i> 10K+ Req/sec</span>
+              <span class="arch-stat-tag"><i class="ri-pulse-line"></i> 99.99% Uptime</span>
+            </div>
+          </div>
+
+          <!-- Pillar 4: Cryptographic Trust & Provenance -->
+          <div class="arch-card">
+            <div class="arch-card-top">
+              <div class="arch-icon-box">
+                <i class="ri-lock-2-line"></i>
+              </div>
+              <span class="arch-badge">VERIFIABLE INTEGRITY</span>
+            </div>
+            <h3 class="arch-card-title">Cryptographic Provenance</h3>
+            <p class="arch-card-desc">
+              RSA-4096 asymmetric stamping, immutable SHA-256 asset provenance grids, and verifiable audit trails protecting digital assets against synthesis attacks.
+            </p>
+            <div class="arch-card-footer">
+              <span class="arch-stat-tag"><i class="ri-key-line"></i> RSA-4096</span>
+              <span class="arch-stat-tag"><i class="ri-database-2-line"></i> Immutable Ledger</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

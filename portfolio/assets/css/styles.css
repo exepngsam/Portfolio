@@ -11,8 +11,8 @@
   --hero-fg: #efe9d8;
   --hero-fg-soft: rgba(239, 233, 216, 0.72);
   --hero-fg-dim: rgba(239, 233, 216, 0.38);
-  --accent-glow: #60a5fa;
-  --accent-cyan: #38bdf8;
+  --accent-glow: #4ade80;
+  --accent-cyan: #22c55e;
   --accent-amber: #f59e0b;
   --accent-purple: #c084fc;
   
@@ -356,24 +356,20 @@ button {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: radial-gradient(circle at 50% 45%, rgba(14, 27, 64, 0.45) 0%, rgba(6, 7, 10, 0.95) 75%);
+  background: radial-gradient(circle at 50% 45%, rgba(34, 197, 94, 0.22) 0%, rgba(16, 185, 129, 0.08) 45%, rgba(6, 7, 10, 0.96) 75%);
   pointer-events: none;
 }
 
 .hero-since {
-  position: absolute;
-  top: 28%;
-  left: clamp(1.5rem, 5vw, 4rem);
-  transform: translateY(-50%);
-  margin: 0;
-  text-align: left;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 28px;
+  text-align: center;
   line-height: 1.35;
   filter: blur(calc(var(--hero-blur, 0) * 8px));
-  transform: translateY(calc(var(--hero-blur, 0) * -35vh));
   opacity: calc(1 - var(--hero-blur, 0) * 1.5);
-  transition: filter 0.1s, transform 0.1s, opacity 0.1s;
+  transition: filter 0.1s, opacity 0.1s;
   pointer-events: none;
-  z-index: 2;
 }
 
 .hero-since-title {
@@ -733,7 +729,7 @@ button {
 }
 
 .reveal-edge-glow {
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 16px rgba(96, 165, 250, 0.75));
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 16px rgba(74, 222, 128, 0.75));
   transition: opacity 0.25s;
 }
 
@@ -783,7 +779,7 @@ button {
   position: relative;
   z-index: 10;
   padding: 120px clamp(1.5rem, 5vw, 4rem);
-  background: radial-gradient(circle at 50% 30%, rgba(20, 30, 55, 0.45) 0%, rgba(6, 7, 10, 0.98) 70%);
+  background: radial-gradient(circle at 50% 30%, rgba(22, 101, 52, 0.28) 0%, rgba(16, 185, 129, 0.06) 45%, rgba(6, 7, 10, 0.98) 75%);
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
   overflow: hidden;
@@ -871,15 +867,15 @@ button {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.5), transparent);
   opacity: 0;
   transition: opacity 0.3s;
 }
 
 .arch-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(96, 165, 250, 0.4);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(96, 165, 250, 0.12);
+  border-color: rgba(74, 222, 128, 0.4);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(74, 222, 128, 0.15);
 }
 
 .arch-card:hover::before {

@@ -1,677 +1,724 @@
-/*=============== SHOW MENU ===============*/
-const navMenu = document.getElementById('nav-menu'),
-      navToggle = document.getElementById('nav-toggle'),
-      navClose = document.getElementById('nav-close')
+/*==================================================
+   DOSSIER EDITORIAL MOTION SYSTEM & INTERACTION ENGINE
+==================================================*/
 
-/* Menu show */
-if(navToggle){
-    navToggle.addEventListener('click', () =>{
-        navMenu.classList.add('show-menu')
-    })
-}
-
-/* Menu hidden */
-if(navClose){
-    navClose.addEventListener('click', () =>{
-        navMenu.classList.remove('show-menu')
-    })
-}
-
-/*=============== REMOVE MENU MOBILE ===============*/
-const navLink = document.querySelectorAll('.nav__link')
-
-const linkAction = () =>{
-    const navMenu = document.getElementById('nav-menu')
-    navMenu.classList.remove('show-menu')
-}
-navLink.forEach(n => n.addEventListener('click', linkAction))
-
-/*=============== CHANGE BACKGROUND HEADER ===============*/
-const scrollHeader = () =>{
-    const header = document.getElementById('header')
-    // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
-    this.scrollY >= 50 ? header.classList.add('bg-header') 
-                       : header.classList.remove('bg-header')
-}
-window.addEventListener('scroll', scrollHeader)
-
-/*=============== SCROLL SECTIONS ACTIVE LINK (IntersectionObserver) ===============*/
-const sections = document.querySelectorAll('section[id]')
-
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.3 // Trigger when 30% of the section is visible
-};
-
-const observerCallback = (entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const sectionId = entry.target.getAttribute('id');
-            const sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']');
-            
-            // Remove active class from all links
-            document.querySelectorAll('.nav__menu a').forEach(a => a.classList.remove('active-link'));
-            
-            if (sectionsClass) {
-                sectionsClass.classList.add('active-link');
-            }
-        }
+document.addEventListener('DOMContentLoaded', () => {
+  /*--------------------------------------------------
+    1. LENIS SMOOTH MOMENTUM SCROLLING & GSAP
+  --------------------------------------------------*/
+  let lenis;
+  if (typeof Lenis !== 'undefined') {
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
+      infinite: false
     });
-};
 
-const sectionObserver = new IntersectionObserver(observerCallback, observerOptions);
-sections.forEach(section => sectionObserver.observe(section));
-
-/*=============== SHOW SCROLL UP ===============*/ 
-let scrollTimeout;
-const scrollUp = () =>{
-    if (scrollTimeout) return;
-    scrollTimeout = requestAnimationFrame(() => {
-        const scrollUp = document.getElementById('scroll-up')
-        window.scrollY >= 350 ? scrollUp.classList.add('show-scroll')
-                              : scrollUp.classList.remove('show-scroll')
-        scrollTimeout = null;
-    });
-}
-window.addEventListener('scroll', scrollUp, { passive: true })
-
-
-/*=============== HOME CIRCULAR TEXT ===============*/
-const text = document.querySelector('.home__circular-text');
-if (text) {
-    const chars = text.innerText.split('');
-    text.innerText = '';
-    chars.forEach((char, i) => {
-        const span = document.createElement('span');
-        span.innerText = char;
-        // Calculate rotation based on the number of characters and 360 degrees
-        span.style.transform = `rotate(${i * (360 / chars.length)}deg)`;
-        text.appendChild(span);
-    });
-}
-
-/*=============== TYPED JS ===============*/
-if (document.getElementById('home-typed')) {
-    var typed = new Typed('#home-typed', {
-        strings: ['Enthusiast', 'Developer', 'Designer'],
-        typeSpeed: 50,
-        backSpeed: 50,
-        backDelay: 2000,
-        loop: true
-    });
-}
-
-/*=============== CUSTOM CURSOR & DOT MATRIX BACKGROUND ===============*/
-const cursor = document.getElementById('cursor');
-const canvas = document.getElementById('dot-matrix');
-
-if (cursor && canvas) {
-    const ctx = canvas.getContext('2d');
-    
-    // Set canvas size
-    let width, height;
-    const resize = () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', resize);
-    resize();
-    
-    // Custom cursor variables
-    let mouseX = width / 2;
-    let mouseY = height / 2;
-    let cursorX = mouseX;
-    let cursorY = mouseY;
-    
-    document.addEventListener('mousemove', e => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    }, { passive: true });
-
-    document.addEventListener('touchmove', e => {
-        if (e.touches && e.touches.length > 0) {
-            mouseX = e.touches[0].clientX;
-            mouseY = e.touches[0].clientY;
-        }
-    }, { passive: true });
-
-    let scrollY = window.scrollY;
-    window.addEventListener('scroll', () => {
-        scrollY = window.scrollY;
-    }, { passive: true });
-    
-    // Grid settings
-    const spacing = 35; // Space between dots
-    const mouseRadius = 150; // Interaction radius
-    
-    const animate = () => {
-        ctx.clearRect(0, 0, width, height);
-        
-        // Smooth scrolling parallax offset
-        const yOffset = (scrollY * 0.5) % spacing;
-        
-        // Determine color based on theme
-        const isLight = document.body.classList.contains('light-theme');
-        const dotColor = isLight ? '0, 0, 0' : '255, 255, 255';
-        
-        for (let x = 0; x <= width; x += spacing) {
-            for (let y = -spacing; y <= height + spacing; y += spacing) {
-                const drawY = y - yOffset;
-                
-                const dx = x - mouseX;
-                const dy = drawY - mouseY;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                
-                let radius = 1.5;
-                let opacity = 0.15;
-                let offsetX = 0;
-                let offsetY = 0;
-                
-                // Interaction when close to mouse
-                if (dist < mouseRadius) {
-                    const factor = 1 - dist / mouseRadius;
-                    radius = 1.5 + factor * 2.5;
-                    opacity = 0.15 + factor * 0.5;
-                    
-                    // Subtle push-away effect
-                    const angle = Math.atan2(dy, dx);
-                    const push = factor * 8;
-                    offsetX = Math.cos(angle) * push;
-                    offsetY = Math.sin(angle) * push;
-                    
-                    // Connect close dots to cursor
-                    if (dist < mouseRadius * 0.6) {
-                        ctx.beginPath();
-                        ctx.moveTo(x + offsetX, drawY + offsetY);
-                        ctx.lineTo(mouseX, mouseY);
-                        ctx.strokeStyle = `rgba(${dotColor}, ${factor * 0.3})`;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                    }
-                }
-                
-                ctx.beginPath();
-                ctx.arc(x + offsetX, drawY + offsetY, radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${dotColor}, ${opacity})`;
-                ctx.fill();
-            }
-        }
-        
-        // Custom cursor animation (smooth follow)
-        cursorX += (mouseX - cursorX) * 0.2;
-        cursorY += (mouseY - cursorY) * 0.2;
-        cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
-        
-        if(cursor.style.display === 'none' || !cursor.style.display) {
-            cursor.style.display = 'block';
-        }
-        
-        requestAnimationFrame(animate);
-    };
-    animate();
-    
-    // Expand cursor on interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .bento-card, .nav__toggle, .nav__close');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('active'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-    });
-}
-
-/*=============== SWIPER WORKS ===============*/
-let swiperWorks = new Swiper('.work__content', {
-    spaceBetween: 24,
-    loop: true,
-    grabCursor: true,
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    breakpoints: {
-        576: {
-            slidesPerView: 2,
-        },
-        768: {
-            slidesPerView: 2,
-        },
-        1150: {
-            slidesPerView: 3,
-        }
+    // Synchronize Lenis with GSAP ScrollTrigger if present
+    if (typeof ScrollTrigger !== 'undefined' && typeof gsap !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
     }
-});
 
-/*=============== SERVICES BENTO HOVER EFFECT ===============*/
-const bentoCards = document.querySelectorAll('.bento-card');
-
-bentoCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / card.clientWidth) * 100;
-        const y = ((e.clientY - rect.top) / card.clientHeight) * 100;
-        
-        card.style.setProperty('--x', `${x}%`);
-        card.style.setProperty('--y', `${y}%`);
-    });
-});
-
-/*=============== EMAIL JS (Mock setup) ===============*/
-const contactForm = document.getElementById('contact-form'),
-      contactMessage = document.getElementById('contact-message');
-
-/*=============== SCROLL REVEAL ANIMATION ===============*/
-const sr = ScrollReveal({
-    origin: 'bottom', // Start animations slightly from bottom for a natural lift
-    distance: '80px', // Slightly longer distance
-    duration: 1200,   // Faster, snappier duration (was 2500)
-    delay: 200,       // Quicker delay
-    easing: 'cubic-bezier(0.2, 1, 0.2, 1)', // Smooth ease out
-    // reset: true // Animations repeat
-})
-
-sr.reveal(`.home__data, .about__data, .skills__info, .testimonials__data`)
-sr.reveal(`.home__img-box, .home__circular, .about__img-box`, {delay: 300, origin: 'bottom'})
-sr.reveal(`.work__card, .bento-card`, {interval: 150})
-sr.reveal(`.skills__group, .testimonials__slider`, {interval: 150, origin: 'right'})
-sr.reveal(`.contact__info`, {origin: 'left', delay: 200})
-sr.reveal(`.contact__form`, {origin: 'right', delay: 300})
-sr.reveal(`.footer__title`, {origin: 'bottom'})
-sr.reveal(`.footer__links li`, {origin: 'bottom', interval: 100, delay: 300})
-sr.reveal(`.footer__socials a`, {origin: 'bottom', interval: 100, delay: 400})
-sr.reveal(`.footer__copy`, {origin: 'bottom', delay: 600})
-
-/*=============== DARK LIGHT THEME ===============*/ 
-const themeButton = document.getElementById('theme-button')
-const lightTheme = 'light-theme'
-const iconTheme = 'ri-sun-line'
-
-// Previously selected theme (if user selected)
-const selectedTheme = localStorage.getItem('selected-theme')
-const selectedIcon = localStorage.getItem('selected-icon')
-
-// We obtain the current theme that the interface has by validating the light-theme class
-const getCurrentTheme = () => document.body.classList.contains(lightTheme) ? 'light' : 'dark'
-const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'ri-sun-line' : 'ri-moon-line'
-
-// We validate if the user previously chose a theme
-if (selectedTheme) {
-  document.body.classList[selectedTheme === 'light' ? 'add' : 'remove'](lightTheme)
-  themeButton.classList[selectedIcon === 'ri-sun-line' ? 'add' : 'remove'](iconTheme)
-}
-
-// Activate / deactivate the theme manually with the button
-if (themeButton) {
-  themeButton.addEventListener('click', () => {
-      // Add or remove the light / icon theme
-      document.body.classList.toggle(lightTheme)
-      themeButton.classList.toggle(iconTheme)
-      // We save the theme and the current icon that the user chose
-      localStorage.setItem('selected-theme', getCurrentTheme())
-      localStorage.setItem('selected-icon', getCurrentIcon())
-  })
-}
-
-/*=============== FOOTER ASCII WAVE ===============*/
-const asciiCanvas = document.getElementById('ascii-canvas');
-if (asciiCanvas) {
-    const ctx = asciiCanvas.getContext('2d');
-    
-    // The characters from darkest/thinnest to brightest/densest
-    const chars = " .,-~:;=!*#$";
-    let time = 0;
-
-    const nameAscii = [
-        "  ___  ___  _   _ __  __ __   __ _      _ ___ _____ ",
-        " / __|/ _ \\| | | |  \\/  |\\ \\ / //_\\  _ | |_ _|_   _|",
-        " \\__ \\ (_) | |_| | |\\/| | \\ V // _ \\| || || |  | |  ",
-        " |___/\\___/ \\___/|_|  |_|  |_|/_/ \\_\\\\__/|___| |_|  "
-    ];
-
-    const bioText = ">> AI & ML ENTHUSIAST | DEVELOPER <<";
-    const codeLines = [
-        "sys.boot(0x00F);",
-        "load(AI_MODELS);",
-        "while(true) {",
-        "  optimize();",
-        "}"
-    ];
-
-    let width, height, dpr, cellSize, fontSize, cols, rows;
-    let startX, startY, bioStartX, bioY, codeX, codeY, codeHeight;
-    const nameWidth = nameAscii[0].length;
-    const nameHeight = nameAscii.length;
-
-    const resizeAscii = () => {
-        dpr = window.devicePixelRatio || 1;
-        const parentWidth = asciiCanvas.parentElement ? asciiCanvas.parentElement.clientWidth : window.innerWidth;
-        // Keep max-width 1000px to match layout container
-        width = Math.min(1000, parentWidth);
-        // Slightly taller on narrow mobile screens (< 576px) to comfortably house the code block
-        height = width < 576 ? 320 : 300;
-
-        asciiCanvas.width = width * dpr;
-        asciiCanvas.height = height * dpr;
-        asciiCanvas.style.width = `${width}px`;
-        asciiCanvas.style.height = `${height}px`;
-
-        // Responsive grid calculation:
-        // Ensure at least (nameWidth + 2) = 54 columns fit on narrow screens
-        const minCols = nameWidth + 2;
-        cellSize = Math.min(12, Math.max(5, width / minCols));
-        fontSize = (cellSize * 0.95).toFixed(1);
-
-        cols = Math.floor(width / cellSize);
-        rows = Math.floor(height / cellSize);
-
-        startX = Math.floor((cols - nameWidth) / 2);
-
-        // Vertical centering: give extra room at bottom for code block if many rows
-        if (rows >= 36) {
-            startY = Math.floor((rows - nameHeight - 6) / 2);
-        } else {
-            startY = Math.floor((rows - nameHeight) / 2);
+    // Anchor smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            lenis.scrollTo(targetEl, { offset: -40, duration: 1.4 });
+          }
         }
-
-        bioStartX = Math.floor((cols - bioText.length) / 2);
-        bioY = startY + nameHeight + 1;
-
-        codeHeight = codeLines.length;
-        codeY = rows - codeHeight - (rows > 30 ? 2 : 1);
-        codeX = cols >= 65 ? 4 : 2;
-    };
-
-    window.addEventListener('resize', resizeAscii);
-    window.addEventListener('orientationchange', () => setTimeout(resizeAscii, 100));
-    resizeAscii();
-
-    const drawAsciiWave = () => {
-        if (!asciiCanvas.isConnected) return;
-
-        // Reset transform to handle high DPI crisp rendering
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        ctx.clearRect(0, 0, width, height);
-
-        // Determine color based on theme
-        const isLight = document.body.classList.contains('light-theme');
-        ctx.fillStyle = isLight ? '#000000' : '#ffffff';
-        ctx.font = `bold ${fontSize}px monospace`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-
-        const halfCell = cellSize / 2;
-
-        for (let y = 0; y < rows; y++) {
-            for (let x = 0; x < cols; x++) {
-                let drawNameChar = false;
-                let charToDraw = '';
-                let isHighlight = false;
-
-                // Check if we are inside the bounding box of the ASCII name
-                if (x >= startX && x < startX + nameWidth && y >= startY && y < startY + nameHeight) {
-                    const nameChar = nameAscii[y - startY][x - startX];
-                    if (nameChar !== ' ') {
-                        drawNameChar = true;
-                        charToDraw = nameChar;
-                        isHighlight = true;
-                    }
-                } 
-                // Check if we are inside the bio text
-                else if (y === bioY && x >= bioStartX && x < bioStartX + bioText.length) {
-                    drawNameChar = true;
-                    charToDraw = bioText[x - bioStartX];
-                    isHighlight = true;
-                }
-                // Check if we are drawing the live program code on the bottom-left (guaranteed no overlap)
-                else if (codeY > bioY + 1 && y >= codeY && y < codeY + codeHeight && x >= codeX && x < codeX + 30) {
-                    const lineIdx = y - codeY;
-                    const line = codeLines[lineIdx];
-                    if (x - codeX < line.length) {
-                        drawNameChar = true;
-                        charToDraw = line[x - codeX];
-                        // Simulate typing or glitching
-                        if (Math.random() < 0.01) {
-                            charToDraw = chars[Math.floor(Math.random() * chars.length)];
-                        }
-                    }
-                }
-
-                const posX = x * cellSize + halfCell;
-                const posY = y * cellSize + halfCell;
-
-                if (drawNameChar) {
-                    ctx.globalAlpha = isHighlight ? 1.0 : 0.75;
-                    if (isHighlight) {
-                        ctx.shadowBlur = cellSize > 8 ? 8 : 4;
-                        ctx.shadowColor = isLight ? '#000000' : '#ffffff';
-                    } else {
-                        ctx.shadowBlur = 0;
-                    }
-                    ctx.fillText(charToDraw, posX, posY);
-                    ctx.shadowBlur = 0; // reset
-                } else {
-                    // Draw interference pattern background
-                    const nx = (x / cols) * 20 - 10;
-                    const ny = (y / rows) * 10 - 5;
-
-                    const d1 = Math.sqrt(Math.pow(nx - Math.sin(time * 0.7) * 4, 2) + Math.pow(ny - Math.cos(time * 0.8) * 2, 2));
-                    const d2 = Math.sqrt(Math.pow(nx + Math.cos(time * 0.5) * 4, 2) + Math.pow(ny + Math.sin(time * 0.6) * 2, 2));
-                    const d3 = Math.sqrt(Math.pow(nx - Math.cos(time * 0.9) * 2, 2) + Math.pow(ny + Math.sin(time * 0.4) * 3, 2));
-
-                    const v = Math.sin(d1 * 1.5 - time * 2) + Math.sin(d2 * 1.5 + time) + Math.cos(d3 * 1.5 - time);
-
-                    let z = (v + 3) / 6;
-                    if (z < 0) z = 0;
-                    if (z > 1) z = 1;
-
-                    // Random glitch noise
-                    if (Math.random() < 0.02) {
-                        z = Math.random();
-                    }
-
-                    const charIndex = Math.floor(z * (chars.length - 1));
-                    const char = chars[charIndex];
-
-                    ctx.globalAlpha = 0.15;
-                    ctx.fillText(char, posX, posY);
-                }
-            }
-        }
-        ctx.globalAlpha = 1.0;
-
-        time += 0.05;
-        requestAnimationFrame(drawAsciiWave);
-    };
-
-    drawAsciiWave();
-}
-
-/*=============== NEURAL INTERFACE ANIMATION ===============*/
-const neuralCanvas = document.getElementById('neural-canvas');
-const epochCountEl = document.getElementById('epoch-count');
-const lossValueEl = document.getElementById('loss-value');
-const accuracyValueEl = document.getElementById('accuracy-value');
-
-if (neuralCanvas) {
-    const ctx = neuralCanvas.getContext('2d', { alpha: false });
-    const width = neuralCanvas.width;
-    const height = neuralCanvas.height;
-    
-    let particles = [];
-    const particleCount = 800; // Increased for shape density
-    const connectionDistance = 40;
-    
-    let mouse = { x: width / 2, y: height / 2, active: false };
-    let isRepelling = false; // Toggle for magnetic attract/repel
-    
-    // Track mouse on canvas
-    neuralCanvas.addEventListener('mousemove', (e) => {
-        const rect = neuralCanvas.getBoundingClientRect();
-        mouse.x = (e.clientX - rect.left) * (width / rect.width);
-        mouse.y = (e.clientY - rect.top) * (height / rect.height);
-        mouse.active = true;
+      });
     });
-    
-    neuralCanvas.addEventListener('mouseleave', () => {
-        mouse.active = false;
+  }
+
+  /*--------------------------------------------------
+    2. SCROLL PROGRESS DRIVER (--page-progress, --hero-blur, --dive-progress)
+  --------------------------------------------------*/
+  const root = document.documentElement;
+  const siteNav = document.getElementById('site-nav');
+  const heroSection = document.getElementById('hero');
+  const diveSection = document.getElementById('dive-section');
+
+  function updateScrollMetrics() {
+    const scrollY = window.scrollY;
+    const winHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight - winHeight;
+
+    // Overall page progress (0 to 1)
+    const pageProgress = docHeight > 0 ? Math.min(1, Math.max(0, scrollY / docHeight)) : 0;
+    root.style.setProperty('--page-progress', pageProgress.toFixed(4));
+
+    // Nav scrolled state
+    if (siteNav) {
+      if (scrollY > 50) {
+        siteNav.classList.add('scrolled');
+      } else {
+        siteNav.classList.remove('scrolled');
+      }
+    }
+
+    // Hero lift & blur calculation
+    if (heroSection) {
+      const heroHeight = heroSection.offsetHeight;
+      const heroBlurProgress = Math.min(1, Math.max(0, scrollY / (heroHeight * 0.75)));
+      root.style.setProperty('--hero-blur', heroBlurProgress.toFixed(4));
+    }
+
+    // Dive sticky section progress
+    if (diveSection) {
+      const diveRect = diveSection.getBoundingClientRect();
+      const diveTop = diveRect.top;
+      const diveHeight = diveSection.offsetHeight - winHeight;
+      if (diveHeight > 0) {
+        const diveProg = Math.min(1, Math.max(0, -diveTop / diveHeight));
+        root.style.setProperty('--dive-progress', diveProg.toFixed(4));
+      }
+    }
+  }
+
+  window.addEventListener('scroll', updateScrollMetrics, { passive: true });
+  updateScrollMetrics();
+
+  /*--------------------------------------------------
+    3. VARIABLE FONT PROXIMITY ENGINE (Roboto Flex)
+  --------------------------------------------------*/
+  const vftContainers = document.querySelectorAll('[data-variable-font-text]');
+  const defaultBoldWght = 900;
+  const defaultBoldWdth = 130;
+  const pinchWght = 120;
+  const pinchWdth = 30;
+  const pinchRadius = 150;
+
+  vftContainers.forEach((container) => {
+    const text = container.getAttribute('data-text') || container.textContent.trim();
+    container.innerHTML = '';
+
+    const letters = text.split('').map((char) => {
+      const span = document.createElement('span');
+      span.className = 'vft-letter';
+      span.textContent = char === ' ' ? '\u00A0' : char;
+      span.style.fontVariationSettings = `"wght" ${defaultBoldWght}, "wdth" ${defaultBoldWdth}`;
+      container.appendChild(span);
+      return span;
     });
 
-    neuralCanvas.addEventListener('touchmove', (e) => {
-        if (e.touches && e.touches.length > 0) {
-            const rect = neuralCanvas.getBoundingClientRect();
-            mouse.x = (e.touches[0].clientX - rect.left) * (width / rect.width);
-            mouse.y = (e.touches[0].clientY - rect.top) * (height / rect.height);
-            mouse.active = true;
-        }
-    }, { passive: true });
+    let isMouseOver = false;
+    let animFrame = null;
 
-    neuralCanvas.addEventListener('touchend', () => {
-        mouse.active = false;
-    });
+    function onMouseMove(e) {
+      if (!isMouseOver) return;
+      if (animFrame) cancelAnimationFrame(animFrame);
 
-    // Toggle attract/repel on click
-    neuralCanvas.addEventListener('click', () => {
-        isRepelling = !isRepelling;
-    });
+      animFrame = requestAnimationFrame(() => {
+        letters.forEach((letter) => {
+          const rect = letter.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          const dist = Math.hypot(e.clientX - centerX, e.clientY - centerY);
 
-    // Initialize particles
-    for (let i = 0; i < particleCount; i++) {
-        particles.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            vx: 0,
-            vy: 0,
-            baseX: Math.random() * width,
-            baseY: Math.random() * height,
-            radius: Math.random() * 1.5 + 0.5
+          if (dist < pinchRadius) {
+            const factor = Math.max(0, 1 - dist / pinchRadius);
+            // Bend weight & width towards thin/compressed on proximity
+            const wght = Math.round(defaultBoldWght + (pinchWght - defaultBoldWght) * factor);
+            const wdth = Math.round(defaultBoldWdth + (pinchWdth - defaultBoldWdth) * factor);
+            letter.style.fontVariationSettings = `"wght" ${wght}, "wdth" ${wdth}`;
+          } else {
+            letter.style.fontVariationSettings = `"wght" ${defaultBoldWght}, "wdth" ${defaultBoldWdth}`;
+          }
         });
+      });
+    }
+
+    function onMouseLeave() {
+      isMouseOver = false;
+      if (animFrame) cancelAnimationFrame(animFrame);
+      letters.forEach((letter) => {
+        letter.style.fontVariationSettings = `"wght" ${defaultBoldWght}, "wdth" ${defaultBoldWdth}`;
+      });
+    }
+
+    container.addEventListener('mouseenter', () => {
+      isMouseOver = true;
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (isMouseOver) onMouseMove(e);
+    });
+    container.addEventListener('mouseleave', onMouseLeave);
+  });
+
+  /*--------------------------------------------------
+    4. HERO ROTATING WORD (3D Flip Animation)
+  --------------------------------------------------*/
+  const rotatingWordEl = document.getElementById('hero-rotating-word');
+  if (rotatingWordEl) {
+    const words = [
+      'INTELLIGENCE',
+      'SYSTEMS',
+      'NEURAL MODELS',
+      'ZERO-BLOAT CODE',
+      'AI EXPERIENCES'
+    ];
+    let currentIdx = 0;
+
+    setInterval(() => {
+      currentIdx = (currentIdx + 1) % words.length;
+      rotatingWordEl.style.animation = 'none';
+      void rotatingWordEl.offsetHeight; // force reflow
+      rotatingWordEl.textContent = words[currentIdx];
+      rotatingWordEl.style.animation = '0.55s cubic-bezier(0.22, 1, 0.36, 1) heroWordIn';
+    }, 2600);
+  }
+
+  /*--------------------------------------------------
+    5. HERO CINEMATIC VIDEO LIGHTBOX MODAL
+  --------------------------------------------------*/
+  const heroVidBtn = document.getElementById('hero-vid-btn');
+  const heroModal = document.getElementById('hero-modal');
+  const heroModalClose = document.getElementById('hero-modal-close');
+  const heroModalVideo = document.getElementById('hero-modal-video');
+
+  if (heroVidBtn && heroModal) {
+    heroVidBtn.addEventListener('click', () => {
+      heroModal.classList.add('active');
+      if (heroModalVideo) {
+        heroModalVideo.currentTime = 0;
+        heroModalVideo.play();
+      }
+    });
+
+    const closeModal = () => {
+      heroModal.classList.remove('active');
+      if (heroModalVideo) {
+        heroModalVideo.pause();
+      }
+    };
+
+    if (heroModalClose) heroModalClose.addEventListener('click', closeModal);
+    heroModal.addEventListener('click', (e) => {
+      if (e.target === heroModal) closeModal();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && heroModal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  }
+
+  /*--------------------------------------------------
+    6. LIQUID AMOEBA SPOTLIGHT REVEAL
+  --------------------------------------------------*/
+  const revealCard = document.getElementById('reveal-card');
+  const revealMaskShape = document.getElementById('reveal-mask-shape');
+  const revealEdge = document.getElementById('reveal-edge');
+
+  if (revealCard && revealMaskShape && revealEdge) {
+    let revealActive = false;
+    let targetR = 0;
+    let currentR = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    revealCard.addEventListener('mouseenter', (e) => {
+      revealActive = true;
+      revealCard.classList.add('is-active');
+      targetR = 170;
+      const rect = revealCard.getBoundingClientRect();
+      targetX = e.clientX - rect.left;
+      targetY = e.clientY - rect.top;
+      currentX = targetX;
+      currentY = targetY;
+    });
+
+    revealCard.addEventListener('mousemove', (e) => {
+      const rect = revealCard.getBoundingClientRect();
+      targetX = e.clientX - rect.left;
+      targetY = e.clientY - rect.top;
+    });
+
+    revealCard.addEventListener('mouseleave', () => {
+      revealActive = false;
+      revealCard.classList.remove('is-active');
+      targetR = 0;
+    });
+
+    // Touch events for mobile
+    revealCard.addEventListener('touchstart', (e) => {
+      revealActive = true;
+      revealCard.classList.add('is-active');
+      targetR = 150;
+      const rect = revealCard.getBoundingClientRect();
+      targetX = e.touches[0].clientX - rect.left;
+      targetY = e.touches[0].clientY - rect.top;
+      currentX = targetX;
+      currentY = targetY;
+    }, { passive: true });
+
+    revealCard.addEventListener('touchmove', (e) => {
+      const rect = revealCard.getBoundingClientRect();
+      targetX = e.touches[0].clientX - rect.left;
+      targetY = e.touches[0].clientY - rect.top;
+    }, { passive: true });
+
+    revealCard.addEventListener('touchend', () => {
+      revealActive = false;
+      revealCard.classList.remove('is-active');
+      targetR = 0;
+    });
+
+    function updateAmoeba() {
+      // Smooth lerp
+      currentX += (targetX - currentX) * 0.18;
+      currentY += (targetY - currentY) * 0.18;
+      currentR += (targetR - currentR) * 0.15;
+
+      revealMaskShape.setAttribute('cx', currentX.toFixed(2));
+      revealMaskShape.setAttribute('cy', currentY.toFixed(2));
+      revealMaskShape.setAttribute('r', currentR.toFixed(2));
+
+      revealEdge.setAttribute('cx', currentX.toFixed(2));
+      revealEdge.setAttribute('cy', currentY.toFixed(2));
+      revealEdge.setAttribute('r', currentR.toFixed(2));
+
+      requestAnimationFrame(updateAmoeba);
+    }
+    updateAmoeba();
+  }
+
+  /*--------------------------------------------------
+    7. INTERACTIVE ROLES LIST & CURSOR MEDIA FOLLOWER
+  --------------------------------------------------*/
+  const rolesList = document.getElementById('roles-list');
+  const rolesPreview = document.getElementById('roles-cursor-preview');
+  const rolesPreviewVideo = document.getElementById('roles-preview-video');
+  const rolesPreviewImg = document.getElementById('roles-preview-img');
+
+  if (rolesList && rolesPreview) {
+    const roleMedia = [
+      { type: 'video', src: 'assets/img/creative.mp4' },
+      { type: 'image', src: 'assets/img/nexora.jpg' },
+      { type: 'image', src: 'assets/img/truthseal.jpg' },
+      { type: 'image', src: 'assets/img/yieldway.jpg' }
+    ];
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let currentPosX = mouseX;
+    let currentPosY = mouseY;
+    let isHoveringRoles = false;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    const roleItems = rolesList.querySelectorAll('.roles-item');
+    roleItems.forEach((item, index) => {
+      item.addEventListener('mouseenter', () => {
+        isHoveringRoles = true;
+        rolesPreview.classList.add('active');
+
+        const media = roleMedia[index % roleMedia.length];
+        if (media.type === 'video' && rolesPreviewVideo) {
+          rolesPreviewVideo.style.display = 'block';
+          if (rolesPreviewImg) rolesPreviewImg.style.display = 'none';
+          rolesPreviewVideo.src = media.src;
+          rolesPreviewVideo.play();
+        } else if (rolesPreviewImg) {
+          if (rolesPreviewVideo) {
+            rolesPreviewVideo.pause();
+            rolesPreviewVideo.style.display = 'none';
+          }
+          rolesPreviewImg.style.display = 'block';
+          rolesPreviewImg.src = media.src;
+        }
+      });
+    });
+
+    rolesList.addEventListener('mouseleave', () => {
+      isHoveringRoles = false;
+      rolesPreview.classList.remove('active');
+      if (rolesPreviewVideo) rolesPreviewVideo.pause();
+    });
+
+    function updateRoleCursorFollower() {
+      currentPosX += (mouseX - currentPosX) * 0.16;
+      currentPosY += (mouseY - currentPosY) * 0.16;
+
+      rolesPreview.style.left = `${currentPosX}px`;
+      rolesPreview.style.top = `${currentPosY}px`;
+
+      requestAnimationFrame(updateRoleCursorFollower);
+    }
+    updateRoleCursorFollower();
+  }
+
+  /*--------------------------------------------------
+    8. FEATURED WORKS LIGHTBOX MODAL
+  --------------------------------------------------*/
+  const fwModal = document.getElementById('fw-modal');
+  const fwModalClose = document.getElementById('fw-modal-close');
+  const fwModalTitle = document.getElementById('fw-modal-title');
+  const fwModalDesc = document.getElementById('fw-modal-desc');
+  const fwModalImg = document.getElementById('fw-modal-img');
+  const fwModalDemo = document.getElementById('fw-modal-demo');
+  const fwModalRepo = document.getElementById('fw-modal-repo');
+  const fwCards = document.querySelectorAll('.fw-card');
+
+  const projectDetails = {
+    nexora: {
+      title: 'Nexora Autonomous AI Platform',
+      desc: 'NEXORA 🚀 is an autonomous AI incident coordination platform that turns incoming infrastructure incidents into verified resolutions in seconds. Built with Featherless AI, Caspian, and modern event-driven agent meshes.',
+      img: 'assets/img/nexora.jpg',
+      demo: 'https://nexora-three-mu.vercel.app/',
+      repo: 'https://github.com/exepngsam/nexora'
+    },
+    civicfix: {
+      title: 'CivicFix AI Smart Platform',
+      desc: 'CivicFix AI leverages computer vision and multimodal LLMs to automate civic infrastructure issue triage, road hazard detection, and municipal dispatch on AWS serverless architecture.',
+      img: 'assets/img/civicfix.jpg',
+      demo: 'https://civicfix-ai-roan.vercel.app/',
+      repo: 'https://github.com/exepngsam/CivicFix'
+    },
+    truthseal: {
+      title: 'TruthSeal AI Digital Trust Engine',
+      desc: 'TruthSeal AI provides cryptographic tamper detection, deepfake forensics, verifiable digital signatures, and provenance chain verification for mission-critical media and documents.',
+      img: 'assets/img/truthseal.jpg',
+      demo: 'https://truth-seal-ai.vercel.app/',
+      repo: 'https://github.com/exepngsam/TruthSeal-AI'
+    },
+    yieldway: {
+      title: 'YieldWay Algorithmic DeFi Platform',
+      desc: 'YieldWay combines real-time financial market telemetry with machine learning predictive modeling for automated risk budgeting, liquidity provision, and high-yield strategy execution.',
+      img: 'assets/img/yieldway.jpg',
+      demo: 'https://github.com/exepngsam',
+      repo: 'https://github.com/exepngsam'
+    }
+  };
+
+  fwCards.forEach((card) => {
+    const expandBtn = card.querySelector('.fw-expand-trigger');
+    const projectKey = card.getAttribute('data-project');
+
+    if (expandBtn && projectKey && projectDetails[projectKey]) {
+      expandBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const data = projectDetails[projectKey];
+        if (fwModalTitle) fwModalTitle.textContent = data.title;
+        if (fwModalDesc) fwModalDesc.textContent = data.desc;
+        if (fwModalImg) fwModalImg.src = data.img;
+        if (fwModalDemo) fwModalDemo.href = data.demo;
+        if (fwModalRepo) fwModalRepo.href = data.repo;
+
+        fwModal.classList.add('active');
+      });
+    }
+  });
+
+  const closeFwModal = () => {
+    if (fwModal) fwModal.classList.remove('active');
+  };
+
+  if (fwModalClose) fwModalClose.addEventListener('click', closeFwModal);
+  if (fwModal) {
+    fwModal.addEventListener('click', (e) => {
+      if (e.target === fwModal) closeFwModal();
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && fwModal && fwModal.classList.contains('active')) {
+      closeFwModal();
+    }
+  });
+
+  /*--------------------------------------------------
+    9. INTERACTIVE 3D NEURAL CANVAS & TELEMETRY
+  --------------------------------------------------*/
+  const neuralCanvas = document.getElementById('neural-canvas');
+  if (neuralCanvas) {
+    const ctx = neuralCanvas.getContext('2d');
+    let width = (neuralCanvas.width = 440);
+    let height = (neuralCanvas.height = 440);
+
+    const particleCount = 650;
+    const particles = [];
+    let mouse = { x: width / 2, y: height / 2, active: false };
+    let isRepelling = false;
+
+    // Canvas size responsiveness
+    function resizeCanvas() {
+      const rect = neuralCanvas.getBoundingClientRect();
+      width = neuralCanvas.width = rect.width;
+      height = neuralCanvas.height = rect.height;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Mouse events
+    neuralCanvas.addEventListener('mousemove', (e) => {
+      const rect = neuralCanvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      mouse.active = true;
+    });
+
+    neuralCanvas.addEventListener('mouseleave', () => {
+      mouse.active = false;
+    });
+
+    neuralCanvas.addEventListener('click', () => {
+      isRepelling = !isRepelling;
+    });
+
+    // Initialize particles in a 3D sphere projection
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: 0,
+        vy: 0,
+        baseX: width / 2,
+        baseY: height / 2,
+        radius: Math.random() * 1.5 + 0.6
+      });
     }
 
     let time = 0;
-    const drawNeuralNetwork = () => {
-        const isLight = document.body.classList.contains('light-theme');
-        const bgColor = isLight ? '#ffffff' : '#000000';
-        const pColor = isLight ? '#000000' : '#ffffff';
-        const pColorRgb = isLight ? '0,0,0' : '255,255,255';
-        const highlightColor = isRepelling ? 'rgba(255, 60, 60,' : 'rgba(39, 201, 63,';
+    function renderNeuralMesh() {
+      ctx.fillStyle = '#030406';
+      ctx.fillRect(0, 0, width, height);
 
-        ctx.fillStyle = bgColor;
-        ctx.fillRect(0, 0, width, height);
-        
-        // Sphere specific rotation logic
-        time += 0.01;
-        const radius = 130;
-        for (let i = 0; i < particles.length; i++) {
-            const phi = Math.acos(1 - 2 * (i + 0.5) / particleCount);
-            const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5) + time;
-            particles[i].baseX = width / 2 + Math.cos(theta) * Math.sin(phi) * radius;
-            particles[i].baseY = height / 2 + Math.sin(theta) * Math.sin(phi) * radius;
-        }
+      time += 0.012;
+      const sphereRadius = Math.min(width, height) * 0.35;
+      const centerX = width / 2;
+      const centerY = height / 2;
 
-        ctx.fillStyle = pColor;
+      for (let i = 0; i < particleCount; i++) {
+        const phi = Math.acos(1 - (2 * (i + 0.5)) / particleCount);
+        const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5) + time;
+        particles[i].baseX = centerX + Math.cos(theta) * Math.sin(phi) * sphereRadius;
+        particles[i].baseY = centerY + Math.sin(theta) * Math.sin(phi) * sphereRadius;
+      }
 
-        // Update and draw particles
-        for (let i = 0; i < particles.length; i++) {
-            let p = particles[i];
-            
-            // Ease towards base target
-            const dxTarget = p.baseX - p.x;
-            const dyTarget = p.baseY - p.y;
-            p.vx += dxTarget * 0.01;
-            p.vy += dyTarget * 0.01;
-            
-            // Magnetic Mouse interaction
-            if (mouse.active) {
-                const dxm = p.x - mouse.x;
-                const dym = p.y - mouse.y;
-                const distm = Math.sqrt(dxm * dxm + dym * dym);
-                
-                if (distm < 100) {
-                    const force = (100 - distm) / 100;
-                    if (isRepelling) {
-                        p.vx += (dxm / distm) * force * 5;
-                        p.vy += (dym / distm) * force * 5;
-                    } else {
-                        p.vx -= (dxm / distm) * force * 2;
-                        p.vy -= (dym / distm) * force * 2;
-                    }
-                }
-            }
-            
-            // Friction/Damping
-            p.vx *= 0.85;
-            p.vy *= 0.85;
-            
-            p.x += p.vx;
-            p.y += p.vy;
-            
-            // Draw particle
-            ctx.fillRect(p.x, p.y, p.radius * 2, p.radius * 2);
-            
-            // Connect to nearby particles (optimized)
-            for (let j = i + 1; j < Math.min(i + 15, particles.length); j++) {
-                let p2 = particles[j];
-                const dx = p.x - p2.x;
-                const dy = p.y - p2.y;
-                const distSq = dx * dx + dy * dy; // avoid sqrt for speed
-                
-                if (distSq < connectionDistance * connectionDistance) {
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(p2.x, p2.y);
-                    const opacity = 1 - (Math.sqrt(distSq) / connectionDistance);
-                    ctx.strokeStyle = `rgba(${pColorRgb}, ${opacity * 0.3})`;
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            }
-        }
-        
-        // Draw Mouse magnetic field indicator
+      ctx.fillStyle = '#efe9d8';
+
+      for (let i = 0; i < particleCount; i++) {
+        const p = particles[i];
+
+        // Spring towards base
+        p.vx += (p.baseX - p.x) * 0.015;
+        p.vy += (p.baseY - p.y) * 0.015;
+
+        // Mouse interaction
         if (mouse.active) {
-            ctx.beginPath();
-            ctx.arc(mouse.x, mouse.y, 15, 0, Math.PI * 2);
-            ctx.strokeStyle = highlightColor + '0.5)';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.arc(mouse.x, mouse.y, 100, 0, Math.PI * 2);
-            ctx.strokeStyle = highlightColor + '0.1)';
-            ctx.stroke();
-            
-            // Draw plus or minus to indicate mode
-            ctx.fillStyle = highlightColor + '0.8)';
-            ctx.font = '14px monospace';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(isRepelling ? '−' : '+', mouse.x, mouse.y);
-        }
-        
-        requestAnimationFrame(drawNeuralNetwork);
-    };
-    
-    drawNeuralNetwork();
-    
-    // Simulate fake AI training stats updates
-    if (epochCountEl && lossValueEl && accuracyValueEl) {
-        let currentEpoch = 142;
-        let currentLoss = 0.0124;
-        let currentAcc = 98.7;
-        
-        setInterval(() => {
-            currentEpoch += 1;
-            if (currentEpoch > 500) currentEpoch = 1;
-            
-            currentLoss = Math.max(0.0001, currentLoss - (Math.random() * 0.001));
-            currentAcc = Math.min(99.99, currentAcc + (Math.random() * 0.05));
-            
-            if (currentEpoch === 1) {
-                currentLoss = 0.5 + Math.random() * 0.5;
-                currentAcc = 40 + Math.random() * 20;
+          const dx = p.x - mouse.x;
+          const dy = p.y - mouse.y;
+          const dist = Math.hypot(dx, dy);
+
+          if (dist < 110) {
+            const force = (110 - dist) / 110;
+            if (isRepelling) {
+              p.vx += (dx / dist) * force * 5;
+              p.vy += (dy / dist) * force * 5;
+            } else {
+              p.vx -= (dx / dist) * force * 2.5;
+              p.vy -= (dy / dist) * force * 2.5;
             }
-            
-            epochCountEl.innerText = currentEpoch;
-            lossValueEl.innerText = currentLoss.toFixed(4);
-            accuracyValueEl.innerText = currentAcc.toFixed(2) + '%';
-        }, 1500);
+          }
+        }
+
+        // Friction
+        p.vx *= 0.86;
+        p.vy *= 0.86;
+        p.x += p.vx;
+        p.y += p.vy;
+
+        ctx.fillRect(p.x, p.y, p.radius * 2, p.radius * 2);
+
+        // Synaptic connections
+        for (let j = i + 1; j < Math.min(i + 10, particleCount); j++) {
+          const p2 = particles[j];
+          const dxx = p.x - p2.x;
+          const dyy = p.y - p2.y;
+          const distSq = dxx * dxx + dyy * dyy;
+
+          if (distSq < 35 * 35) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            const opacity = 1 - Math.sqrt(distSq) / 35;
+            ctx.strokeStyle = `rgba(239, 233, 216, ${opacity * 0.25})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Mouse field indicator
+      if (mouse.active) {
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, 14, 0, Math.PI * 2);
+        ctx.strokeStyle = isRepelling ? 'rgba(239, 68, 68, 0.7)' : 'rgba(34, 197, 94, 0.7)';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, 110, 0, Math.PI * 2);
+        ctx.strokeStyle = isRepelling ? 'rgba(239, 68, 68, 0.12)' : 'rgba(34, 197, 94, 0.12)';
+        ctx.stroke();
+      }
+
+      requestAnimationFrame(renderNeuralMesh);
     }
-}
+    renderNeuralMesh();
+
+    // Simulated training telemetry updates
+    const epochEl = document.getElementById('epoch-count');
+    const lossEl = document.getElementById('loss-value');
+    const accEl = document.getElementById('accuracy-value');
+
+    if (epochEl && lossEl && accEl) {
+      let epoch = 168;
+      let loss = 0.0094;
+      let acc = 99.12;
+
+      setInterval(() => {
+        epoch = (epoch + 1) % 600;
+        loss = Math.max(0.0001, loss - (Math.random() * 0.0004));
+        acc = Math.min(99.98, acc + (Math.random() * 0.02));
+
+        if (epoch === 0) {
+          loss = 0.42;
+          acc = 78.4;
+        }
+
+        epochEl.textContent = epoch;
+        lossEl.textContent = loss.toFixed(4);
+        accEl.textContent = acc.toFixed(2) + '%';
+      }, 1600);
+    }
+  }
+
+  /*--------------------------------------------------
+    10. NAVIGATION MOBILE DRAWER
+  --------------------------------------------------*/
+  const navMobileToggle = document.getElementById('nav-mobile-toggle');
+  const mobileDrawer = document.getElementById('mobile-drawer');
+  const mobileDrawerClose = document.getElementById('mobile-drawer-close');
+  const mobileDrawerLinks = document.querySelectorAll('.mobile-drawer-link');
+
+  if (navMobileToggle && mobileDrawer) {
+    navMobileToggle.addEventListener('click', () => {
+      mobileDrawer.classList.add('open');
+    });
+
+    const closeDrawer = () => {
+      mobileDrawer.classList.remove('open');
+    };
+
+    if (mobileDrawerClose) mobileDrawerClose.addEventListener('click', closeDrawer);
+    mobileDrawerLinks.forEach((link) => link.addEventListener('click', closeDrawer));
+  }
+
+  /*--------------------------------------------------
+    11. CHATBOT WIDGET
+  --------------------------------------------------*/
+  const chatbotToggle = document.getElementById('chatbot-toggle');
+  const chatbotContainer = document.getElementById('chatbot-container');
+  const chatbotClose = document.getElementById('chatbot-close');
+  const chatbotInput = document.getElementById('chatbot-input');
+  const chatbotSend = document.getElementById('chatbot-send');
+  const chatbotMessages = document.getElementById('chatbot-messages');
+
+  if (chatbotToggle && chatbotContainer) {
+    chatbotToggle.addEventListener('click', () => {
+      chatbotContainer.classList.toggle('active');
+      if (chatbotContainer.classList.contains('active') && chatbotInput) {
+        chatbotInput.focus();
+      }
+    });
+
+    if (chatbotClose) {
+      chatbotClose.addEventListener('click', () => {
+        chatbotContainer.classList.remove('active');
+      });
+    }
+
+    const aiKnowledge = [
+      {
+        triggers: ['who are you', 'about', 'soumyajit', 'background'],
+        reply: "I am Soumyajit's personal AI agent. Soumyajit Jena is an AI & Machine Learning engineer and full-stack developer passionate about building autonomous agent platforms, computer vision architectures, and zero-bloat web systems."
+      },
+      {
+        triggers: ['projects', 'works', 'nexora', 'civicfix', 'truthseal', 'yieldway'],
+        reply: "Soumyajit has developed several flagship AI systems: Nexora (autonomous incident triage), CivicFix AI (smart civic reporting with AWS computer vision), TruthSeal AI (deepfake & cryptographic provenance detection), and YieldWay (algorithmic DeFi intelligence)."
+      },
+      {
+        triggers: ['skills', 'stack', 'tech', 'technologies', 'python', 'pytorch'],
+        reply: "Core technical stack includes PyTorch, Transformers, Multi-Agent MoE architectures, Python, TypeScript, React/Next.js, Tailwind, FastAPI, and AWS Cloud infrastructure."
+      },
+      {
+        triggers: ['contact', 'hire', 'email', 'reach'],
+        reply: "You can reach Soumyajit directly at soumyajit19pvt@gmail.com, via GitHub @exepngsam, or on X @exesam19. He is actively open for high-impact innovation roles!"
+      }
+    ];
+
+    function handleChatSend() {
+      const userText = chatbotInput.value.trim();
+      if (!userText) return;
+
+      // Add user message
+      const userMsg = document.createElement('div');
+      userMsg.className = 'chatbot-message user';
+      userMsg.textContent = userText;
+      chatbotMessages.appendChild(userMsg);
+      chatbotInput.value = '';
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+      // Generate response
+      setTimeout(() => {
+        const lower = userText.toLowerCase();
+        let match = aiKnowledge.find((k) =>
+          k.triggers.some((t) => lower.includes(t))
+        );
+        const replyText = match
+          ? match.reply
+          : "That's an interesting question! Feel free to explore Soumyajit's featured projects above or reach out directly at soumyajit19pvt@gmail.com.";
+
+        const aiMsg = document.createElement('div');
+        aiMsg.className = 'chatbot-message ai';
+        aiMsg.textContent = replyText;
+        chatbotMessages.appendChild(aiMsg);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      }, 500);
+    }
+
+    if (chatbotSend) chatbotSend.addEventListener('click', handleChatSend);
+    if (chatbotInput) {
+      chatbotInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') handleChatSend();
+      });
+    }
+  }
+});

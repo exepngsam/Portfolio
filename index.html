@@ -3,460 +3,545 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Soumyajit Jena - AI & ML Enthusiast Portfolio" />
+  <meta name="description" content="Soumyajit Jena — AI & ML Engineer and Full-Stack Developer. Portfolio featuring autonomous AI systems, deep learning architectures, and editorial web experiences." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--=============== FONTS ===============-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,wdth@8..144,100..1000,25..151&display=swap" rel="stylesheet" />
 
   <!--=============== REMIXICONS ===============-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" />
 
-  <!--=============== SWIPER CSS ===============-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
-
-  <!--=============== CSS ===============-->
+  <!--=============== STYLESHEET ===============-->
   <link rel="stylesheet" href="assets/css/styles.css" />
 
-  <title>Soumyajit Jena | Portfolio</title>
+  <title>Soumyajit Jena — AI & ML Engineer | Portfolio</title>
   <meta name="google-site-verification" content="googleea3e2eda80bce91b" />
 </head>
 
 <body>
-  <!--==================== ANIMATED BACKGROUND ====================-->
-  <div class="bg-matrix">
-    <canvas id="dot-matrix" class="dot-matrix"></canvas>
-    <div class="matrix-overlay"></div>
-  </div>
+  <!-- Global Noise Overlay -->
+  <div class="fvb-noise" aria-hidden="true"></div>
 
-  <!--==================== HEADER & NAV ====================-->
-  <header class="header" id="header">
-    <nav class="nav container">
-      <a href="#" class="nav__logo">Soumyajit</a>
+  <!--==================== FLOATING SITE NAVIGATION ====================-->
+  <header class="site-nav" id="site-nav">
+    <a href="#hero" class="nav-logo">
+      Soumyajit <span class="nav-logo-dot"></span>
+    </a>
 
-      <div class="nav__menu" id="nav-menu">
-        <ul class="nav__list">
-          <li><a href="#home" class="nav__link active-link">Home</a></li>
-          <li><a href="#about" class="nav__link">About</a></li>
-          <li><a href="#work" class="nav__link">Works</a></li>
-          <li><a href="#service" class="nav__link">My Services</a></li>
-          <li><a href="#skills" class="nav__link">Skills</a></li>
-          <li><a href="#contact" class="nav__link">Contact</a></li>
-        </ul>
-
-        <!-- Close -->
-        <button class="nav__close" id="nav-close" aria-label="Close menu">
-          <i class="ri-close-large-line"></i>
-        </button>
-      </div>
-
-      <div class="nav__buttons" style="display: flex; align-items: center; column-gap: 1rem;">
-        <!-- Theme change button -->
-        <i class="ri-moon-line change-theme" id="theme-button"
-          style="font-size: 1.25rem; color: var(--white-color); cursor: pointer; transition: color .4s;"></i>
-
-        <!-- Toggle -->
-        <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">
-          <i class="ri-menu-line"></i>
-        </button>
-      </div>
+    <nav class="nav-center-menu" id="nav-center-menu">
+      <a href="#hero" class="nav-link">Home</a>
+      <a href="#reveal" class="nav-link">About</a>
+      <a href="#roles" class="nav-link">Roles</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#neural" class="nav-link">Neural Core</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </nav>
+
+    <div class="nav-right">
+      <span class="nav-status-pill">Available for AI Innovation</span>
+      <a href="#contact" class="nav-contact-btn">Get In Touch</a>
+      <button class="nav-mobile-toggle" id="nav-mobile-toggle" aria-label="Open menu">
+        <i class="ri-menu-4-line"></i>
+      </button>
+    </div>
   </header>
 
-  <!--==================== MAIN ====================-->
-  <main class="main">
-    <!-- CUSTOM CURSOR -->
-    <div class="cursor" id="cursor"></div>
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <button class="mobile-drawer-close" id="mobile-drawer-close" aria-label="Close menu">
+      <i class="ri-close-line"></i>
+    </button>
+    <a href="#hero" class="mobile-drawer-link">Home</a>
+    <a href="#reveal" class="mobile-drawer-link">About</a>
+    <a href="#roles" class="mobile-drawer-link">Roles</a>
+    <a href="#projects" class="mobile-drawer-link">Projects</a>
+    <a href="#neural" class="mobile-drawer-link">Neural Core</a>
+    <a href="#contact" class="mobile-drawer-link">Contact</a>
+  </div>
 
-    <!--==================== HOME SECTION ====================-->
-    <section class="home section" id="home">
-      <div class="home__container container grid">
-        <div class="home__data">
-          <h3 class="home__subtitle">Hi! I'm Soumyajit</h3>
-          <h1 class="home__title">
-            AI & ML <br />
-            <span id="home-typed">Enthusiast</span>
-          </h1>
-          <p class="home__description">
-            B.Tech Student in Computer Science Engineering. Passionate about
-            building intelligent systems, transforming complex problems into
-            simple designs, and creating web experiences.
-          </p>
+  <!--==================== MAIN CONTENT ====================-->
+  <main>
+    <!--==================== HERO SECTION ====================-->
+    <section class="hero" id="hero">
+      <div class="hero-backdrop"></div>
+
+      <p class="hero-since">
+        AI Engineer & Full-Stack Developer
+        <span>B.Tech CSE • Odisha, India</span>
+      </p>
+
+      <div class="hero-headline">
+        <div>
+          <span class="vft" data-variable-font-text data-text="SOUMYAJIT">SOUMYAJIT</span>
         </div>
+        <div class="hero-row">
+          <span class="vft" data-variable-font-text data-text="JENA">JENA</span>
+          
+          <!-- Interactive Video Pill inside headline -->
+          <button class="hero-vid-btn" id="hero-vid-btn" aria-label="Watch showcase reel">
+            <video src="assets/img/creative.mp4" autoplay loop muted playsinline poster="assets/img/cosmic_bg.jpg"></video>
+            <div class="play-icon"><i class="ri-play-fill"></i></div>
+          </button>
 
-        <div class="home__circular">
-          <div class="home__circular-text">EXPLORE - MORE - LET'S -</div>
+          <!-- 3D Rotating Word -->
+          <div class="hero-rotating-word-container">
+            <span class="hero-rotating-word" id="hero-rotating-word">INTELLIGENCE</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-lang">
+        <span>PyTorch</span>
+        <span class="hero-lang-sep">•</span>
+        <span>Transformers</span>
+        <span class="hero-lang-sep">•</span>
+        <span>Multi-Agent MoE</span>
+        <span class="hero-lang-sep">•</span>
+        <span>TypeScript</span>
+        <span class="hero-lang-sep">•</span>
+        <span>AWS Cloud</span>
+      </div>
+
+      <div class="hero-scroll-cue" id="hero-scroll-cue">
+        <span>Scroll to Explore</span>
+        <i class="ri-arrow-down-line"></i>
+      </div>
+    </section>
+
+    <!-- Hero Video Lightbox Modal -->
+    <div class="hero-modal" id="hero-modal" role="dialog" aria-modal="true" aria-label="Cinematic Reel">
+      <button class="hero-modal-close" id="hero-modal-close" aria-label="Close modal">
+        <i class="ri-close-line"></i>
+      </button>
+      <video id="hero-modal-video" src="assets/img/creative.mp4" loop playsinline controls></video>
+    </div>
+
+    <!--==================== LIQUID AMOEBA SPOTLIGHT REVEAL SECTION ====================-->
+    <section class="reveal-section" id="reveal" aria-label="Interactive Reveal">
+      <!-- SVG Filter Definition for Living Liquid Amoeba Distortion -->
+      <svg width="0" height="0" style="position: absolute; pointer-events: none;">
+        <defs>
+          <filter id="amoebaDistort">
+            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise">
+              <animate attributeName="baseFrequency" dur="10s" values="0.01;0.022;0.014;0.01" repeatCount="indefinite" />
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="45" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+
+          <mask id="revealMask">
+            <g filter="url(#amoebaDistort)">
+              <circle id="reveal-mask-shape" cx="50%" cy="50%" r="0" fill="#ffffff" />
+            </g>
+          </mask>
+        </defs>
+      </svg>
+
+      <div class="reveal-card" id="reveal-card">
+        <!-- Grayscale base layer -->
+        <img src="assets/img/cosmic_bg.jpg" alt="Neural Space Base" class="reveal-base-layer" />
+
+        <!-- High-res colored revealed layer masked by amoeba -->
+        <img src="assets/img/cosmic_bg.jpg" alt="Neural Space Active" class="reveal-top-layer" />
+
+        <!-- Liquid glowing border -->
+        <svg class="reveal-svg-container">
+          <g class="reveal-edge-glow">
+            <circle id="reveal-edge" filter="url(#amoebaDistort)" cx="50%" cy="50%" r="0"></circle>
+          </g>
+        </svg>
+
+        <!-- Sliding Dual Editorial Caption -->
+        <div class="reveal-caption">
+          <span class="reveal-caption-base">Hover to Pierce the Veil • Autonomous Neural Core</span>
+          <span class="reveal-caption-top">Neural Intelligence Unleashed • High-Performance Systems</span>
         </div>
       </div>
     </section>
 
-    <!--==================== ABOUT SECTION ====================-->
-    <section class="about section" id="about">
-      <div class="about__container container grid">
-        <div class="about__data">
-          <h2 class="about__title">
-            About Me: Young developer who enjoys <span>AI & ML</span> and
-            <span>Web Development</span>, passionate about my work,
-            disciplined, and focused on building intelligent solutions.
+    <!--==================== STICKY DIVE TUNNEL SECTION ====================-->
+    <section class="dive-section" id="dive-section">
+      <div class="dive-sticky">
+        <div class="dive-bg-container">
+          <video class="dive-bg-video" src="assets/img/creative.mp4" autoplay loop muted playsinline poster="assets/img/cosmic_bg.jpg"></video>
+          <div class="dive-blur-grad"></div>
+          <div class="dive-noise"></div>
+        </div>
+
+        <div class="dive-journey-content">
+          <p class="dive-journey-eyebrow">01 — PHILOSOPHY & VISION</p>
+          <h2 class="dive-journey-title">
+            ENGINEERING <span class="dive-journey-title-span">intelligence</span> INTO SCALABLE SYSTEMS
           </h2>
-          <p class="about__description">
-            If you have a project in mind, check out my work and contact me to
-            work together. Best of luck!
+          <p class="dive-journey-desc">
+            Passionate about transforming complex algorithmic problems into clean, high-performance architectures.
+            Bridging foundational AI research with modern, zero-bloat web engineering.
           </p>
-          <a href="#contact" class="button">Contact me</a>
-        </div>
-
-        <!-- Terminal UI -->
-        <div class="about__terminal">
-          <div class="terminal__header">
-            <div class="terminal__buttons">
-              <span class="terminal__btn close"></span>
-              <span class="terminal__btn minimize"></span>
-              <span class="terminal__btn maximize"></span>
-            </div>
-            <div class="terminal__title">bash &mdash; soumyajit@neural-core: ~</div>
-          </div>
-          <div class="terminal__body">
-            <div class="terminal__line">
-              <span class="prompt">root@soumyajit:~$</span> cat agent_profile.json
-            </div>
-            <div class="terminal__line">{</div>
-            <div class="terminal__line indent">
-              <span class="key">"engineer"</span>: <span class="string">"Soumyajit Jena"</span>,
-            </div>
-            <div class="terminal__line indent">
-              <span class="key">"domain"</span>: <span class="string">"AI, Deep Learning & Web Systems"</span>,
-            </div>
-            <div class="terminal__line indent">
-              <span class="key">"primary_stack"</span>: [<span class="string">"PyTorch"</span>, <span
-                class="string">"Transformers"</span>, <span class="string">"FastAPI"</span>, <span
-                class="string">"TypeScript"</span>],
-            </div>
-            <div class="terminal__line indent">
-              <span class="key">"architectures"</span>: [<span class="string">"Multi-Agent MoE"</span>, <span
-                class="string">"NeRF 3D"</span>, <span class="string">"PPO/DQN"</span>],
-            </div>
-            <div class="terminal__line indent">
-              <span class="key">"philosophy"</span>: <span class="string">"Mathematical Rigor + Pure Zero-Bloat
-                Execution"</span>,
-            </div>
-            <div class="terminal__line indent">
-              <span class="key">"current_status"</span>: <span class="string">"Open for High-Impact Innovation"</span>
-            </div>
-            <div class="terminal__line">}</div>
-            <div class="terminal__line empty"><br></div>
-            <div class="terminal__line">
-              <span class="prompt">root@soumyajit:~$</span> ./check_inference_readiness.sh --verbose
-            </div>
-            <div class="terminal__line empty"><br></div>
-            <div class="terminal__line success">
-              [SUCCESS] All GPU tensors mapped. Ready to deploy intelligent systems.
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
-    <!--==================== WORK SECTION ====================-->
-    <section class="work section" id="work">
-      <div class="work__container container">
-        <h2 class="section__title">View My <span>Work</span></h2>
+    <!--==================== INTERACTIVE ROLES LIST ====================-->
+    <section class="roles-section" id="roles">
+      <p class="roles-eyebrow">02 — DISCIPLINES & FOCUS</p>
 
-        <div class="work__content swiper">
-          <div class="swiper-wrapper">
-            <!-- Project 1 -->
-            <article class="work__card swiper-slide">
-              <div class="work__img-box">
-                <img src="assets/img/nexora.jpg" alt="Nexora Platform" class="work__img" />
-              </div>
-              <div class="work__info">
-                <h3 class="work__number">01</h3>
-                <h3 class="work__name">Nexora</h3>
-                <p class="work__description">
-                  NEXORA 🚀 — Autonomous AI coordination platform that turns incidents into action. Powered by
-                  Featherless AI and Caspian.
-                </p>
-                <a href="https://nexora-three-mu.vercel.app/" target="_blank" class="work__button"><i
-                    class="ri-arrow-right-line"></i> Demo</a>
-              </div>
-            </article>
+      <ul class="roles-list" id="roles-list">
+        <li class="roles-item" tabindex="0">
+          <span class="roles-item-num">01</span>
+          <span>AI & MACHINE LEARNING</span>
+        </li>
+        <li class="roles-item" tabindex="0">
+          <span class="roles-item-num">02</span>
+          <span>FULL-STACK ARCHITECT</span>
+        </li>
+        <li class="roles-item" tabindex="0">
+          <span class="roles-item-num">03</span>
+          <span>DEEP LEARNING & COMPUTER VISION</span>
+        </li>
+        <li class="roles-item" tabindex="0">
+          <span class="roles-item-num">04</span>
+          <span>INTERACTION & SYSTEMS DESIGN</span>
+        </li>
+      </ul>
 
-            <!-- Project 2 -->
-            <article class="work__card swiper-slide">
-              <div class="work__img-box">
-                <img src="assets/img/civicfix.jpg" alt="CivicFix AI Platform" class="work__img" />
-              </div>
-              <div class="work__info">
-                <h3 class="work__number">02</h3>
-                <h3 class="work__name">CivicFix AI</h3>
-                <p class="work__description">
-                  AI-powered civic issue reporting and resolution platform built with AWS, featuring intelligent issue
-                  classification.
-                </p>
-                <a href="https://civicfix-ai-roan.vercel.app/" target="_blank" class="work__button"><i
-                    class="ri-arrow-right-line"></i> Demo</a>
-              </div>
-            </article>
-
-            <!-- Project 3 -->
-            <article class="work__card swiper-slide">
-              <div class="work__img-box">
-                <img src="assets/img/truthseal.jpg" alt="TruthSeal-AI Platform" class="work__img" />
-              </div>
-              <div class="work__info">
-                <h3 class="work__number">03</h3>
-                <h3 class="work__name">TruthSeal-AI</h3>
-                <p class="work__description">
-                  TruthSeal AI — A digital trust platform combining cryptographic verification, AI-powered media
-                  forensics, provenance tracking, and credential revocation to detect tampered media.
-                </p>
-                <a href="https://truth-seal-ai.vercel.app/" target="_blank" class="work__button"><i
-                    class="ri-arrow-right-line"></i> Demo</a>
-              </div>
-            </article>
-          </div>
-
-          <div class="swiper-pagination"></div>
-        </div>
+      <!-- Smooth Lerp Floating Cursor Follower Media -->
+      <div class="roles-cursor-preview" id="roles-cursor-preview">
+        <video id="roles-preview-video" src="assets/img/creative.mp4" loop muted playsinline></video>
+        <img id="roles-preview-img" src="" alt="Role Preview" style="display: none;" />
       </div>
     </section>
 
-    <!--==================== SERVICES SECTION ====================-->
-    <section class="services section" id="service">
-      <div class="services__container container grid">
-        <h2 class="section__title"><span>My</span> Services</h2>
+    <!--==================== FEATURED WORKS BENTO GRID ====================-->
+    <section class="fw-section" id="projects">
+      <div class="container">
+        <div class="fw-header">
+          <div>
+            <p class="fw-eyebrow">03 — SELECTED WORKS</p>
+            <h2 class="fw-heading">FEATURED WORKS</h2>
+          </div>
+          <div class="fw-filter-tags">
+            <span class="fw-tag-badge">AI Systems</span>
+            <span class="fw-tag-badge">Computer Vision</span>
+            <span class="fw-tag-badge">Full Stack</span>
+          </div>
+        </div>
 
-        <div class="services__content bento-grid">
-          <article class="bento-card services__bento-card">
-            <div class="bento-card__bg"></div>
-            <div class="bento-card__content">
-              <i class="ri-code-box-line services__icon"></i>
-              <h3 class="services__name">Web Developer</h3>
-              <p class="services__description">
-                Building modern, responsive, and high-performance websites with a focus on seamless user experiences.
+        <div class="fw-grid">
+          <!-- Project 1: Nexora (Span 12 - Hero Card) -->
+          <article class="fw-card span-12" data-project="nexora">
+            <div class="fw-card-media">
+              <img src="assets/img/nexora.jpg" alt="Nexora Platform" class="fw-card-img" />
+              <div class="fw-card-overlay"></div>
+            </div>
+            <div class="fw-card-body">
+              <div class="fw-card-meta">
+                <span class="fw-card-idx">01 / AUTONOMOUS AI</span>
+                <div class="fw-card-tags">
+                  <span class="fw-card-tag">Featherless AI</span>
+                  <span class="fw-card-tag">Caspian</span>
+                  <span class="fw-card-tag">Agent Mesh</span>
+                </div>
+              </div>
+              <h3 class="fw-card-title">Nexora — Autonomous AI Coordination</h3>
+              <p class="fw-card-desc">
+                An intelligent orchestration engine that turns critical production incidents into verified actions in real time.
+                Equipped with automated context synthesis and multi-agent incident triage.
               </p>
-              <ul class="services__list">
-                <li class="services__item"><i class="ri-check-line"></i> Frontend Development</li>
-                <li class="services__item"><i class="ri-check-line"></i> Backend Systems</li>
-                <li class="services__item"><i class="ri-check-line"></i> Performance Optimization</li>
-              </ul>
+              <div class="fw-card-actions">
+                <a href="https://nexora-three-mu.vercel.app/" target="_blank" rel="noopener noreferrer" class="fw-btn fw-btn-primary">
+                  Live Demo <i class="ri-arrow-right-up-line"></i>
+                </a>
+                <a href="https://github.com/exepngsam/nexora" target="_blank" rel="noopener noreferrer" class="fw-btn fw-btn-ghost">
+                  GitHub <i class="ri-github-line"></i>
+                </a>
+                <button class="fw-btn fw-btn-ghost fw-expand-trigger" aria-label="Expand project details">
+                  Deep Dive <i class="ri-fullscreen-line"></i>
+                </button>
+              </div>
             </div>
           </article>
 
-          <article class="bento-card services__bento-card">
-            <div class="bento-card__bg"></div>
-            <div class="bento-card__content">
-              <i class="ri-brain-line services__icon"></i>
-              <h3 class="services__name">AI & ML Engineer</h3>
-              <p class="services__description">
-                Designing intelligent systems and leveraging machine learning to solve complex computational problems.
+          <!-- Project 2: CivicFix AI (Span 6 - Split Card) -->
+          <article class="fw-card span-6" data-project="civicfix">
+            <div class="fw-card-media">
+              <img src="assets/img/civicfix.jpg" alt="CivicFix AI Platform" class="fw-card-img" />
+              <div class="fw-card-overlay"></div>
+            </div>
+            <div class="fw-card-body">
+              <div class="fw-card-meta">
+                <span class="fw-card-idx">02 / COMPUTER VISION</span>
+                <div class="fw-card-tags">
+                  <span class="fw-card-tag">AWS</span>
+                  <span class="fw-card-tag">Multi-Modal AI</span>
+                  <span class="fw-card-tag">Civic Tech</span>
+                </div>
+              </div>
+              <h3 class="fw-card-title">CivicFix AI</h3>
+              <p class="fw-card-desc">
+                AI-powered municipal reporting platform combining automated computer vision for road defect triage and smart dispatch.
               </p>
-              <ul class="services__list">
-                <li class="services__item"><i class="ri-check-line"></i> Predictive Modeling</li>
-                <li class="services__item"><i class="ri-check-line"></i> Data Analysis</li>
-                <li class="services__item"><i class="ri-check-line"></i> Deep Learning</li>
-              </ul>
+              <div class="fw-card-actions">
+                <a href="https://civicfix-ai-roan.vercel.app/" target="_blank" rel="noopener noreferrer" class="fw-btn fw-btn-primary">
+                  Demo <i class="ri-arrow-right-up-line"></i>
+                </a>
+                <a href="https://github.com/exepngsam/CivicFix" target="_blank" rel="noopener noreferrer" class="fw-btn fw-btn-ghost">
+                  GitHub <i class="ri-github-line"></i>
+                </a>
+                <button class="fw-btn fw-btn-ghost fw-expand-trigger" aria-label="Expand project details">
+                  <i class="ri-fullscreen-line"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: TruthSeal AI (Span 6 - Split Card) -->
+          <article class="fw-card span-6" data-project="truthseal">
+            <div class="fw-card-media">
+              <img src="assets/img/truthseal.jpg" alt="TruthSeal AI Platform" class="fw-card-img" />
+              <div class="fw-card-overlay"></div>
+            </div>
+            <div class="fw-card-body">
+              <div class="fw-card-meta">
+                <span class="fw-card-idx">03 / DIGITAL TRUST</span>
+                <div class="fw-card-tags">
+                  <span class="fw-card-tag">Cryptography</span>
+                  <span class="fw-card-tag">Deepfake Forensics</span>
+                  <span class="fw-card-tag">Provenance</span>
+                </div>
+              </div>
+              <h3 class="fw-card-title">TruthSeal-AI</h3>
+              <p class="fw-card-desc">
+                A cryptographic digital trust platform providing media tamper detection, AI forensics, and immutable credential provenance.
+              </p>
+              <div class="fw-card-actions">
+                <a href="https://truth-seal-ai.vercel.app/" target="_blank" rel="noopener noreferrer" class="fw-btn fw-btn-primary">
+                  Demo <i class="ri-arrow-right-up-line"></i>
+                </a>
+                <a href="https://github.com/exepngsam/TruthSeal-AI" target="_blank" rel="noopener noreferrer" class="fw-btn fw-btn-ghost">
+                  GitHub <i class="ri-github-line"></i>
+                </a>
+                <button class="fw-btn fw-btn-ghost fw-expand-trigger" aria-label="Expand project details">
+                  <i class="ri-fullscreen-line"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4: YieldWay (Span 12 - Hero Card) -->
+          <article class="fw-card span-12" data-project="yieldway">
+            <div class="fw-card-media">
+              <img src="assets/img/yieldway.jpg" alt="YieldWay Platform" class="fw-card-img" />
+              <div class="fw-card-overlay"></div>
+            </div>
+            <div class="fw-card-body">
+              <div class="fw-card-meta">
+                <span class="fw-card-idx">04 / DEFI INTELLIGENCE</span>
+                <div class="fw-card-tags">
+                  <span class="fw-card-tag">Predictive ML</span>
+                  <span class="fw-card-tag">Algorithmic Risk</span>
+                  <span class="fw-card-tag">Telemetry</span>
+                </div>
+              </div>
+              <h3 class="fw-card-title">YieldWay — Algorithmic Financial Intelligence</h3>
+              <p class="fw-card-desc">
+                Real-time algorithmic risk budgeting and strategy execution engine, fusing streaming time-series predictive modeling with automated liquidity management.
+              </p>
+              <div class="fw-card-actions">
+                <a href="https://github.com/exepngsam" target="_blank" rel="noopener noreferrer" class="fw-btn fw-btn-primary">
+                  Repository <i class="ri-arrow-right-up-line"></i>
+                </a>
+                <button class="fw-btn fw-btn-ghost fw-expand-trigger" aria-label="Expand project details">
+                  Deep Dive <i class="ri-fullscreen-line"></i>
+                </button>
+              </div>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!--==================== SKILLS SECTION ====================-->
-    <section class="skills section" id="skills">
-      <div class="skills__container container grid">
-        <div class="skills__info">
-          <h2 class="section__title">My <span>Skills</span></h2>
-          <p class="skills__description">
-            My skills are those I've learned and developed over the years. By
-            studying, focusing, and being consistent in what I love most.
-          </p>
-        </div>
-
-        <div class="skills__content grid">
-          <div class="skills__group">
-            <h3 class="skills__title">Web Development</h3>
-            <div class="skills__list">
-              <div class="skills__item">HTML & CSS</div>
-              <div class="skills__item">JavaScript</div>
-              <div class="skills__item">React / Next.js</div>
-              <div class="skills__item">Node.js</div>
-              <div class="skills__item">SQL / MongoDB</div>
-            </div>
-          </div>
-
-          <div class="skills__group">
-            <h3 class="skills__title">AI & Machine Learning</h3>
-            <div class="skills__list">
-              <div class="skills__item">Python</div>
-              <div class="skills__item">TensorFlow</div>
-              <div class="skills__item">PyTorch</div>
-              <div class="skills__item">Pandas / Numpy</div>
-            </div>
-          </div>
+    <!-- Project Lightbox Modal -->
+    <div class="fw-modal" id="fw-modal" role="dialog" aria-modal="true" aria-label="Project Details">
+      <div class="fw-modal-box">
+        <button class="fw-modal-close" id="fw-modal-close" aria-label="Close modal">
+          <i class="ri-close-line"></i>
+        </button>
+        <img id="fw-modal-img" src="" alt="Project Preview" style="width: 100%; border-radius: 12px; margin-bottom: 24px;" />
+        <h3 id="fw-modal-title" style="font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 12px;"></h3>
+        <p id="fw-modal-desc" style="color: var(--hero-fg-soft); line-height: 1.6; margin-bottom: 28px;"></p>
+        <div style="display: flex; gap: 14px;">
+          <a id="fw-modal-demo" href="#" target="_blank" rel="noopener noreferrer" class="fw-btn fw-btn-primary">
+            Launch Live Demo <i class="ri-arrow-right-up-line"></i>
+          </a>
+          <a id="fw-modal-repo" href="#" target="_blank" rel="noopener noreferrer" class="fw-btn fw-btn-ghost">
+            View Source Code <i class="ri-github-line"></i>
+          </a>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!--==================== NEURAL SECTION ====================-->
-    <section class="neural section" id="neural">
-      <h2 class="section__title">Neural <span>Interface</span></h2>
+    <!--==================== NEURAL CORE INTERACTIVE PLAYGROUND ====================-->
+    <section class="neural-section" id="neural">
+      <div class="container">
+        <div class="neural-grid">
+          <div class="neural-telemetry-box">
+            <p class="fw-eyebrow">04 — LIVE SYNAPTIC TOPOLOGY</p>
+            <h2 style="font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 16px;">
+              NEURAL CORE <span style="font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--hero-fg);">telemetry</span>
+            </h2>
+            <p style="color: var(--hero-fg-soft); line-height: 1.6; font-size: 0.95rem;">
+              Interactive 3D synaptic vector space simulating real-time gradient descent, tensor synchronization, and multi-agent topology.
+            </p>
 
-      <div class="neural__container container grid">
+            <ul class="neural-stat-list">
+              <li class="neural-stat-item">
+                <span class="neural-stat-label">[STATUS]</span>
+                <span class="neural-stat-val">TRAINING ACTIVE</span>
+              </li>
+              <li class="neural-stat-item">
+                <span class="neural-stat-label">[EPOCH]</span>
+                <span class="neural-stat-val" id="epoch-count">168</span>
+              </li>
+              <li class="neural-stat-item">
+                <span class="neural-stat-label">[LOSS VALUE]</span>
+                <span class="neural-stat-val" id="loss-value">0.0094</span>
+              </li>
+              <li class="neural-stat-item">
+                <span class="neural-stat-label">[ACCURACY]</span>
+                <span class="neural-stat-val" id="accuracy-value">99.12%</span>
+              </li>
+            </ul>
 
-        <div class="neural__info">
-          <h3 class="neural__info-title">> MODEL_TRAINING: <span>ACTIVE</span></h3>
-          <ul class="neural__info-list">
-            <li><span class="highlight">[EPOCH]</span> <span id="epoch-count">142</span> / 500</li>
-            <li><span class="highlight">[LOSS]</span> <span id="loss-value">0.0124</span></li>
-            <li><span class="highlight">[ACCURACY]</span> <span id="accuracy-value">98.7%</span></li>
-            <li><span class="highlight">[TOPOLOGY]</span> Dynamic Synaptic Mesh</li>
-          </ul>
-
-          <p class="neural__info-desc">
-            > Deep learning topology visualizing in real-time.<br>
-            > Hover cursor over the interface to interact with synaptic connections.<br>
-            > Left Click on canvas to toggle magnetic attraction/repulsion.
-          </p>
-        </div>
-
-        <div class="neural__terminal">
-          <div class="neural__header">
-            <span class="neural__dot"></span>
-            <span class="neural__dot"></span>
-            <span class="neural__dot"></span>
-            <span class="neural__title">viz_engine.exe - Interactive</span>
+            <p style="font-size: 0.82rem; color: var(--hero-fg-dim); font-family: var(--font-mono);">
+              > Hover to interact with synaptic gravity.<br>
+              > Click on canvas to toggle magnetic attraction / repulsion.
+            </p>
           </div>
-          <div class="neural__screen">
-            <canvas id="neural-canvas" width="400" height="400"></canvas>
+
+          <div class="neural-canvas-card">
+            <div class="neural-card-bar">
+              <div class="neural-dot-grp">
+                <span class="neural-dot-item red"></span>
+                <span class="neural-dot-item yellow"></span>
+                <span class="neural-dot-item green"></span>
+              </div>
+              <span>neural_space_engine.v3</span>
+            </div>
+            <canvas id="neural-canvas"></canvas>
           </div>
         </div>
       </div>
     </section>
 
     <!--==================== CONTACT SECTION ====================-->
-    <section class="contact section" id="contact">
-      <div class="contact__container container grid">
-        <h2 class="section__title">Contact <span>Me</span></h2>
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="contact-card-box">
+          <div>
+            <p class="fw-eyebrow">05 — INITIATE CONTACT</p>
+            <h2 class="contact-title">
+              LET’S BUILD <br>
+              <span style="font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--hero-fg);">intelligence</span> TOGETHER.
+            </h2>
+            <p style="color: var(--hero-fg-soft); line-height: 1.6; font-size: 0.95rem; max-width: 440px;">
+              Whether you are designing an autonomous AI system, building high-throughput web architectures, or exploring cutting-edge innovation — reach out directly.
+            </p>
 
-        <div class="contact__content grid">
-          <div class="contact__info">
-            <div class="contact__card">
-              <i class="ri-mail-line contact__icon"></i>
-              <h3 class="contact__title">Email</h3>
-              <span class="contact__address">soumyajit19pvt@gmail.com</span>
-            </div>
-            <div class="contact__card">
-              <i class="ri-github-line contact__icon"></i>
-              <h3 class="contact__title">GitHub</h3>
-              <span class="contact__address">github.com/exepngsam</span>
-            </div>
-            <div class="contact__card">
-              <i class="ri-twitter-x-line contact__icon"></i>
-              <h3 class="contact__title">X (Twitter)</h3>
-              <span class="contact__address">@exesam19</span>
+            <div class="contact-direct-links">
+              <a href="mailto:soumyajit19pvt@gmail.com" class="contact-link-row">
+                <i class="ri-mail-line"></i> soumyajit19pvt@gmail.com
+              </a>
+              <a href="https://github.com/exepngsam" target="_blank" rel="noopener noreferrer" class="contact-link-row">
+                <i class="ri-github-line"></i> github.com/exepngsam
+              </a>
+              <a href="https://x.com/exesam19" target="_blank" rel="noopener noreferrer" class="contact-link-row">
+                <i class="ri-twitter-x-line"></i> @exesam19
+              </a>
+              <a href="https://www.linkedin.com/in/soumyajit-jena-19s" target="_blank" rel="noopener noreferrer" class="contact-link-row">
+                <i class="ri-linkedin-fill"></i> Soumyajit Jena
+              </a>
             </div>
           </div>
 
-          <form action="https://formsubmit.co/soumyajit19pvt@gmail.com" method="POST" class="contact__form"
-            id="contact-form">
+          <form action="https://formsubmit.co/soumyajit19pvt@gmail.com" method="POST" class="contact-form">
             <input type="hidden" name="_captcha" value="false">
-            <div class="contact__input-group">
-              <div class="contact__input-box">
-                <label for="" class="contact__label">Name</label>
-                <input type="text" name="user_name" required placeholder="John Doe" class="contact__input" />
-              </div>
-              <div class="contact__input-box">
-                <label for="" class="contact__label">Email</label>
-                <input type="email" name="user_email" required placeholder="john@email.com" class="contact__input" />
-              </div>
-            </div>
-            <div class="contact__input-box">
-              <label for="" class="contact__label">Message</label>
-              <textarea name="user_message" required placeholder="Hello there!" class="contact__input"></textarea>
-            </div>
-
-            <p class="contact__message" id="contact-message"></p>
-
-            <button type="submit" class="button contact__button">
-              Send Message
+            <input type="text" name="name" required placeholder="Your Name" class="contact-input" />
+            <input type="email" name="email" required placeholder="Your Email Address" class="contact-input" />
+            <textarea name="message" required placeholder="Tell me about your project or vision..." class="contact-input"></textarea>
+            <button type="submit" class="fw-btn fw-btn-primary" style="align-self: flex-start; margin-top: 8px;">
+              Send Message <i class="ri-send-plane-fill"></i>
             </button>
           </form>
         </div>
       </div>
     </section>
-
-    <!--==================== ASCII ART SECTION ====================-->
-    <section class="ascii-art section">
-      <canvas id="ascii-canvas" class="ascii-canvas"></canvas>
-    </section>
   </main>
 
-  <!--==================== FOOTER ====================-->
-  <footer class="footer">
-    <div class="footer__container container grid">
-      <div class="footer__data">
-        <h2 class="footer__title">
-          COLLABORATE WITH SOUMYAJIT AND START YOUR JOURNEY IN AI & ML TODAY.
-        </h2>
-        <ul class="footer__links">
-          <li><a href="#work" class="footer__link">Work</a></li>
-          <li><a href="#service" class="footer__link">Services</a></li>
-          <li><a href="#skills" class="footer__link">Skills</a></li>
-        </ul>
-        <div class="footer__socials">
-          <a href="https://www.linkedin.com/in/soumyajit-jena-19s" target="_blank" class="footer__social"><i
-              class="ri-linkedin-fill"></i></a>
-          <a href="https://github.com/exepngsam" target="_blank" class="footer__social"><i
-              class="ri-github-fill"></i></a>
-          <a href="https://x.com/exesam19" target="_blank" class="footer__social"><i class="ri-twitter-x-fill"></i></a>
+  <!--==================== CURTAIN FOOTER REVEAL ====================-->
+  <div class="footer-reveal">
+    <footer class="footer-panel">
+      <div class="footer-inner">
+        <!-- Giant Viewport Wordmark -->
+        <div class="footer-wordmark">SOUMYAJIT</div>
+
+        <div class="footer-meta-row">
+          <div class="footer-status-tag">
+            <span class="footer-status-dot"></span>
+            Open for High-Impact Innovation & AI Engineering Roles
+          </div>
+
+          <div class="footer-social-links">
+            <a href="https://github.com/exepngsam" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="GitHub">
+              <i class="ri-github-fill"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/soumyajit-jena-19s" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="LinkedIn">
+              <i class="ri-linkedin-fill"></i>
+            </a>
+            <a href="https://x.com/exesam19" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Twitter X">
+              <i class="ri-twitter-x-fill"></i>
+            </a>
+            <a href="mailto:soumyajit19pvt@gmail.com" class="footer-social-link" aria-label="Email">
+              <i class="ri-mail-fill"></i>
+            </a>
+          </div>
+
+          <div>
+            &#169; <span id="year">2026</span> Soumyajit Jena. All rights reserved.
+          </div>
         </div>
       </div>
-      <span class="footer__copy">&#169; All Rights Reserved By Soumyajit Jena</span>
-    </div>
-  </footer>
+    </footer>
+  </div>
 
-  <!--========== SCROLL UP ==========-->
-  <a href="#" class="scrollup" id="scroll-up">
-    <i class="ri-arrow-up-line"></i>
-  </a>
-
-  <!--========== CHATBOT ==========-->
+  <!--==================== CHATBOT FLOATING WIDGET ====================-->
   <div class="chatbot-container" id="chatbot-container">
     <div class="chatbot-header">
-      <div class="chatbot-title">
-        <i class="ri-robot-2-line"></i> AI Assistant
-      </div>
+      <span><i class="ri-robot-2-line"></i> Soumyajit's AI Assistant</span>
       <i class="ri-close-line chatbot-close" id="chatbot-close"></i>
     </div>
     <div class="chatbot-messages" id="chatbot-messages">
-      <!-- Messages will be injected here -->
-      <div class="chatbot-message ai">Hi! I'm Soumyajit's personal AI assistant. How can I help you today?</div>
+      <div class="chatbot-message ai">
+        Hi! I'm Soumyajit's personal AI agent. Ask me about his machine learning work, autonomous AI systems, or project stack!
+      </div>
     </div>
     <div class="chatbot-input-area">
-      <input type="text" id="chatbot-input" placeholder="Ask me anything..." autocomplete="off">
-      <button id="chatbot-send"><i class="ri-send-plane-fill"></i></button>
+      <input type="text" id="chatbot-input" placeholder="Ask anything..." autocomplete="off" />
+      <button id="chatbot-send" aria-label="Send message"><i class="ri-send-plane-fill"></i></button>
     </div>
   </div>
 
-  <button class="chatbot-toggle" id="chatbot-toggle">
+  <button class="chatbot-toggle" id="chatbot-toggle" aria-label="Open AI chat">
     <i class="ri-chat-smile-3-line"></i>
   </button>
 
-  <!--=============== SCROLLREVEAL ===============-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js"></script>
-
-  <!--=============== TYPED JS ===============-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.min.js"></script>
-
-  <!--=============== SWIPER JS ===============-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
-
-  <!--=============== EMAIL JS ===============-->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-  <!--=============== MAIN JS ===============-->
+  <!--=============== SCRIPTS: LENIS + GSAP + SCROLLTRIGGER ===============-->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="assets/js/main.js"></script>
-
-  <!--=============== CHATBOT JS ===============-->
-  <script src="assets/js/chatbot.js"></script>
 </body>
 
 </html>

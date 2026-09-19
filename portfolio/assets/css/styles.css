@@ -411,9 +411,9 @@ button {
   gap: 8px;
   font-family: var(--font-sans);
   font-style: normal;
-  font-size: var(--text-xs);
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-transform: none;
   color: var(--hero-fg-soft);
   background: rgba(255, 255, 255, 0.05);
@@ -615,10 +615,10 @@ h1.hero-headline,
   align-items: center;
   gap: 8px;
   color: var(--hero-fg-soft);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: none;
   z-index: 2;
   cursor: pointer;
   transition: opacity 0.3s, transform 0.3s;
@@ -816,8 +816,8 @@ h1.hero-headline,
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-transform: none;
   color: #fff;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
   pointer-events: none;
@@ -911,10 +911,10 @@ h1.hero-headline,
 
 .arch-eyebrow {
   font-family: var(--font-sans);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-transform: none;
   color: var(--accent-glow);
   margin-bottom: 16px;
 }
@@ -1100,10 +1100,10 @@ h1.hero-headline,
 
 .roles-eyebrow {
   font-family: var(--font-sans);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-transform: none;
   color: var(--hero-fg-dim);
   margin-bottom: 48px;
 }
@@ -1216,10 +1216,10 @@ h1.hero-headline,
 
 .fw-eyebrow {
   font-family: var(--font-sans);
-  font-size: 0.82rem;
+  font-size: var(--text-sm);
   font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-transform: none;
   color: var(--hero-fg-dim);
   margin-bottom: 12px;
 }
@@ -1240,12 +1240,13 @@ h1.hero-headline,
 }
 
 .fw-tag-badge {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.02em;
   padding: 6px 14px;
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-subtle);
   color: var(--hero-fg-soft);
@@ -1357,10 +1358,10 @@ h1.hero-headline,
 
 .fw-card-tag {
   font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: var(--hero-fg-soft);
   background: rgba(255, 255, 255, 0.06);
   padding: 4px 11px;

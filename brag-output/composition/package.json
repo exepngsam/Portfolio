@@ -1,0 +1,10 @@
+{
+  "name": "soumyajit-portfolio-brag",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "hyperframes preview",
+    "check": "hyperframes check",
+    "render": "hyperframes render -o ../brag.mp4"
+  }
+}

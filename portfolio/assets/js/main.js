@@ -200,11 +200,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const rotatingWordEl = document.getElementById('hero-rotating-word');
   if (rotatingWordEl) {
     const words = [
-      'INTELLIGENCE',
-      'SYSTEMS',
-      'NEURAL MODELS',
-      'ZERO-BLOAT CODE',
-      'AI EXPERIENCES'
+      'Intelligence',
+      'Systems',
+      'Neural Models',
+      'Zero-Bloat Code',
+      'AI Experiences'
     ];
     let currentIdx = 0;
 
@@ -263,10 +263,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const revealEdgeGroup = document.getElementById('reveal-edge-group');
 
   if (revealCard && revealMaskShape && revealEdge) {
+    const idleR = 50; // Idle spotlight radius ensuring visible cybernetic affordance before interaction
     let isHovering = false;
     let isForced = false;
-    let targetR = 0;
-    let currentR = 0;
+    let targetR = idleR;
+    let currentR = idleR;
     let targetX = 600;
     let targetY = 340;
     let currentX = 600;
@@ -305,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isHovering = false;
       if (!isForced) {
         revealCard.classList.remove('is-active');
-        targetR = 0;
+        targetR = idleR;
       }
     });
 
@@ -316,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealCard.classList.add('is-active');
         targetR = 1400;
       } else {
-        targetR = isHovering ? 210 : 0;
+        targetR = isHovering ? 210 : idleR;
         if (!isHovering) revealCard.classList.remove('is-active');
       }
     });
@@ -347,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isForced) {
         isHovering = false;
         revealCard.classList.remove('is-active');
-        targetR = 0;
+        targetR = idleR;
       }
     });
 

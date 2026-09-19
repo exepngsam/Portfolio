@@ -785,13 +785,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     ];
 
+    let lastChatTime = 0;
     function handleChatSend() {
-      const userText = chatbotInput.value.trim();
+      const now = Date.now();
+      if (now - lastChatTime < 600) return; // Flood throttle
+      lastChatTime = now;
+
+      let userText = chatbotInput.value.trim();
       if (!userText) return;
+      if (userText.length > 400) userText = userText.slice(0, 400); // Length cap
 
       const userMsg = document.createElement('div');
       userMsg.className = 'chatbot-message user';
-      userMsg.textContent = userText;
+      userMsg.textContent = userText; // Safe textContent to prevent DOM XSS
       chatbotMessages.appendChild(userMsg);
       chatbotInput.value = '';
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
@@ -820,4 +826,38 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
+
+  /*--------------------------------------------------
+    12. SECURE CONTACT FORM SUBMISSION SAFEGUARDS
+        Anti-spam throttle, double-submission lock & honeypot check
+  --------------------------------------------------*/
+  const contactForm = document.getElementById('contact-form');
+  const contactSubmitBtn = document.getElementById('contact-submit-btn');
+
+  if (contactForm && contactSubmitBtn) {
+    contactForm.addEventListener('submit', (e) => {
+      // Check Honeypot: if filled by a bot, block silently
+      const honeyField = contactForm.querySelector('input[name="_honey"]');
+      if (honeyField && honeyField.value) {
+        e.preventDefault();
+        return false;
+      }
+
+      // Submission cooldown rate-limiting (45 seconds)
+      const lastSubmit = sessionStorage.getItem('last_portfolio_submit');
+      const now = Date.now();
+      if (lastSubmit && (now - parseInt(lastSubmit, 10) < 45000)) {
+        e.preventDefault();
+        alert('Please wait a moment before sending another message.');
+        return false;
+      }
+
+      // Prevent duplicate clicks & show feedback
+      contactSubmitBtn.disabled = true;
+      contactSubmitBtn.style.opacity = '0.7';
+      contactSubmitBtn.innerHTML = 'Sending... <i class="ri-loader-4-line"></i>';
+      sessionStorage.setItem('last_portfolio_submit', now.toString());
+    });
+  }
 });
+

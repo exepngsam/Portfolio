@@ -20,6 +20,9 @@
 
   <title>Soumyajit Jena — AI & ML Engineer | Portfolio</title>
   <meta name="google-site-verification" content="googleea3e2eda80bce91b" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()" />
 
   <script>
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -521,12 +524,15 @@
             </div>
           </div>
 
-          <form action="https://formsubmit.co/soumyajit19pvt@gmail.com" method="POST" class="contact-form">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="text" name="name" required placeholder="Your Name" class="contact-input" />
-            <input type="email" name="email" required placeholder="Your Email Address" class="contact-input" />
-            <textarea name="message" required placeholder="Tell me about your project or vision..." class="contact-input"></textarea>
-            <button type="submit" class="fw-btn fw-btn-primary" style="align-self: flex-start; margin-top: 8px;">
+          <form action="https://formsubmit.co/soumyajit19pvt@gmail.com" method="POST" class="contact-form" id="contact-form">
+            <input type="hidden" name="_captcha" value="false" />
+            <!-- Anti-Bot Honeypot Field (auto-filled by bots, triggers silent drop) -->
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="_subject" value="New Inquiry from Portfolio" />
+            <input type="text" name="name" required maxlength="80" placeholder="Your Name" autocomplete="name" class="contact-input" />
+            <input type="email" name="email" required maxlength="120" placeholder="Your Email Address" autocomplete="email" class="contact-input" />
+            <textarea name="message" required maxlength="3000" placeholder="Tell me about your project or vision..." class="contact-input"></textarea>
+            <button type="submit" class="fw-btn fw-btn-primary" id="contact-submit-btn" style="align-self: flex-start; margin-top: 8px;">
               Send Message <i class="ri-send-plane-fill"></i>
             </button>
           </form>

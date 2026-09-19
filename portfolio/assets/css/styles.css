@@ -259,21 +259,24 @@ button {
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
 }
 
 .nav-status-pill {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: var(--text-base);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
   color: var(--hero-fg-soft);
   letter-spacing: 0.02em;
   display: none;
+  line-height: 1;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 950px) {
   .nav-status-pill {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
 }
 
@@ -281,14 +284,16 @@ button {
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: var(--hero-bg);
   background: var(--hero-fg);
-  padding: 8px 20px;
+  padding: 9px 22px;
   border-radius: var(--radius-full);
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
   text-decoration: none;
   border: 1px solid var(--hero-fg);
   transition: transform 0.25s var(--ease-out), background 0.25s, box-shadow 0.25s;

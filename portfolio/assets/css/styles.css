@@ -1401,8 +1401,8 @@ h1.hero-headline,
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-transform: none;
   padding: 10px 22px;
   border-radius: var(--radius-full);
   border: 1px solid transparent;

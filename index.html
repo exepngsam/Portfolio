@@ -92,13 +92,13 @@
             <p class="fade-up-reveal" data-delay="0.5">Cultivated with high-res optics and a zero-gravity frame for those who don't just watch the future—they wield it. Shift your reality.</p>
             
             <div class="icon-row fade-up-reveal" data-delay="0.65">
-              <button type="button" class="icon-btn" aria-label="Main core">
+              <button type="button" class="icon-btn" id="hero-btn-core" aria-label="Main core" title="Toggle AI Core Diagnostics">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
                   <path d="M8 1.4L13.8 4.7V11.3L8 14.6L2.2 11.3V4.7L8 1.4Z" />
                   <circle cx="8" cy="8" r="1.35" fill="currentColor" stroke="none" />
                 </svg>
               </button>
-              <button type="button" class="icon-btn" aria-label="Vision">
+              <button type="button" class="icon-btn" id="hero-btn-vision" aria-label="Vision" title="Toggle Tactical Vision Scanner">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
                   <path d="M2 5.2V2h3.2" stroke-linecap="round" />
                   <path d="M14 5.2V2h-3.2" stroke-linecap="round" />
@@ -107,11 +107,12 @@
                   <rect x="5.2" y="5.2" width="5.6" height="5.6" />
                 </svg>
               </button>
-              <button type="button" class="icon-btn" aria-label="Force">
+              <button type="button" class="icon-btn" id="hero-btn-force" aria-label="Force" title="Toggle Cyber Overdrive Mode">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
                   <path d="M9.2 1.6L4 9.1h3.5L6.8 14.4 12 6.9H8.5L9.2 1.6Z" stroke-linejoin="round" />
                 </svg>
               </button>
+              <div class="icon-btn-toast" id="hero-btn-toast" aria-live="polite"></div>
             </div>
           </div>
 
@@ -121,7 +122,7 @@
               <h2 class="words-pull-up">CR-01: CYBER FRAME</h2>
               <p class="fade-up-reveal" data-delay="1.05">Precision-grade optics and a light frame for comfort and clarity.</p>
             </div>
-            <button type="button" class="cart-btn fade-up-reveal" data-delay="1.15">Reserve Now</button>
+            <a href="#contact" class="cart-btn fade-up-reveal" id="hero-reserve-btn" data-delay="1.15">Reserve Now</a>
           </article>
         </div>
 

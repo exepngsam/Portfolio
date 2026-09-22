@@ -299,6 +299,16 @@ button {
   display: none;
   font-size: 1.4rem;
   color: var(--hero-fg);
+  padding: 6px;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.2s;
+}
+
+.nav-mobile-toggle:hover {
+  background: rgba(251, 219, 175, 0.15);
 }
 
 @media (max-width: 768px) {
@@ -306,7 +316,9 @@ button {
     display: none;
   }
   .nav-mobile-toggle {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -314,10 +326,13 @@ button {
 .mobile-drawer {
   position: fixed;
   inset: 0;
-  background: rgba(140, 52, 8, 0.98);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: rgba(110, 36, 6, 0.98);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  z-index: 300;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -325,12 +340,17 @@ button {
   gap: 28px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s var(--ease-out);
+  transition: opacity 0.3s var(--ease-out);
 }
 
 .mobile-drawer.open {
   opacity: 1;
   pointer-events: auto;
+}
+
+body.nav-drawer-open {
+  overflow: hidden !important;
+  touch-action: none;
 }
 
 .mobile-drawer-link {
@@ -349,10 +369,25 @@ button {
 
 .mobile-drawer-close {
   position: absolute;
-  top: 24px;
-  right: 24px;
-  font-size: 2rem;
+  top: max(24px, env(safe-area-inset-top));
+  right: max(24px, env(safe-area-inset-right));
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(251, 219, 175, 0.14);
+  border: 1px solid rgba(251, 219, 175, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
   color: var(--hero-fg);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.mobile-drawer-close:hover {
+  background: rgba(251, 219, 175, 0.28);
+  transform: scale(1.08);
 }
 
 /*==================================================
@@ -441,30 +476,83 @@ button {
 
 .icon-row {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
   margin-top: 22px;
+  position: relative;
 }
 
 .icon-btn {
-  width: 38px;
-  height: 38px;
-  min-width: 38px;
-  min-height: 38px;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
   border-radius: 50%;
-  border: 1px solid rgba(251, 219, 175, 0.55);
-  background: transparent;
+  border: 1px solid rgba(251, 219, 175, 0.5);
+  background: rgba(68, 22, 5, 0.5);
   color: var(--cream);
   display: grid;
   place-items: center;
   cursor: pointer;
   padding: 0;
   outline: none;
-  transition: background 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  transition: background 0.25s var(--ease-out), border-color 0.25s, transform 0.25s var(--ease-out), box-shadow 0.25s;
+  box-shadow: 0 4px 14px rgba(45, 15, 3, 0.4);
 }
 
 .icon-btn:hover {
-  background: rgba(251, 219, 175, 0.1);
-  border-color: var(--cream);
+  background: rgba(251, 219, 175, 0.2);
+  border-color: #FFF4E5;
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 0 16px rgba(251, 219, 175, 0.5);
+}
+
+.icon-btn.is-active {
+  background: var(--cream);
+  color: #4A1904;
+  border-color: #FFF4E5;
+  box-shadow: 0 0 20px rgba(251, 219, 175, 0.8), inset 0 0 8px rgba(255, 255, 255, 0.6);
+  transform: scale(1.08);
+}
+
+.icon-btn-toast {
+  position: absolute;
+  left: 0;
+  bottom: -32px;
+  font-family: var(--font-orbitron);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  color: #4A1904;
+  background: var(--cream);
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+  white-space: nowrap;
+  box-shadow: 0 4px 18px rgba(35, 10, 2, 0.6);
+  z-index: 20;
+}
+
+.icon-btn-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Cyber Overdrive Mode Global Active Effect */
+body.cyber-overdrive-mode .hero-copy h1 span {
+  text-shadow: 0 0 30px rgba(255, 244, 229, 0.9), 0 0 60px rgba(224, 112, 32, 0.8) !important;
+}
+
+body.cyber-overdrive-mode .product-card,
+body.cyber-overdrive-mode .specs,
+body.cyber-overdrive-mode .arch-card,
+body.cyber-overdrive-mode .fw-card {
+  border-color: rgba(255, 244, 229, 0.7) !important;
+  box-shadow: 0 0 32px rgba(251, 219, 175, 0.35) !important;
 }
 
 /* Product Card */
@@ -1852,10 +1940,39 @@ textarea.contact-input {
 
 @media (max-width: 768px) {
   .cyber-hud-status {
-    bottom: 18px;
-    left: 18px;
+    bottom: 14px;
+    left: 14px;
     padding: 6px 14px;
-    font-size: 0.62rem;
+    font-size: 0.6rem;
+    max-width: calc(100vw - 84px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .chatbot-toggle {
+    bottom: 14px;
+    right: 14px;
+    width: 48px;
+    height: 48px;
+    font-size: 1.3rem;
+  }
+
+  .chatbot-container {
+    position: fixed;
+    right: 12px;
+    left: 12px;
+    bottom: 74px;
+    width: auto;
+    max-width: none;
+    height: min(440px, 66dvh);
+    border-radius: 18px;
+    z-index: 250;
+  }
+
+  #chatbot-input {
+    font-size: 16px !important; /* Prevents auto-zoom on iOS Safari */
+    padding: 10px 14px;
   }
 }
 
@@ -1928,11 +2045,14 @@ textarea.contact-input {
   cursor: pointer;
   font-size: 1.2rem;
   color: var(--cream);
+  padding: 4px;
 }
 
 .chatbot-messages {
   flex-grow: 1;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -1972,9 +2092,9 @@ textarea.contact-input {
   background: rgba(251, 219, 175, 0.08);
   border: 1px solid rgba(251, 219, 175, 0.25);
   border-radius: 10px;
-  padding: 8px 12px;
+  padding: 10px 12px;
   color: #FFF4E5;
-  font-size: 0.85rem;
+  font-size: 16px; /* 16px to prevent mobile safari zoom */
 }
 
 #chatbot-input:focus {
@@ -1988,7 +2108,12 @@ textarea.contact-input {
   border-radius: 10px;
   padding: 8px 14px;
   font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: transform 0.2s;
 }
 
 /*==================================================

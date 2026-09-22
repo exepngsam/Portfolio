@@ -288,6 +288,138 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /*--------------------------------------------------
+    6. HERO CYBER OPTIC & OVERDRIVE CONTROLS
+  --------------------------------------------------*/
+  const btnCore = document.getElementById('hero-btn-core');
+  const btnVision = document.getElementById('hero-btn-vision');
+  const btnForce = document.getElementById('hero-btn-force');
+  const heroBtnToast = document.getElementById('hero-btn-toast');
+  const heroRevealLayer = document.getElementById('reveal-img');
+  const heroSpecsBox = document.querySelector('.specs');
+
+  // Interactive Web Audio synthesizer for futuristic tactile feedback
+  let cyberAudioCtx = null;
+  function playCyberTone(type) {
+    try {
+      if (!cyberAudioCtx) {
+        cyberAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (cyberAudioCtx.state === 'suspended') {
+        cyberAudioCtx.resume();
+      }
+      const osc = cyberAudioCtx.createOscillator();
+      const gain = cyberAudioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(cyberAudioCtx.destination);
+
+      const now = cyberAudioCtx.currentTime;
+      if (type === 'core') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(320, now);
+        osc.frequency.exponentialRampToValueAtTime(760, now + 0.12);
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+        osc.start(now);
+        osc.stop(now + 0.22);
+      } else if (type === 'vision') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(750, now);
+        osc.frequency.exponentialRampToValueAtTime(1300, now + 0.08);
+        osc.frequency.exponentialRampToValueAtTime(480, now + 0.24);
+        gain.gain.setValueAtTime(0.14, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      } else if (type === 'force') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(180, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.24);
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+        osc.start(now);
+        osc.stop(now + 0.32);
+      }
+    } catch (e) {
+      // AudioContext unavailable
+    }
+  }
+
+  let toastTimer = null;
+  function showHeroToast(text) {
+    if (!heroBtnToast) return;
+    heroBtnToast.textContent = text;
+    heroBtnToast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      heroBtnToast.classList.remove('show');
+    }, 2400);
+
+    const hudSector = document.getElementById('hud-sector');
+    if (hudSector) {
+      hudSector.textContent = text;
+    }
+  }
+
+  if (btnCore) {
+    btnCore.addEventListener('click', (e) => {
+      e.stopPropagation();
+      playCyberTone('core');
+      btnCore.classList.toggle('is-active');
+      const active = btnCore.classList.contains('is-active');
+      if (active) {
+        showHeroToast('CORE // NEURAL LINK 100% ONLINE');
+        if (heroSpecsBox) {
+          heroSpecsBox.style.boxShadow = '0 0 32px rgba(251, 219, 175, 0.45)';
+          heroSpecsBox.style.borderColor = '#FFF4E5';
+        }
+      } else {
+        showHeroToast('CORE // STANDBY MODE');
+        if (heroSpecsBox) {
+          heroSpecsBox.style.boxShadow = '';
+          heroSpecsBox.style.borderColor = '';
+        }
+      }
+    });
+  }
+
+  if (btnVision) {
+    let visionLocked = false;
+    btnVision.addEventListener('click', (e) => {
+      e.stopPropagation();
+      playCyberTone('vision');
+      visionLocked = !visionLocked;
+      btnVision.classList.toggle('is-active', visionLocked);
+      if (heroRevealLayer) {
+        if (visionLocked) {
+          showHeroToast('VISION // TACTICAL SCANNER ENGAGED');
+          heroRevealLayer.style.webkitMaskImage = 'radial-gradient(circle 380px at 50% 45%, #fff 65%, transparent 100%)';
+          heroRevealLayer.style.maskImage = 'radial-gradient(circle 380px at 50% 45%, #fff 65%, transparent 100%)';
+        } else {
+          showHeroToast('VISION // SCANNER OFF');
+          heroRevealLayer.style.webkitMaskImage = '';
+          heroRevealLayer.style.maskImage = '';
+        }
+      }
+    });
+  }
+
+  if (btnForce) {
+    let overdriveActive = false;
+    btnForce.addEventListener('click', (e) => {
+      e.stopPropagation();
+      playCyberTone('force');
+      overdriveActive = !overdriveActive;
+      btnForce.classList.toggle('is-active', overdriveActive);
+      document.body.classList.toggle('cyber-overdrive-mode', overdriveActive);
+      if (overdriveActive) {
+        showHeroToast('OVERDRIVE // 144Hz MAX POWER');
+      } else {
+        showHeroToast('OVERDRIVE // NOMINAL FLUX');
+      }
+    });
+  }
+
+  /*--------------------------------------------------
     7. INTERACTIVE ROLES LIST & CURSOR MEDIA FOLLOWER
   --------------------------------------------------*/
   const rolesList = document.getElementById('roles-list');
@@ -636,16 +768,48 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileDrawerLinks = document.querySelectorAll('.mobile-drawer-link');
 
   if (navMobileToggle && mobileDrawer) {
-    navMobileToggle.addEventListener('click', () => {
+    const openDrawer = () => {
       mobileDrawer.classList.add('open');
-    });
+      document.body.classList.add('nav-drawer-open');
+    };
 
     const closeDrawer = () => {
       mobileDrawer.classList.remove('open');
+      document.body.classList.remove('nav-drawer-open');
     };
 
-    if (mobileDrawerClose) mobileDrawerClose.addEventListener('click', closeDrawer);
-    mobileDrawerLinks.forEach((link) => link.addEventListener('click', closeDrawer));
+    navMobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (mobileDrawer.classList.contains('open')) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    });
+
+    if (mobileDrawerClose) {
+      mobileDrawerClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeDrawer();
+      });
+    }
+
+    mobileDrawerLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        closeDrawer();
+      });
+    });
+
+    // Close on tapping outside/backdrop or Escape key
+    mobileDrawer.addEventListener('click', (e) => {
+      if (e.target === mobileDrawer) closeDrawer();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
+        closeDrawer();
+      }
+    });
   }
 
   /*--------------------------------------------------
@@ -659,18 +823,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatbotMessages = document.getElementById('chatbot-messages');
 
   if (chatbotToggle && chatbotContainer) {
-    chatbotToggle.addEventListener('click', () => {
+    chatbotToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       chatbotContainer.classList.toggle('active');
       if (chatbotContainer.classList.contains('active') && chatbotInput) {
-        chatbotInput.focus();
+        setTimeout(() => chatbotInput.focus(), 150);
       }
     });
 
     if (chatbotClose) {
-      chatbotClose.addEventListener('click', () => {
+      chatbotClose.addEventListener('click', (e) => {
+        e.stopPropagation();
         chatbotContainer.classList.remove('active');
       });
     }
+
+    // Close chatbot when tapping outside on mobile/desktop
+    document.addEventListener('click', (e) => {
+      if (chatbotContainer.classList.contains('active')) {
+        if (!chatbotContainer.contains(e.target) && !chatbotToggle.contains(e.target)) {
+          chatbotContainer.classList.remove('active');
+        }
+      }
+    });
 
     const aiKnowledge = [
       {

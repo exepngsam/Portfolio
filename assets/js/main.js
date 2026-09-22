@@ -66,7 +66,52 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /*--------------------------------------------------
-    2. SCROLL PROGRESS DRIVER (--page-progress, --hero-blur, --dive-progress)
+    2. LIQUID GLASS NAVIGATION PILL CONTROLLER
+  --------------------------------------------------*/
+  const navCenterMenu = document.getElementById('nav-center-menu');
+  const navLiquidPill = document.getElementById('nav-liquid-pill');
+  const navLinks = document.querySelectorAll('.nav-center-menu .nav-link');
+
+  let currentActiveNavLink = document.querySelector('.nav-center-menu .nav-link.active') || (navLinks.length ? navLinks[0] : null);
+
+  function moveLiquidPill(targetEl) {
+    if (!navLiquidPill || !navCenterMenu || !targetEl) return;
+    const menuRect = navCenterMenu.getBoundingClientRect();
+    const linkRect = targetEl.getBoundingClientRect();
+    const left = linkRect.left - menuRect.left;
+    const width = linkRect.width;
+
+    navLiquidPill.style.opacity = '1';
+    navLiquidPill.style.width = `${width}px`;
+    navLiquidPill.style.transform = `translateX(${left}px)`;
+  }
+
+  if (navCenterMenu && navLiquidPill && navLinks.length) {
+    // Initial positioning once layout renders
+    requestAnimationFrame(() => {
+      moveLiquidPill(currentActiveNavLink);
+    });
+    window.addEventListener('resize', () => moveLiquidPill(currentActiveNavLink), { passive: true });
+
+    navLinks.forEach((link) => {
+      link.addEventListener('mouseenter', () => {
+        moveLiquidPill(link);
+      });
+      link.addEventListener('click', () => {
+        navLinks.forEach((l) => l.classList.remove('active'));
+        link.classList.add('active');
+        currentActiveNavLink = link;
+        moveLiquidPill(link);
+      });
+    });
+
+    navCenterMenu.addEventListener('mouseleave', () => {
+      moveLiquidPill(currentActiveNavLink);
+    });
+  }
+
+  /*--------------------------------------------------
+    3. SCROLL PROGRESS DRIVER (--page-progress, --hero-blur, --dive-progress)
   --------------------------------------------------*/
   const root = document.documentElement;
   const siteNav = document.getElementById('site-nav');
@@ -88,6 +133,32 @@ document.addEventListener('DOMContentLoaded', () => {
         siteNav.classList.add('scrolled');
       } else {
         siteNav.classList.remove('scrolled');
+      }
+    }
+
+    // Update liquid nav active link based on scroll position
+    if (navLinks && navLinks.length) {
+      const navSections = [
+        { id: 'hero', link: navLinks[0] },
+        { id: 'architecture', link: navLinks[1] },
+        { id: 'roles', link: navLinks[2] },
+        { id: 'projects', link: navLinks[3] },
+        { id: 'neural', link: navLinks[4] },
+        { id: 'contact', link: navLinks[5] }
+      ];
+      const scrollThreshold = scrollY + winHeight * 0.35;
+      let activeCandidate = navSections[0].link;
+      for (const item of navSections) {
+        const sec = document.getElementById(item.id);
+        if (sec && scrollThreshold >= sec.offsetTop) {
+          activeCandidate = item.link;
+        }
+      }
+      if (activeCandidate && activeCandidate !== currentActiveNavLink) {
+        navLinks.forEach((l) => l.classList.remove('active'));
+        activeCandidate.classList.add('active');
+        currentActiveNavLink = activeCandidate;
+        moveLiquidPill(currentActiveNavLink);
       }
     }
 

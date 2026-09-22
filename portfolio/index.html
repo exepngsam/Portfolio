@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!--=============== FONTS ===============-->
+  <link rel="stylesheet" href="https://db.onlinewebfonts.com/c/b1314443e183d1cdd77049077c46facc?family=Orbitron-Medium" type="text/css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,wdth@8..144,100..1000,25..151&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Roboto+Flex:opsz,wght,wdth@8..144,100..1000,25..151&display=swap" rel="stylesheet" />
 
   <!--=============== REMIXICONS ===============-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" />
@@ -20,9 +20,6 @@
 
   <title>Soumyajit Jena — AI & ML Engineer | Portfolio</title>
   <meta name="google-site-verification" content="googleea3e2eda80bce91b" />
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()" />
 
   <script>
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -42,7 +39,6 @@
 
     <nav class="nav-center-menu" id="nav-center-menu">
       <a href="#hero" class="nav-link">Home</a>
-      <a href="#reveal" class="nav-link">About</a>
       <a href="#architecture" class="nav-link">Architecture</a>
       <a href="#roles" class="nav-link">Roles</a>
       <a href="#projects" class="nav-link">Projects</a>
@@ -51,7 +47,7 @@
     </nav>
 
     <div class="nav-right">
-      <span class="nav-status-pill"><span class="hero-live-dot" aria-hidden="true" style="display: inline-block; width: 6px; height: 6px; margin-right: 2px;"></span> Available for AI Innovation</span>
+      <span class="nav-status-pill">Available for AI Innovation</span>
       <a href="#contact" class="nav-contact-btn">Get In Touch</a>
       <button class="nav-mobile-toggle" id="nav-mobile-toggle" aria-label="Open menu">
         <i class="ri-menu-4-line"></i>
@@ -65,7 +61,6 @@
       <i class="ri-close-line"></i>
     </button>
     <a href="#hero" class="mobile-drawer-link">Home</a>
-    <a href="#reveal" class="mobile-drawer-link">About</a>
     <a href="#architecture" class="mobile-drawer-link">Architecture</a>
     <a href="#roles" class="mobile-drawer-link">Roles</a>
     <a href="#projects" class="mobile-drawer-link">Projects</a>
@@ -76,106 +71,82 @@
   <!--==================== MAIN CONTENT ====================-->
   <main>
     <!--==================== HERO SECTION ====================-->
+    <!--==================== CYBER RONIN HERO SECTION ====================-->
     <section class="hero" id="hero">
-      <div class="hero-backdrop"></div>
+      <!-- Base Hero Background Image Layer -->
+      <div class="hero-base-img hero-image-animate" style="background-image: url('https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260831_115955_2a9adb39-5e9b-4ced-96e2-6900eabe3de9.png&w=1920&q=85');"></div>
 
-      <div class="hero-since">
-        <p class="hero-since-title">AI Systems Architect & Research Engineer</p>
-        <div class="hero-since-badge">
-          <span class="hero-live-dot" aria-hidden="true"></span>
-          <span>Autonomous Agents • Neural Vision • Distributed Scale</span>
-        </div>
-      </div>
+      <!-- Spotlight Reveal Hero Background Image Layer -->
+      <div class="hero-reveal-img" id="reveal-img" style="background-image: url('https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260831_123709_183f0065-efb2-4bb2-a849-13aaa5af2f3f.png&w=1920&q=85');"></div>
 
-      <h1 class="hero-headline" aria-label="Soumyajit Jena — AI Systems Architect & Research Engineer">
-        <div>
-          <span class="vft" data-variable-font-text data-text="SOUMYAJIT">SOUMYAJIT</span>
-        </div>
-        <div class="hero-row">
-          <span class="vft" data-variable-font-text data-text="JENA">JENA</span>
-          
-          <!-- Interactive Video Pill inside headline -->
-          <button class="hero-vid-btn" id="hero-vid-btn" aria-label="Watch showcase reel">
-            <video src="assets/img/creative.mp4" autoplay loop muted playsinline poster="assets/img/cosmic_bg.jpg"></video>
-            <div class="play-icon"><i class="ri-play-fill"></i></div>
-          </button>
-
-          <!-- 3D Rotating Word -->
-          <div class="hero-rotating-word-container">
-            <span class="hero-rotating-word" id="hero-rotating-word">Intelligence</span>
+      <!-- Hero UI Overlay -->
+      <div class="hero-ui">
+        <!-- Left Column: Copy & Product Card -->
+        <div class="hero-left">
+          <div class="hero-copy">
+            <h1 class="words-pull-up">
+              <span>RONIN-X //</span>
+              <span>SHADOW</span>
+              <span>NIGHTFALL</span>
+            </h1>
+            <p class="fade-up-reveal" data-delay="0.5">Cultivated with high-res optics and a zero-gravity frame for those who don't just watch the future—they wield it. Shift your reality.</p>
+            
+            <div class="icon-row fade-up-reveal" data-delay="0.65">
+              <button type="button" class="icon-btn" aria-label="Main core">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                  <path d="M8 1.4L13.8 4.7V11.3L8 14.6L2.2 11.3V4.7L8 1.4Z" />
+                  <circle cx="8" cy="8" r="1.35" fill="currentColor" stroke="none" />
+                </svg>
+              </button>
+              <button type="button" class="icon-btn" aria-label="Vision">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                  <path d="M2 5.2V2h3.2" stroke-linecap="round" />
+                  <path d="M14 5.2V2h-3.2" stroke-linecap="round" />
+                  <path d="M2 10.8V14h3.2" stroke-linecap="round" />
+                  <path d="M14 10.8V14h-3.2" stroke-linecap="round" />
+                  <rect x="5.2" y="5.2" width="5.6" height="5.6" />
+                </svg>
+              </button>
+              <button type="button" class="icon-btn" aria-label="Force">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                  <path d="M9.2 1.6L4 9.1h3.5L6.8 14.4 12 6.9H8.5L9.2 1.6Z" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
-      </h1>
 
-      <div class="hero-lang">
-        <span>PyTorch</span>
-        <span class="hero-lang-sep">•</span>
-        <span>Transformers</span>
-        <span class="hero-lang-sep">•</span>
-        <span>Multi-Agent MoE</span>
-        <span class="hero-lang-sep">•</span>
-        <span>TypeScript</span>
-        <span class="hero-lang-sep">•</span>
-        <span>AWS Cloud</span>
-      </div>
-
-      <div class="hero-scroll-cue" id="hero-scroll-cue">
-        <span>Scroll to Explore</span>
-        <i class="ri-arrow-down-line"></i>
-      </div>
-    </section>
-
-    <!-- Hero Video Lightbox Modal -->
-    <div class="hero-modal" id="hero-modal" role="dialog" aria-modal="true" aria-label="Cinematic Reel">
-      <button class="hero-modal-close" id="hero-modal-close" aria-label="Close modal">
-        <i class="ri-close-line"></i>
-      </button>
-      <video id="hero-modal-video" src="assets/img/creative.mp4" loop playsinline controls></video>
-    </div>
-
-    <!--==================== LIQUID AMOEBA SPOTLIGHT REVEAL SECTION ====================-->
-    <section class="reveal-section" id="reveal" aria-label="Interactive Reveal">
-      <div class="reveal-card" id="reveal-card" role="button" tabindex="0" aria-label="Hover pointer to reveal cybernetic suit, or click to toggle full view">
-        <!-- Visual Teaser Badge for Cybernetic Reveal -->
-        <div class="reveal-teaser-badge" aria-hidden="true">
-          <span class="reveal-teaser-dot"></span>
-          <span>Interactive Neural Reveal</span>
+          <article class="product-card">
+            <div class="product-thumb" style="background-image: url('https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260831_121937_3f02b5a0-5b86-43d9-b30e-03c5e46632e7.png&w=1920&q=85');" aria-hidden="true"></div>
+            <div class="product-body">
+              <h2 class="words-pull-up">CR-01: CYBER FRAME</h2>
+              <p class="fade-up-reveal" data-delay="1.05">Precision-grade optics and a light frame for comfort and clarity.</p>
+            </div>
+            <button type="button" class="cart-btn fade-up-reveal" data-delay="1.15">Reserve Now</button>
+          </article>
         </div>
 
-        <svg class="reveal-canvas-svg" id="reveal-svg" viewBox="0 0 1200 680" preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <filter id="amoebaDistort" x="-20%" y="-20%" width="140%" height="140%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" result="noise">
-                <animate attributeName="baseFrequency" dur="10s" values="0.009;0.018;0.012;0.009" repeatCount="indefinite" />
-              </feTurbulence>
-              <feDisplacementMap in="SourceGraphic" in2="noise" scale="35" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
+        <!-- Page Indicator -->
+        <div class="hero-page fade-up-reveal" data-delay="0.75">1/26</div>
 
-            <mask id="revealMask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">
-              <circle id="reveal-mask-shape" cx="600" cy="340" r="50" fill="#ffffff" filter="url(#amoebaDistort)" />
-            </mask>
-          </defs>
-
-          <!-- Base Image (Human Cosmic Silhouette) -->
-          <image class="reveal-img-base" href="assets/img/cosmic_bg.jpg" width="1200" height="680" preserveAspectRatio="xMidYMid slice" />
-
-          <!-- Top Image (Chrome Cybernetic Avatar) revealed through mask -->
-          <image class="reveal-img-top" href="assets/img/chrome_suit.jpg" width="1200" height="680" preserveAspectRatio="xMidYMid slice" mask="url(#revealMask)" />
-
-          <!-- Glowing Liquid Edge -->
-          <g class="reveal-edge-glow" id="reveal-edge-group">
-            <circle id="reveal-edge" cx="600" cy="340" r="50" fill="none" stroke="#fffffff2" stroke-width="2.5" filter="url(#amoebaDistort)" />
-          </g>
-        </svg>
-
-        <!-- Top & Bottom Vignette Scrims -->
-        <span class="reveal-scrim reveal-scrim-top" aria-hidden="true"></span>
-        <span class="reveal-scrim reveal-scrim-bottom" aria-hidden="true"></span>
-
-        <!-- Sliding Dual Editorial Caption -->
-        <div class="reveal-caption">
-          <span class="reveal-caption-base">Hover to Pierce the Veil • Autonomous Neural Core</span>
-          <span class="reveal-caption-top">Cybernetic Suit Unleashed • High-Performance Systems</span>
+        <!-- Operative Specs -->
+        <div class="specs">
+          <h3 class="words-pull-up">Operative Specs</h3>
+          <div class="spec-row fade-up-reveal" data-delay="1.2">
+            <span class="spec-label">Vision</span>
+            <span class="spec-value">Dual 8K Pulse-OLED</span>
+          </div>
+          <div class="spec-row fade-up-reveal" data-delay="1.3">
+            <span class="spec-label">Nerve</span>
+            <span class="spec-value">R1 - Ronin Engines</span>
+          </div>
+          <div class="spec-row fade-up-reveal" data-delay="1.4">
+            <span class="spec-label">Reflex</span>
+            <span class="spec-value">144Hz Low-Lag Ops</span>
+          </div>
+          <div class="spec-row fade-up-reveal" data-delay="1.5">
+            <span class="spec-label">Armor</span>
+            <span class="spec-value">Lightweight Shadow Shell</span>
+          </div>
         </div>
       </div>
     </section>
@@ -184,11 +155,11 @@
     <section class="arch-section" id="architecture">
       <div class="container">
         <div class="arch-header">
-          <p class="arch-eyebrow">01 — Architectural Manifesto</p>
-          <h2 class="arch-title">
-            Engineering <span class="arch-title-span">intelligence</span> into Scalable Reality
+          <p class="arch-eyebrow fade-up-reveal" data-delay="0.1">01 — ARCHITECTURAL MANIFESTO</p>
+          <h2 class="arch-title words-pull-up">
+            ENGINEERING <span class="arch-title-span">intelligence</span> INTO SCALABLE REALITY
           </h2>
-          <p class="arch-desc">
+          <p class="arch-desc fade-up-reveal" data-delay="0.25">
             Transforming probabilistic neural models into resilient, deterministic production systems.
             Bridging foundational AI research with zero-bloat, high-throughput cloud engineering.
           </p>
@@ -196,12 +167,12 @@
 
         <div class="arch-grid">
           <!-- Pillar 1: Autonomous Agent Mesh -->
-          <div class="arch-card">
+          <div class="arch-card fade-up-reveal" data-delay="0.1">
             <div class="arch-card-top">
               <div class="arch-icon-box">
                 <i class="ri-git-merge-line"></i>
               </div>
-              <span class="arch-badge">Multi-Agent Mesh</span>
+              <span class="arch-badge">MULTI-AGENT MESH</span>
             </div>
             <h3 class="arch-card-title">Autonomous Orchestration</h3>
             <p class="arch-card-desc">
@@ -214,12 +185,12 @@
           </div>
 
           <!-- Pillar 2: Deep Learning & Computer Vision -->
-          <div class="arch-card">
+          <div class="arch-card fade-up-reveal" data-delay="0.2">
             <div class="arch-card-top">
               <div class="arch-icon-box">
                 <i class="ri-scan-2-line"></i>
               </div>
-              <span class="arch-badge">Neural Forensics</span>
+              <span class="arch-badge">NEURAL FORENSICS</span>
             </div>
             <h3 class="arch-card-title">Computer Vision & Forensics</h3>
             <p class="arch-card-desc">
@@ -232,12 +203,12 @@
           </div>
 
           <!-- Pillar 3: Serverless Cloud Scale -->
-          <div class="arch-card">
+          <div class="arch-card fade-up-reveal" data-delay="0.3">
             <div class="arch-card-top">
               <div class="arch-icon-box">
                 <i class="ri-cloud-line"></i>
               </div>
-              <span class="arch-badge">Event-Driven Cloud</span>
+              <span class="arch-badge">EVENT-DRIVEN CLOUD</span>
             </div>
             <h3 class="arch-card-title">High-Throughput Scale</h3>
             <p class="arch-card-desc">
@@ -250,12 +221,12 @@
           </div>
 
           <!-- Pillar 4: Cryptographic Trust & Provenance -->
-          <div class="arch-card">
+          <div class="arch-card fade-up-reveal" data-delay="0.4">
             <div class="arch-card-top">
               <div class="arch-icon-box">
                 <i class="ri-lock-2-line"></i>
               </div>
-              <span class="arch-badge">Verifiable Integrity</span>
+              <span class="arch-badge">VERIFIABLE INTEGRITY</span>
             </div>
             <h3 class="arch-card-title">Cryptographic Provenance</h3>
             <p class="arch-card-desc">
@@ -272,24 +243,24 @@
 
     <!--==================== INTERACTIVE ROLES LIST ====================-->
     <section class="roles-section" id="roles">
-      <p class="roles-eyebrow">02 — Disciplines & Focus</p>
+      <p class="roles-eyebrow fade-up-reveal" data-delay="0.1">02 — DISCIPLINES & FOCUS</p>
 
       <ul class="roles-list" id="roles-list">
-        <li class="roles-item" tabindex="0">
+        <li class="roles-item fade-up-reveal" data-delay="0.1" tabindex="0">
           <span class="roles-item-num">01</span>
-          <span>AI & Machine Learning</span>
+          <span>AI & MACHINE LEARNING</span>
         </li>
-        <li class="roles-item" tabindex="0">
+        <li class="roles-item fade-up-reveal" data-delay="0.2" tabindex="0">
           <span class="roles-item-num">02</span>
-          <span>Full-Stack Architect</span>
+          <span>FULL-STACK ARCHITECT</span>
         </li>
-        <li class="roles-item" tabindex="0">
+        <li class="roles-item fade-up-reveal" data-delay="0.3" tabindex="0">
           <span class="roles-item-num">03</span>
-          <span>Deep Learning & Computer Vision</span>
+          <span>DEEP LEARNING & COMPUTER VISION</span>
         </li>
-        <li class="roles-item" tabindex="0">
+        <li class="roles-item fade-up-reveal" data-delay="0.4" tabindex="0">
           <span class="roles-item-num">04</span>
-          <span>Interaction & Systems Design</span>
+          <span>INTERACTION & SYSTEMS DESIGN</span>
         </li>
       </ul>
 
@@ -305,10 +276,10 @@
       <div class="container">
         <div class="fw-header">
           <div>
-            <p class="fw-eyebrow">03 — Selected Works</p>
-            <h2 class="fw-heading">FEATURED WORKS</h2>
+            <p class="fw-eyebrow fade-up-reveal" data-delay="0.1">03 — SELECTED WORKS</p>
+            <h2 class="fw-heading words-pull-up">FEATURED WORKS</h2>
           </div>
-          <div class="fw-filter-tags">
+          <div class="fw-filter-tags fade-up-reveal" data-delay="0.2">
             <span class="fw-tag-badge">AI Systems</span>
             <span class="fw-tag-badge">Computer Vision</span>
             <span class="fw-tag-badge">Full Stack</span>
@@ -317,7 +288,7 @@
 
         <div class="fw-grid">
           <!-- Project 1: Nexora (Span 12 - Hero Card) -->
-          <article class="fw-card span-12" data-project="nexora">
+          <article class="fw-card span-12 fade-up-reveal" data-delay="0.15" data-project="nexora">
             <div class="fw-card-media">
               <img src="assets/img/nexora_showcase.png" alt="Nexora Autonomous AI Platform" class="fw-card-img" />
               <div class="fw-card-overlay"></div>
@@ -344,14 +315,14 @@
                   GitHub <i class="ri-github-line"></i>
                 </a>
                 <button class="fw-btn fw-btn-ghost fw-expand-trigger" aria-label="Expand project details">
-                  Deep Dive <i class="ri-add-line"></i>
+                  Deep Dive <i class="ri-fullscreen-line"></i>
                 </button>
               </div>
             </div>
           </article>
 
           <!-- Project 2: TrustVerse / TruthSeal AI (Span 6 - Split Card) -->
-          <article class="fw-card span-6" data-project="truthseal">
+          <article class="fw-card span-6 fade-up-reveal" data-delay="0.2" data-project="truthseal">
             <div class="fw-card-media">
               <img src="assets/img/trustverse_showcase.png" alt="TrustVerse Verifiable Digital Integrity" class="fw-card-img" />
               <div class="fw-card-overlay"></div>
@@ -377,14 +348,14 @@
                   GitHub <i class="ri-github-line"></i>
                 </a>
                 <button class="fw-btn fw-btn-ghost fw-expand-trigger" aria-label="Expand project details">
-                  Deep Dive <i class="ri-add-line"></i>
+                  <i class="ri-fullscreen-line"></i>
                 </button>
               </div>
             </div>
           </article>
 
           <!-- Project 3: CivicFix & AgriTech AI (Span 6 - Split Card) -->
-          <article class="fw-card span-6" data-project="civicfix">
+          <article class="fw-card span-6 fade-up-reveal" data-delay="0.3" data-project="civicfix">
             <div class="fw-card-media">
               <img src="assets/img/agritech_showcase.png" alt="AgriTech Logistics Platform" class="fw-card-img" />
               <div class="fw-card-overlay"></div>
@@ -410,7 +381,7 @@
                   GitHub <i class="ri-github-line"></i>
                 </a>
                 <button class="fw-btn fw-btn-ghost fw-expand-trigger" aria-label="Expand project details">
-                  Deep Dive <i class="ri-add-line"></i>
+                  <i class="ri-fullscreen-line"></i>
                 </button>
               </div>
             </div>
@@ -428,8 +399,8 @@
           <i class="ri-close-line"></i>
         </button>
         <img id="fw-modal-img" src="" alt="Project Preview" style="width: 100%; border-radius: 12px; margin-bottom: 24px;" />
-        <h3 id="fw-modal-title" style="font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 12px;"></h3>
-        <p id="fw-modal-desc" style="color: var(--hero-fg-soft); line-height: 1.6; margin-bottom: 28px;"></p>
+        <h3 id="fw-modal-title" style="font-family: var(--font-orbitron); font-size: 1.5rem; font-weight: 400; color: var(--cream); margin-bottom: 12px;"></h3>
+        <p id="fw-modal-desc" style="color: var(--muted); line-height: 1.6; margin-bottom: 28px;"></p>
         <div style="display: flex; gap: 14px;">
           <a id="fw-modal-demo" href="#" target="_blank" rel="noopener noreferrer" class="fw-btn fw-btn-primary">
             Launch Live Demo <i class="ri-arrow-right-up-line"></i>
@@ -445,12 +416,12 @@
     <section class="neural-section" id="neural">
       <div class="container">
         <div class="neural-grid">
-          <div class="neural-telemetry-box">
-            <p class="fw-eyebrow">04 — Live Synaptic Topology</p>
-            <h2 class="neural-title">
-              NEURAL CORE <span class="neural-title-span">telemetry</span>
+          <div class="neural-telemetry-box fade-up-reveal" data-delay="0.15">
+            <p class="fw-eyebrow">04 — LIVE SYNAPTIC TOPOLOGY</p>
+            <h2 style="font-family: var(--font-orbitron); font-size: clamp(24px, 3.5vw, 42px); font-weight: 400; color: var(--cream); line-height: 1.1; margin-bottom: 16px;">
+              NEURAL CORE <span style="font-family: var(--font-serif); font-style: italic; font-weight: 400; color: #fff;">telemetry</span>
             </h2>
-            <p class="neural-desc">
+            <p style="color: var(--muted); line-height: 1.6; font-size: 0.92rem;">
               Interactive 3D synaptic vector space simulating real-time gradient descent, tensor synchronization, and multi-agent topology.
             </p>
 
@@ -473,13 +444,13 @@
               </li>
             </ul>
 
-            <p class="neural-hint">
-              &gt; Hover to interact with synaptic gravity.<br>
-              &gt; Click on canvas to toggle magnetic attraction / repulsion.
+            <p style="font-size: 0.8rem; color: var(--label); font-family: var(--font-orbitron); letter-spacing: 0.04em;">
+              &gt; HOVER TO INTERACT WITH SYNAPTIC GRAVITY.<br>
+              &gt; CLICK ON CANVAS TO TOGGLE MAGNETIC ATTRACTION / REPULSION.
             </p>
           </div>
 
-          <div class="neural-canvas-card">
+          <div class="neural-canvas-card fade-up-reveal" data-delay="0.3">
             <div class="neural-card-bar">
               <div class="neural-dot-grp">
                 <span class="neural-dot-item red"></span>
@@ -497,14 +468,14 @@
     <!--==================== CONTACT SECTION ====================-->
     <section class="contact-section" id="contact">
       <div class="container">
-        <div class="contact-card-box">
+        <div class="contact-card-box fade-up-reveal" data-delay="0.2">
           <div>
-            <p class="fw-eyebrow">05 — Initiate Contact</p>
-            <h2 class="contact-title">
+            <p class="fw-eyebrow">05 — INITIATE CONTACT</p>
+            <h2 class="contact-title words-pull-up">
               LET’S BUILD <br>
-              <span class="contact-title-span">intelligence</span> TOGETHER.
+              <span style="font-family: var(--font-serif); font-style: italic; font-weight: 400; color: #fff;">intelligence</span> TOGETHER.
             </h2>
-            <p class="contact-desc">
+            <p style="color: var(--muted); line-height: 1.6; font-size: 0.92rem; max-width: 440px;">
               Whether you are designing an autonomous AI system, building high-throughput web architectures, or exploring cutting-edge innovation — reach out directly.
             </p>
 
@@ -524,15 +495,12 @@
             </div>
           </div>
 
-          <form action="https://formsubmit.co/soumyajit19pvt@gmail.com" method="POST" class="contact-form" id="contact-form">
-            <input type="hidden" name="_captcha" value="false" />
-            <!-- Anti-Bot Honeypot Field (auto-filled by bots, triggers silent drop) -->
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
-            <input type="hidden" name="_subject" value="New Inquiry from Portfolio" />
-            <input type="text" name="name" required maxlength="80" placeholder="Your Name" autocomplete="name" class="contact-input" />
-            <input type="email" name="email" required maxlength="120" placeholder="Your Email Address" autocomplete="email" class="contact-input" />
-            <textarea name="message" required maxlength="3000" placeholder="Tell me about your project or vision..." class="contact-input"></textarea>
-            <button type="submit" class="fw-btn fw-btn-primary" id="contact-submit-btn" style="align-self: flex-start; margin-top: 8px;">
+          <form action="https://formsubmit.co/soumyajit19pvt@gmail.com" method="POST" class="contact-form">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="name" required placeholder="Your Name" class="contact-input" />
+            <input type="email" name="email" required placeholder="Your Email Address" class="contact-input" />
+            <textarea name="message" required placeholder="Tell me about your project or vision..." class="contact-input"></textarea>
+            <button type="submit" class="fw-btn fw-btn-primary" style="align-self: flex-start; margin-top: 8px;">
               Send Message <i class="ri-send-plane-fill"></i>
             </button>
           </form>
@@ -551,7 +519,7 @@
         <div class="footer-meta-row">
           <div class="footer-status-tag">
             <span class="footer-status-dot"></span>
-            Open for High-Impact Innovation & AI Engineering Roles
+            SECTOR STATUS // ONLINE // READY FOR HIGH-IMPACT AI OPS
           </div>
 
           <div class="footer-social-links">
@@ -597,6 +565,14 @@
   <button class="chatbot-toggle" id="chatbot-toggle" aria-label="Open AI chat">
     <i class="ri-chat-smile-3-line"></i>
   </button>
+
+  <!-- Floating Cyber HUD Sector Telemetry Widget -->
+  <aside class="cyber-hud-status" id="cyber-hud" aria-label="System telemetry sector status">
+    <span class="hud-live-beacon" aria-hidden="true"></span>
+    <span class="hud-sector-text" id="hud-sector">SECTOR // 01 HERO</span>
+    <span class="hud-divider" aria-hidden="true">|</span>
+    <span class="hud-progress-val" id="hud-pct">00%</span>
+  </aside>
 
   <!--=============== SCRIPTS: LENIS + GSAP + SCROLLTRIGGER ===============-->
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>

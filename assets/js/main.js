@@ -100,12 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hudSectorEl) {
       const sectors = [
         { id: 'hero', label: 'SECTOR // 01 HERO' },
-        { id: 'reveal', label: 'SECTOR // 02 REVEAL' },
-        { id: 'architecture', label: 'SECTOR // 03 ARCHITECTURE' },
-        { id: 'roles', label: 'SECTOR // 04 DISCIPLINES' },
-        { id: 'projects', label: 'SECTOR // 05 PROJECTS' },
-        { id: 'neural', label: 'SECTOR // 06 NEURAL' },
-        { id: 'contact', label: 'SECTOR // 07 CONTACT' }
+        { id: 'architecture', label: 'SECTOR // 02 ARCHITECTURE' },
+        { id: 'roles', label: 'SECTOR // 03 DISCIPLINES' },
+        { id: 'projects', label: 'SECTOR // 04 PROJECTS' },
+        { id: 'neural', label: 'SECTOR // 05 NEURAL' },
+        { id: 'contact', label: 'SECTOR // 06 CONTACT' }
       ];
       const scrollCenter = scrollY + winHeight * 0.35;
       let currentSector = sectors[0].label;
@@ -286,133 +285,6 @@ document.addEventListener('DOMContentLoaded', () => {
         closeModal();
       }
     });
-  }
-
-  /*--------------------------------------------------
-    6. LIQUID AMOEBA SPOTLIGHT REVEAL
-       Pure SVG mask with cosmic human to chrome cyber suit transition
-  --------------------------------------------------*/
-  const revealCard = document.getElementById('reveal-card');
-  const revealMaskShape = document.getElementById('reveal-mask-shape');
-  const revealEdge = document.getElementById('reveal-edge');
-  const revealEdgeGroup = document.getElementById('reveal-edge-group');
-
-  if (revealCard && revealMaskShape && revealEdge) {
-    let isHovering = false;
-    let isForced = false;
-    let targetR = 0;
-    let currentR = 0;
-    let targetX = 600;
-    let targetY = 340;
-    let currentX = 600;
-    let currentY = 340;
-
-    function getSvgCoords(clientX, clientY) {
-      const rect = revealCard.getBoundingClientRect();
-      const normX = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      const normY = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height));
-      return {
-        x: normX * 1200,
-        y: normY * 680
-      };
-    }
-
-    revealCard.addEventListener('mouseenter', (e) => {
-      isHovering = true;
-      revealCard.classList.add('is-active');
-      if (!isForced) {
-        targetR = 210;
-      }
-      const coords = getSvgCoords(e.clientX, e.clientY);
-      targetX = coords.x;
-      targetY = coords.y;
-      currentX = targetX;
-      currentY = targetY;
-    });
-
-    revealCard.addEventListener('mousemove', (e) => {
-      const coords = getSvgCoords(e.clientX, e.clientY);
-      targetX = coords.x;
-      targetY = coords.y;
-    }, { passive: true });
-
-    revealCard.addEventListener('mouseleave', () => {
-      isHovering = false;
-      if (!isForced) {
-        revealCard.classList.remove('is-active');
-        targetR = 0;
-      }
-    });
-
-    // Click to toggle full reveal mode (Suit revealed vs concealed)
-    revealCard.addEventListener('click', () => {
-      isForced = !isForced;
-      if (isForced) {
-        revealCard.classList.add('is-active');
-        targetR = 1400;
-      } else {
-        targetR = isHovering ? 210 : 0;
-        if (!isHovering) revealCard.classList.remove('is-active');
-      }
-    });
-
-    // Mobile touch interaction
-    revealCard.addEventListener('touchstart', (e) => {
-      isHovering = true;
-      revealCard.classList.add('is-active');
-      targetR = isForced ? 1400 : 190;
-      if (e.touches && e.touches[0]) {
-        const coords = getSvgCoords(e.touches[0].clientX, e.touches[0].clientY);
-        targetX = coords.x;
-        targetY = coords.y;
-        currentX = targetX;
-        currentY = targetY;
-      }
-    }, { passive: true });
-
-    revealCard.addEventListener('touchmove', (e) => {
-      if (e.touches && e.touches[0]) {
-        const coords = getSvgCoords(e.touches[0].clientX, e.touches[0].clientY);
-        targetX = coords.x;
-        targetY = coords.y;
-      }
-    }, { passive: true });
-
-    revealCard.addEventListener('touchend', () => {
-      if (!isForced) {
-        isHovering = false;
-        revealCard.classList.remove('is-active');
-        targetR = 0;
-      }
-    });
-
-    function updateAmoeba() {
-      // Smooth spring interpolation
-      currentX += (targetX - currentX) * 0.16;
-      currentY += (targetY - currentY) * 0.16;
-      currentR += (targetR - currentR) * 0.14;
-
-      const rVal = Math.max(0, currentR);
-      revealMaskShape.setAttribute('cx', currentX.toFixed(1));
-      revealMaskShape.setAttribute('cy', currentY.toFixed(1));
-      revealMaskShape.setAttribute('r', rVal.toFixed(1));
-
-      revealEdge.setAttribute('cx', currentX.toFixed(1));
-      revealEdge.setAttribute('cy', currentY.toFixed(1));
-      revealEdge.setAttribute('r', rVal.toFixed(1));
-
-      // Hide glowing stroke edge when radius is tiny or fully expanded
-      if (revealEdgeGroup) {
-        if (rVal < 2 || rVal > 1100) {
-          revealEdgeGroup.style.opacity = '0';
-        } else {
-          revealEdgeGroup.style.opacity = '1';
-        }
-      }
-
-      requestAnimationFrame(updateAmoeba);
-    }
-    requestAnimationFrame(updateAmoeba);
   }
 
   /*--------------------------------------------------

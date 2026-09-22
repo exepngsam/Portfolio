@@ -7,28 +7,30 @@
 :root {
   /* Cyber Ronin Core Theme Tokens */
   --cream: #FBDBAF;
-  --muted: rgba(251, 219, 175, 0.72);
-  --label: rgba(251, 219, 175, 0.48);
+  --cream-light: #FFF4E5;
+  --muted: rgba(251, 219, 175, 0.82);
+  --label: rgba(251, 219, 175, 0.58);
   --orange: #E07020;
-  --card: rgba(10, 8, 7, 0.65);
-
-  /* Unified Cyberpunk Obsidian & Amber Palette */
-  --hero-bg: #07080b;
-  --hero-bg-deep: #040507;
-  --hero-fg: #FBDBAF;
-  --hero-fg-soft: rgba(251, 219, 175, 0.75);
-  --hero-fg-dim: rgba(251, 219, 175, 0.45);
-  --accent-glow: #E07020;
-  --accent-cyan: #ff9d42;
-  --accent-amber: #f59e0b;
-  --accent-purple: #f59e0b;
   
-  /* Borders & Glass */
-  --border-subtle: rgba(251, 219, 175, 0.1);
-  --border-medium: rgba(251, 219, 175, 0.22);
-  --border-highlight: rgba(251, 219, 175, 0.6);
-  --card-glass: rgba(14, 11, 9, 0.68);
-  --card-glass-hover: rgba(22, 16, 12, 0.88);
+  /* Cyber Ronin Warm Burnt Orange Palette (NO Black Layout) */
+  --hero-bg: #C45A18;
+  --hero-bg-deep: #A8450C;
+  --hero-bg-darker: #853006;
+  --hero-fg: #FBDBAF;
+  --hero-fg-soft: rgba(251, 219, 175, 0.88);
+  --hero-fg-dim: rgba(251, 219, 175, 0.65);
+  --accent-glow: #FBDBAF;
+  --accent-cyan: #FBDBAF;
+  --accent-amber: #FBDBAF;
+  --accent-purple: #FBDBAF;
+  
+  /* Borders & Warm Glass */
+  --border-subtle: rgba(251, 219, 175, 0.22);
+  --border-medium: rgba(251, 219, 175, 0.38);
+  --border-highlight: rgba(251, 219, 175, 0.75);
+  --card: rgba(68, 22, 5, 0.65);
+  --card-glass: rgba(68, 22, 5, 0.7);
+  --card-glass-hover: rgba(88, 30, 7, 0.88);
 
   /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -117,8 +119,8 @@ main {
 
 /* Selection */
 ::selection {
-  background: var(--hero-fg);
-  color: var(--hero-bg);
+  background: var(--cream);
+  color: #4A1904;
 }
 
 /* Links & Buttons */
@@ -159,7 +161,7 @@ button {
 }
 
 .site-nav.scrolled {
-  background: rgba(7, 8, 11, 0.88);
+  background: rgba(140, 52, 8, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
@@ -192,8 +194,8 @@ button {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--orange);
-  box-shadow: 0 0 10px var(--orange);
+  background: var(--cream);
+  box-shadow: 0 0 10px var(--cream);
   display: inline-block;
   animation: pulseDot 2.4s infinite;
 }
@@ -207,13 +209,13 @@ button {
   display: flex;
   align-items: center;
   gap: 28px;
-  background: rgba(14, 11, 9, 0.72);
+  background: rgba(68, 22, 5, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 8px 24px;
   border-radius: 9999px;
   border: 1px solid var(--border-subtle);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 32px rgba(45, 15, 3, 0.4);
 }
 
 .nav-link {
@@ -239,8 +241,8 @@ button {
   left: 50%;
   width: 0%;
   height: 2px;
-  background: var(--orange);
-  box-shadow: 0 0 8px var(--orange);
+  background: var(--cream);
+  box-shadow: 0 0 8px var(--cream);
   transform: translateX(-50%);
   transition: width 0.25s var(--ease-out);
 }
@@ -260,8 +262,8 @@ button {
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   color: var(--muted);
-  background: rgba(224, 112, 32, 0.08);
-  border: 1px solid rgba(251, 219, 175, 0.15);
+  background: rgba(251, 219, 175, 0.12);
+  border: 1px solid rgba(251, 219, 175, 0.25);
   padding: 5px 12px;
   border-radius: 9999px;
   display: none;
@@ -279,7 +281,7 @@ button {
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #07080b;
+  color: #4A1904;
   background: var(--cream);
   padding: 8px 18px;
   border-radius: 9999px;
@@ -289,8 +291,8 @@ button {
 
 .nav-contact-btn:hover {
   transform: scale(1.05);
-  background: #ffffff;
-  box-shadow: 0 0 16px rgba(251, 219, 175, 0.5);
+  background: #FFF4E5;
+  box-shadow: 0 0 16px rgba(251, 219, 175, 0.6);
 }
 
 .nav-mobile-toggle {
@@ -312,7 +314,7 @@ button {
 .mobile-drawer {
   position: fixed;
   inset: 0;
-  background: rgba(6, 7, 10, 0.96);
+  background: rgba(140, 52, 8, 0.98);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   z-index: 99;
@@ -880,7 +882,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--hero-bg-deep);
+  background: linear-gradient(180deg, #C45A18 0%, #B34C0F 40%, #9E3D0A 100%);
 }
 
 .reveal-card {
@@ -891,8 +893,8 @@ button {
   overflow: hidden;
   border: 1px solid var(--border-subtle);
   cursor: crosshair;
-  background: #040507;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  background: #682303;
+  box-shadow: 0 20px 60px rgba(45, 14, 3, 0.6);
   contain: layout paint;
   touch-action: pan-y;
   user-select: none;
@@ -934,13 +936,13 @@ button {
 .reveal-scrim-top {
   top: 0;
   height: 25%;
-  background: linear-gradient(180deg, rgba(7, 8, 11, 0.8) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(140, 52, 8, 0.85) 0%, transparent 100%);
 }
 
 .reveal-scrim-bottom {
   bottom: 0;
   height: 30%;
-  background: linear-gradient(0deg, rgba(7, 8, 11, 0.85) 0%, transparent 100%);
+  background: linear-gradient(0deg, rgba(120, 42, 6, 0.9) 0%, transparent 100%);
 }
 
 .reveal-edge-glow {
@@ -959,7 +961,7 @@ button {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--cream);
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 2px 14px rgba(45, 15, 3, 0.9);
   pointer-events: none;
 }
 
@@ -974,7 +976,7 @@ button {
   left: 0;
   opacity: 0;
   transform: translateY(8px);
-  color: var(--orange);
+  color: #FFF4E5;
 }
 
 .reveal-card.is-active .reveal-caption-base {
@@ -1008,7 +1010,7 @@ button {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(350px circle at var(--card-mx, -999px) var(--card-my, -999px), rgba(251, 219, 175, 0.08), transparent 70%);
+  background: radial-gradient(350px circle at var(--card-mx, -999px) var(--card-my, -999px), rgba(251, 219, 175, 0.12), transparent 70%);
   opacity: 0;
   transition: opacity 0.35s ease;
   z-index: 1;
@@ -1028,7 +1030,7 @@ button {
   position: relative;
   z-index: 10;
   padding: 120px clamp(1.5rem, 5vw, 4rem);
-  background: radial-gradient(circle at 50% 30%, rgba(224, 112, 32, 0.08) 0%, rgba(10, 8, 7, 0.85) 50%, #07080b 100%);
+  background: linear-gradient(180deg, #9E3D0A 0%, #8C3206 50%, #7A2B04 100%);
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
   overflow: hidden;
@@ -1047,7 +1049,7 @@ button {
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--orange);
+  color: var(--cream);
   margin-bottom: 16px;
 }
 
@@ -1068,7 +1070,7 @@ button {
   font-weight: 400;
   text-transform: none;
   font-size: 1.06em;
-  color: #fff;
+  color: #FFF4E5;
 }
 
 .arch-desc {
@@ -1112,15 +1114,15 @@ button {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  background: linear-gradient(90deg, transparent, var(--cream), transparent);
   opacity: 0;
   transition: opacity 0.3s;
 }
 
 .arch-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(251, 219, 175, 0.35);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 28px rgba(224, 112, 32, 0.18);
+  border-color: var(--cream);
+  box-shadow: 0 16px 40px rgba(45, 12, 2, 0.5), 0 0 28px rgba(251, 219, 175, 0.2);
 }
 
 .arch-card:hover::before {
@@ -1138,19 +1140,19 @@ button {
   width: 46px;
   height: 46px;
   border-radius: 12px;
-  background: rgba(251, 219, 175, 0.05);
-  border: 1px solid rgba(251, 219, 175, 0.15);
+  background: rgba(251, 219, 175, 0.12);
+  border: 1px solid rgba(251, 219, 175, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.35rem;
-  color: var(--orange);
+  color: var(--cream);
   transition: background 0.3s, transform 0.3s, border-color 0.3s;
 }
 
 .arch-card:hover .arch-icon-box {
-  background: rgba(224, 112, 32, 0.15);
-  border-color: var(--orange);
+  background: rgba(251, 219, 175, 0.22);
+  border-color: var(--cream);
   transform: scale(1.08);
 }
 
@@ -1160,8 +1162,8 @@ button {
   font-weight: 400;
   letter-spacing: 0.1em;
   color: var(--cream);
-  background: rgba(224, 112, 32, 0.08);
-  border: 1px solid rgba(251, 219, 175, 0.2);
+  background: rgba(251, 219, 175, 0.14);
+  border: 1px solid rgba(251, 219, 175, 0.3);
   padding: 4px 12px;
   border-radius: 9999px;
   text-transform: uppercase;
@@ -1200,14 +1202,14 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(251, 219, 175, 0.03);
+  background: rgba(251, 219, 175, 0.1);
   padding: 4px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(251, 219, 175, 0.08);
+  border: 1px solid rgba(251, 219, 175, 0.2);
 }
 
 .arch-stat-tag i {
-  color: var(--orange);
+  color: var(--cream);
   font-size: 0.8rem;
 }
 
@@ -1224,7 +1226,7 @@ button {
   align-items: center;
   text-align: center;
   padding: 100px clamp(1.5rem, 6vw, 4rem);
-  background: var(--hero-bg);
+  background: linear-gradient(180deg, #7A2B04 0%, #8F3407 50%, #762904 100%);
   overflow: hidden;
 }
 
@@ -1234,7 +1236,7 @@ button {
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--orange);
+  color: var(--cream);
   margin-bottom: 48px;
 }
 
@@ -1287,12 +1289,12 @@ button {
   opacity: 1;
   filter: blur(0px);
   transform: scale(1.04);
-  color: var(--cream);
-  text-shadow: 0 0 24px rgba(251, 219, 175, 0.4);
+  color: #FFF4E5;
+  text-shadow: 0 0 24px rgba(251, 219, 175, 0.6);
 }
 
 .roles-list .roles-item:hover .roles-item-num {
-  color: var(--orange);
+  color: var(--cream);
 }
 
 /* Floating Smooth Cursor-Following Media Preview */
@@ -1308,7 +1310,8 @@ button {
   z-index: 150;
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.85);
-  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(251, 219, 175, 0.2);
+  box-shadow: 0 16px 50px rgba(40, 12, 2, 0.6), 0 0 24px rgba(251, 219, 175, 0.3);
+  border: 1px solid var(--cream);
   transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
   will-change: transform, left, top;
 }
@@ -1333,7 +1336,7 @@ button {
   position: relative;
   z-index: 10;
   padding: 120px clamp(1.5rem, 5vw, 4rem);
-  background: var(--hero-bg);
+  background: linear-gradient(180deg, #762904 0%, #8C3206 50%, #6E2604 100%);
 }
 
 .fw-header {
@@ -1351,7 +1354,7 @@ button {
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--orange);
+  color: var(--cream);
   margin-bottom: 12px;
 }
 
@@ -1378,8 +1381,8 @@ button {
   letter-spacing: 0.08em;
   padding: 6px 14px;
   border-radius: 9999px;
-  background: rgba(224, 112, 32, 0.08);
-  border: 1px solid rgba(251, 219, 175, 0.18);
+  background: rgba(251, 219, 175, 0.14);
+  border: 1px solid rgba(251, 219, 175, 0.28);
   color: var(--cream);
 }
 
@@ -1393,7 +1396,9 @@ button {
 .fw-card {
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  background: var(--card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 10px 40px rgba(40, 12, 2, 0.4);
   transition: transform 0.4s var(--ease-spring), border-color 0.35s, box-shadow 0.4s;
   display: flex;
   flex-direction: column;
@@ -1401,8 +1406,8 @@ button {
 
 .fw-card:hover {
   transform: translateY(-8px);
-  border-color: rgba(251, 219, 175, 0.35);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 32px rgba(224, 112, 32, 0.18);
+  border-color: var(--cream);
+  box-shadow: 0 20px 60px rgba(40, 12, 2, 0.6), 0 0 32px rgba(251, 219, 175, 0.25);
 }
 
 /* Spans: Full width & 2-Col Splits */
@@ -1425,7 +1430,7 @@ button {
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: #0d111d;
+  background: #4E1803;
 }
 
 .fw-card.span-12 .fw-card-media {
@@ -1452,7 +1457,7 @@ button {
 .fw-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(7, 8, 11, 0.95) 100%);
+  background: linear-gradient(180deg, transparent 35%, rgba(68, 22, 5, 0.96) 100%);
   pointer-events: none;
 }
 
@@ -1477,7 +1482,7 @@ button {
   font-style: normal;
   font-size: 0.78rem;
   letter-spacing: 0.08em;
-  color: var(--orange);
+  color: var(--cream);
 }
 
 .fw-card-tags {
@@ -1493,10 +1498,10 @@ button {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
-  background: rgba(251, 219, 175, 0.04);
+  background: rgba(251, 219, 175, 0.1);
   padding: 4px 10px;
   border-radius: 9999px;
-  border: 1px solid rgba(251, 219, 175, 0.1);
+  border: 1px solid rgba(251, 219, 175, 0.2);
 }
 
 .fw-card-title {
@@ -1540,24 +1545,25 @@ button {
 
 .fw-btn-primary {
   background: var(--cream);
-  color: #07080b;
+  color: #4A1904;
   border: 1px solid var(--cream);
+  font-weight: 700;
 }
 
 .fw-btn-primary:hover {
-  background: #ffffff;
+  background: #FFF4E5;
   transform: scale(1.05);
-  box-shadow: 0 0 16px rgba(251, 219, 175, 0.5);
+  box-shadow: 0 0 16px rgba(251, 219, 175, 0.6);
 }
 
 .fw-btn-ghost {
-  background: rgba(251, 219, 175, 0.06);
+  background: rgba(251, 219, 175, 0.12);
   color: var(--cream);
-  border: 1px solid rgba(251, 219, 175, 0.2);
+  border: 1px solid rgba(251, 219, 175, 0.3);
 }
 
 .fw-btn-ghost:hover {
-  background: rgba(251, 219, 175, 0.14);
+  background: rgba(251, 219, 175, 0.22);
   border-color: var(--cream);
   transform: scale(1.05);
 }
@@ -1567,7 +1573,7 @@ button {
   position: fixed;
   inset: 0;
   z-index: 210;
-  background: rgba(0, 0, 0, 0.94);
+  background: rgba(60, 18, 4, 0.95);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   display: flex;
@@ -1585,8 +1591,8 @@ button {
 }
 
 .fw-modal-box {
-  background: #0d111d;
-  border: 1px solid var(--border-medium);
+  background: #5E1F03;
+  border: 1px solid rgba(251, 219, 175, 0.35);
   border-radius: 20px;
   max-width: 900px;
   width: 100%;
@@ -1594,7 +1600,7 @@ button {
   overflow-y: auto;
   padding: clamp(24px, 4vw, 44px);
   position: relative;
-  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 20px 80px rgba(35, 10, 2, 0.9);
 }
 
 .fw-modal-close {
@@ -1625,7 +1631,7 @@ button {
   position: relative;
   z-index: 10;
   padding: 100px clamp(1.5rem, 5vw, 4rem);
-  background: var(--hero-bg);
+  background: linear-gradient(180deg, #6E2604 0%, #822E05 50%, #662303 100%);
 }
 
 .neural-grid {
@@ -1643,7 +1649,7 @@ button {
 
 .neural-telemetry-box {
   background: var(--card);
-  border: 1px solid rgba(251, 219, 175, 0.12);
+  border: 1px solid var(--border-subtle);
   border-radius: 20px;
   padding: clamp(24px, 4vw, 40px);
 }
@@ -1663,7 +1669,7 @@ button {
   display: flex;
   justify-content: space-between;
   padding-bottom: 8px;
-  border-bottom: 1px dashed rgba(251, 219, 175, 0.15);
+  border-bottom: 1px dashed rgba(251, 219, 175, 0.2);
 }
 
 .neural-stat-label {
@@ -1671,14 +1677,15 @@ button {
 }
 
 .neural-stat-val {
-  color: var(--orange);
-  font-weight: 500;
+  color: #FFF4E5;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(251, 219, 175, 0.5);
 }
 
 .neural-canvas-card {
   position: relative;
-  background: #040507;
-  border: 1px solid rgba(251, 219, 175, 0.18);
+  background: #3B1202;
+  border: 1px solid rgba(251, 219, 175, 0.28);
   border-radius: 20px;
   overflow: hidden;
   display: flex;
@@ -1687,15 +1694,15 @@ button {
 
 .neural-card-bar {
   padding: 12px 18px;
-  background: rgba(251, 219, 175, 0.04);
-  border-bottom: 1px solid rgba(251, 219, 175, 0.1);
+  background: rgba(251, 219, 175, 0.08);
+  border-bottom: 1px solid rgba(251, 219, 175, 0.18);
   display: flex;
   align-items: center;
   gap: 8px;
   font-family: var(--font-orbitron);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
-  color: var(--muted);
+  color: var(--cream);
 }
 
 .neural-dot-grp {
@@ -1727,12 +1734,12 @@ button {
   position: relative;
   z-index: 10;
   padding: 100px clamp(1.5rem, 5vw, 4rem);
-  background: var(--hero-bg);
+  background: linear-gradient(180deg, #662303 0%, #853006 40%, #A6420D 100%);
 }
 
 .contact-card-box {
   background: var(--card);
-  border: 1px solid rgba(251, 219, 175, 0.14);
+  border: 1px solid var(--border-subtle);
   border-radius: 24px;
   padding: clamp(32px, 5vw, 64px);
   display: grid;
@@ -1781,7 +1788,7 @@ button {
 
 .contact-link-row i {
   font-size: 1.25rem;
-  color: var(--orange);
+  color: var(--cream);
 }
 
 .contact-form {
@@ -1793,10 +1800,10 @@ button {
 .contact-input {
   width: 100%;
   padding: 14px 18px;
-  background: rgba(251, 219, 175, 0.03);
-  border: 1px solid rgba(251, 219, 175, 0.14);
+  background: rgba(251, 219, 175, 0.08);
+  border: 1px solid rgba(251, 219, 175, 0.25);
   border-radius: 12px;
-  color: var(--cream);
+  color: #FFF4E5;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 0.92rem;
   transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
@@ -1804,9 +1811,9 @@ button {
 
 .contact-input:focus {
   outline: none;
-  border-color: var(--cream);
-  background: rgba(251, 219, 175, 0.06);
-  box-shadow: 0 0 12px rgba(251, 219, 175, 0.18);
+  border-color: #FFF4E5;
+  background: rgba(251, 219, 175, 0.16);
+  box-shadow: 0 0 16px rgba(251, 219, 175, 0.3);
 }
 
 textarea.contact-input {
@@ -1835,7 +1842,7 @@ textarea.contact-input {
   justify-content: flex-end;
   align-items: center;
   padding: 0 4vw 48px;
-  background: #040507;
+  background: linear-gradient(180deg, #8A3308 0%, #C45A18 45%, #9E3D0A 100%);
   pointer-events: auto;
   overflow: hidden;
 }
@@ -1857,11 +1864,11 @@ textarea.contact-input {
   font-weight: 400;
   line-height: 0.9;
   letter-spacing: 0.06em;
-  color: var(--cream);
+  color: #FFF4E5;
   text-transform: uppercase;
   white-space: nowrap;
   user-select: none;
-  text-shadow: 0 4px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(224, 112, 32, 0.2);
+  text-shadow: 0 4px 60px rgba(60, 18, 3, 0.5), 0 0 50px rgba(251, 219, 175, 0.4);
   margin-bottom: clamp(16px, 3vw, 36px);
   opacity: calc(min(1, max(0, (var(--page-progress, 0) - 0.75) * 4)));
   transform: translateY(calc((1 - min(1, max(0, (var(--page-progress, 0) - 0.75) * 4))) * 80px));
@@ -1913,8 +1920,8 @@ textarea.contact-input {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--orange);
-  box-shadow: 0 0 8px var(--orange);
+  background: var(--cream);
+  box-shadow: 0 0 10px var(--cream);
 }
 
 /* Floating Cyber HUD Status Indicator */
@@ -1926,17 +1933,17 @@ textarea.contact-input {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: rgba(10, 8, 7, 0.82);
+  background: rgba(68, 22, 5, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(251, 219, 175, 0.18);
+  border: 1px solid rgba(251, 219, 175, 0.3);
   border-radius: 9999px;
   padding: 8px 18px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 32px rgba(45, 15, 3, 0.5);
   font-family: var(--font-orbitron);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
-  color: var(--cream);
+  color: #FFF4E5;
   text-transform: uppercase;
   pointer-events: auto;
   transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
@@ -1946,8 +1953,8 @@ textarea.contact-input {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--orange);
-  box-shadow: 0 0 10px var(--orange);
+  background: var(--cream);
+  box-shadow: 0 0 10px var(--cream);
   animation: pulseDot 2.2s infinite;
 }
 
@@ -1956,8 +1963,8 @@ textarea.contact-input {
 }
 
 .hud-progress-val {
-  color: var(--orange);
-  font-weight: 500;
+  color: var(--cream);
+  font-weight: 700;
 }
 
 @media (max-width: 768px) {
@@ -1977,13 +1984,13 @@ textarea.contact-input {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: var(--hero-fg);
-  color: var(--hero-bg);
+  background: var(--cream);
+  color: #4A1904;
   font-size: 1.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 8px 32px rgba(60, 20, 4, 0.6);
   z-index: 120;
   cursor: pointer;
   transition: transform 0.25s var(--ease-out), background 0.25s;
@@ -1991,7 +1998,7 @@ textarea.contact-input {
 
 .chatbot-toggle:hover {
   transform: scale(1.1);
-  background: #fff;
+  background: #FFF4E5;
 }
 
 .chatbot-container {
@@ -2000,16 +2007,16 @@ textarea.contact-input {
   right: 28px;
   width: min(90vw, 360px);
   height: 480px;
-  background: rgba(14, 18, 28, 0.95);
+  background: rgba(78, 26, 5, 0.96);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-medium);
+  border: 1px solid rgba(251, 219, 175, 0.3);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   z-index: 120;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 20px 60px rgba(35, 10, 2, 0.8);
   opacity: 0;
   pointer-events: none;
   transform: translateY(20px) scale(0.95);
@@ -2024,19 +2031,20 @@ textarea.contact-input {
 
 .chatbot-header {
   padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.04);
-  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(251, 219, 175, 0.08);
+  border-bottom: 1px solid rgba(251, 219, 175, 0.18);
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.9rem;
   font-weight: 700;
+  color: var(--cream);
 }
 
 .chatbot-close {
   cursor: pointer;
   font-size: 1.2rem;
-  color: var(--hero-fg-soft);
+  color: var(--cream);
 }
 
 .chatbot-messages {
@@ -2057,43 +2065,43 @@ textarea.contact-input {
 }
 
 .chatbot-message.ai {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: rgba(251, 219, 175, 0.12);
+  color: #FFF4E5;
   align-self: flex-start;
 }
 
 .chatbot-message.user {
-  background: var(--hero-fg);
-  color: var(--hero-bg);
+  background: var(--cream);
+  color: #4A1904;
   align-self: flex-end;
   font-weight: 600;
 }
 
 .chatbot-input-area {
   padding: 12px;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid rgba(251, 219, 175, 0.2);
   display: flex;
   gap: 8px;
 }
 
 #chatbot-input {
   flex-grow: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-subtle);
+  background: rgba(251, 219, 175, 0.08);
+  border: 1px solid rgba(251, 219, 175, 0.25);
   border-radius: 10px;
   padding: 8px 12px;
-  color: #fff;
+  color: #FFF4E5;
   font-size: 0.85rem;
 }
 
 #chatbot-input:focus {
   outline: none;
-  border-color: var(--hero-fg);
+  border-color: var(--cream);
 }
 
 #chatbot-send {
-  background: var(--hero-fg);
-  color: var(--hero-bg);
+  background: var(--cream);
+  color: #4A1904;
   border-radius: 10px;
   padding: 8px 14px;
   font-size: 1rem;
@@ -2127,7 +2135,7 @@ textarea.contact-input {
     height: auto !important;
     min-height: auto !important;
     z-index: 10 !important;
-    background: #040507 !important;
+    background: #C45A18 !important;
   }
 
   .footer-panel {
@@ -2136,7 +2144,7 @@ textarea.contact-input {
     min-height: 60vh !important;
     z-index: 10 !important;
     padding: 64px 6vw 36px !important;
-    background: #040507 !important;
+    background: #C45A18 !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-start !important;

@@ -649,7 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      ctx.fillStyle = '#030406';
+      ctx.fillStyle = '#3B1202';
       ctx.fillRect(0, 0, width, height);
 
       time += 0.012;

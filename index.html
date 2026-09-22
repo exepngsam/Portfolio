@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!--=============== FONTS ===============-->
+  <link rel="stylesheet" href="https://db.onlinewebfonts.com/c/b1314443e183d1cdd77049077c46facc?family=Orbitron-Medium" type="text/css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,wdth@8..144,100..1000,25..151&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Roboto+Flex:opsz,wght,wdth@8..144,100..1000,25..151&display=swap" rel="stylesheet" />
 
   <!--=============== REMIXICONS ===============-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" />
@@ -73,62 +73,85 @@
   <!--==================== MAIN CONTENT ====================-->
   <main>
     <!--==================== HERO SECTION ====================-->
+    <!--==================== CYBER RONIN HERO SECTION ====================-->
     <section class="hero" id="hero">
-      <div class="hero-backdrop"></div>
+      <!-- Base Hero Background Image Layer -->
+      <div class="hero-base-img hero-image-animate" style="background-image: url('https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260831_115955_2a9adb39-5e9b-4ced-96e2-6900eabe3de9.png&w=1920&q=85');"></div>
 
-      <div class="hero-since">
-        <p class="hero-since-title">AI Systems Architect & Research Engineer</p>
-        <div class="hero-since-badge">
-          <span class="hero-live-dot" aria-hidden="true"></span>
-          <span>AUTONOMOUS AGENTS • NEURAL VISION • DISTRIBUTED SCALE</span>
+      <!-- Spotlight Reveal Hero Background Image Layer -->
+      <div class="hero-reveal-img" id="reveal-img" style="background-image: url('https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260831_123709_183f0065-efb2-4bb2-a849-13aaa5af2f3f.png&w=1920&q=85');"></div>
+
+      <!-- Hero UI Overlay -->
+      <div class="hero-ui">
+        <!-- Left Column: Copy & Product Card -->
+        <div class="hero-left">
+          <div class="hero-copy">
+            <h1 class="words-pull-up">
+              <span>RONIN-X //</span>
+              <span>SHADOW</span>
+              <span>NIGHTFALL</span>
+            </h1>
+            <p class="fade-up-reveal" data-delay="0.5">Cultivated with high-res optics and a zero-gravity frame for those who don't just watch the future—they wield it. Shift your reality.</p>
+            
+            <div class="icon-row fade-up-reveal" data-delay="0.65">
+              <button type="button" class="icon-btn" aria-label="Main core">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                  <path d="M8 1.4L13.8 4.7V11.3L8 14.6L2.2 11.3V4.7L8 1.4Z" />
+                  <circle cx="8" cy="8" r="1.35" fill="currentColor" stroke="none" />
+                </svg>
+              </button>
+              <button type="button" class="icon-btn" aria-label="Vision">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                  <path d="M2 5.2V2h3.2" stroke-linecap="round" />
+                  <path d="M14 5.2V2h-3.2" stroke-linecap="round" />
+                  <path d="M2 10.8V14h3.2" stroke-linecap="round" />
+                  <path d="M14 10.8V14h-3.2" stroke-linecap="round" />
+                  <rect x="5.2" y="5.2" width="5.6" height="5.6" />
+                </svg>
+              </button>
+              <button type="button" class="icon-btn" aria-label="Force">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                  <path d="M9.2 1.6L4 9.1h3.5L6.8 14.4 12 6.9H8.5L9.2 1.6Z" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <article class="product-card">
+            <div class="product-thumb" style="background-image: url('https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260831_121937_3f02b5a0-5b86-43d9-b30e-03c5e46632e7.png&w=1920&q=85');" aria-hidden="true"></div>
+            <div class="product-body">
+              <h2 class="words-pull-up">CR-01: CYBER FRAME</h2>
+              <p class="fade-up-reveal" data-delay="1.05">Precision-grade optics and a light frame for comfort and clarity.</p>
+            </div>
+            <button type="button" class="cart-btn fade-up-reveal" data-delay="1.15">Reserve Now</button>
+          </article>
         </div>
-      </div>
 
-      <div class="hero-headline">
-        <div>
-          <span class="vft" data-variable-font-text data-text="SOUMYAJIT">SOUMYAJIT</span>
-        </div>
-        <div class="hero-row">
-          <span class="vft" data-variable-font-text data-text="JENA">JENA</span>
-          
-          <!-- Interactive Video Pill inside headline -->
-          <button class="hero-vid-btn" id="hero-vid-btn" aria-label="Watch showcase reel">
-            <video src="assets/img/creative.mp4" autoplay loop muted playsinline poster="assets/img/cosmic_bg.jpg"></video>
-            <div class="play-icon"><i class="ri-play-fill"></i></div>
-          </button>
+        <!-- Page Indicator -->
+        <div class="hero-page fade-up-reveal" data-delay="0.75">1/26</div>
 
-          <!-- 3D Rotating Word -->
-          <div class="hero-rotating-word-container">
-            <span class="hero-rotating-word" id="hero-rotating-word">INTELLIGENCE</span>
+        <!-- Operative Specs -->
+        <div class="specs">
+          <h3 class="words-pull-up">Operative Specs</h3>
+          <div class="spec-row fade-up-reveal" data-delay="1.2">
+            <span class="spec-label">Vision</span>
+            <span class="spec-value">Dual 8K Pulse-OLED</span>
+          </div>
+          <div class="spec-row fade-up-reveal" data-delay="1.3">
+            <span class="spec-label">Nerve</span>
+            <span class="spec-value">R1 - Ronin Engines</span>
+          </div>
+          <div class="spec-row fade-up-reveal" data-delay="1.4">
+            <span class="spec-label">Reflex</span>
+            <span class="spec-value">144Hz Low-Lag Ops</span>
+          </div>
+          <div class="spec-row fade-up-reveal" data-delay="1.5">
+            <span class="spec-label">Armor</span>
+            <span class="spec-value">Lightweight Shadow Shell</span>
           </div>
         </div>
       </div>
-
-      <div class="hero-lang">
-        <span>PyTorch</span>
-        <span class="hero-lang-sep">•</span>
-        <span>Transformers</span>
-        <span class="hero-lang-sep">•</span>
-        <span>Multi-Agent MoE</span>
-        <span class="hero-lang-sep">•</span>
-        <span>TypeScript</span>
-        <span class="hero-lang-sep">•</span>
-        <span>AWS Cloud</span>
-      </div>
-
-      <div class="hero-scroll-cue" id="hero-scroll-cue">
-        <span>Scroll to Explore</span>
-        <i class="ri-arrow-down-line"></i>
-      </div>
     </section>
-
-    <!-- Hero Video Lightbox Modal -->
-    <div class="hero-modal" id="hero-modal" role="dialog" aria-modal="true" aria-label="Cinematic Reel">
-      <button class="hero-modal-close" id="hero-modal-close" aria-label="Close modal">
-        <i class="ri-close-line"></i>
-      </button>
-      <video id="hero-modal-video" src="assets/img/creative.mp4" loop playsinline controls></video>
-    </div>
 
     <!--==================== LIQUID AMOEBA SPOTLIGHT REVEAL SECTION ====================-->
     <section class="reveal-section" id="reveal" aria-label="Interactive Reveal">

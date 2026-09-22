@@ -819,4 +819,117 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
+
+  /*--------------------------------------------------
+    CYBER RONIN HERO COMPONENT ENGINE
+    (Word Split, Scroll Reveal & Spotlight Mask)
+  --------------------------------------------------*/
+  // 1. WORD SPLIT
+  const pullUpElements = document.querySelectorAll('.words-pull-up');
+  pullUpElements.forEach((el) => {
+    if (el.dataset.split) return;
+    el.dataset.split = 'true';
+
+    let wordIndex = 0;
+    const directSpans = Array.from(el.children).filter((child) => child.tagName === 'SPAN');
+
+    if (el.tagName === 'H1' && directSpans.length > 0) {
+      directSpans.forEach((span) => {
+        span.classList.add('pull-line');
+        const text = span.textContent.trim();
+        const words = text.split(/\s+/).filter(Boolean);
+        span.innerHTML = words
+          .map((word) => {
+            const delay = (wordIndex * 0.1).toFixed(2);
+            wordIndex++;
+            return `<span class="pull-word" style="animation-delay: ${delay}s">${word}</span>`;
+          })
+          .join('');
+      });
+    } else {
+      const text = el.textContent.trim();
+      const words = text.split(/\s+/).filter(Boolean);
+      el.innerHTML = words
+        .map((word) => {
+          const delay = (wordIndex * 0.1).toFixed(2);
+          wordIndex++;
+          return `<span class="pull-word" style="animation-delay: ${delay}s">${word}</span>`;
+        })
+        .join('');
+    }
+  });
+
+  // 2. SCROLL REVEAL (IntersectionObserver)
+  if ('IntersectionObserver' in window) {
+    const wordsObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('words-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    document.querySelectorAll('.words-pull-up').forEach((el) => wordsObserver.observe(el));
+
+    const fadeObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const delay = entry.target.dataset.delay;
+            if (delay) {
+              entry.target.style.animationDelay = delay + 's';
+            }
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    document.querySelectorAll('.fade-up-reveal').forEach((el) => fadeObserver.observe(el));
+  } else {
+    // Fallback for unsupported browsers
+    document.querySelectorAll('.words-pull-up').forEach((el) => {
+      el.classList.add('words-visible');
+    });
+    document.querySelectorAll('.fade-up-reveal').forEach((el) => {
+      const delay = el.dataset.delay;
+      if (delay) {
+        el.style.animationDelay = delay + 's';
+      }
+      el.classList.add('is-visible');
+    });
+  }
+
+  // 3. SPOTLIGHT REVEAL
+  const revealImg = document.getElementById('reveal-img');
+  if (revealImg) {
+    const updateSpotlight = (e) => {
+      const rect = revealImg.getBoundingClientRect();
+      const touch = e.touches && e.touches.length > 0 ? e.touches[0] : null;
+      const clientX = touch ? touch.clientX : e.clientX;
+      const clientY = touch ? touch.clientY : e.clientY;
+
+      if (clientX === undefined || clientY === undefined) return;
+
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+
+      const width = window.innerWidth;
+      const r = width < 480 ? 120 : width < 720 ? 160 : 260;
+
+      const gradient = `radial-gradient(circle ${r}px at ${x}px ${y}px, #fff 0%, #fff 40%, rgba(255,255,255,0.75) 60%, rgba(255,255,255,0.4) 75%, rgba(255,255,255,0.12) 88%, transparent 100%)`;
+
+      revealImg.style.webkitMaskImage = gradient;
+      revealImg.style.maskImage = gradient;
+    };
+
+    window.addEventListener('mousemove', updateSpotlight);
+    window.addEventListener('touchmove', updateSpotlight, { passive: true });
+  }
 });

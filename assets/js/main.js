@@ -91,6 +91,41 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // Cyber HUD Telemetry Sector Tracking
+    const hudSectorEl = document.getElementById('hud-sector');
+    const hudPctEl = document.getElementById('hud-pct');
+    if (hudPctEl) {
+      hudPctEl.textContent = `${Math.min(99, Math.round(pageProgress * 100)).toString().padStart(2, '0')}%`;
+    }
+    if (hudSectorEl) {
+      const sectors = [
+        { id: 'hero', label: 'SECTOR // 01 HERO' },
+        { id: 'reveal', label: 'SECTOR // 02 REVEAL' },
+        { id: 'architecture', label: 'SECTOR // 03 ARCHITECTURE' },
+        { id: 'roles', label: 'SECTOR // 04 DISCIPLINES' },
+        { id: 'projects', label: 'SECTOR // 05 PROJECTS' },
+        { id: 'neural', label: 'SECTOR // 06 NEURAL' },
+        { id: 'contact', label: 'SECTOR // 07 CONTACT' }
+      ];
+      const scrollCenter = scrollY + winHeight * 0.35;
+      let currentSector = sectors[0].label;
+      for (const sector of sectors) {
+        const el = document.getElementById(sector.id);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollCenter >= top) {
+            currentSector = sector.label;
+          }
+        }
+      }
+      if (pageProgress > 0.88) {
+        currentSector = 'SECTOR // 08 NEXUS';
+      }
+      if (hudSectorEl.textContent !== currentSector) {
+        hudSectorEl.textContent = currentSector;
+      }
+    }
+
     // Hero lift & blur calculation (disabled on mobile to ensure zero lag & maximum readability)
     if (heroSection) {
       if (isTouchOrMobile) {
@@ -629,7 +664,7 @@ document.addEventListener('DOMContentLoaded', () => {
         particles[i].baseY = centerY + Math.sin(theta) * Math.sin(phi) * sphereRadius;
       }
 
-      ctx.fillStyle = '#efe9d8';
+      ctx.fillStyle = '#FBDBAF';
 
       for (let i = 0; i < particleCount; i++) {
         const p = particles[i];
@@ -669,7 +704,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             const opacity = 1 - Math.sqrt(distSq) / 34;
-            ctx.strokeStyle = `rgba(239, 233, 216, ${opacity * 0.22})`;
+            ctx.strokeStyle = `rgba(251, 219, 175, ${opacity * 0.28})`;
             ctx.lineWidth = 0.75;
             ctx.stroke();
           }
@@ -680,13 +715,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mouse.active) {
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, 14, 0, Math.PI * 2);
-        ctx.strokeStyle = isRepelling ? 'rgba(239, 68, 68, 0.7)' : 'rgba(34, 197, 94, 0.7)';
+        ctx.strokeStyle = isRepelling ? 'rgba(239, 68, 68, 0.7)' : 'rgba(224, 112, 32, 0.85)';
         ctx.lineWidth = 1.5;
         ctx.stroke();
 
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, 110, 0, Math.PI * 2);
-        ctx.strokeStyle = isRepelling ? 'rgba(239, 68, 68, 0.12)' : 'rgba(34, 197, 94, 0.12)';
+        ctx.strokeStyle = isRepelling ? 'rgba(239, 68, 68, 0.12)' : 'rgba(224, 112, 32, 0.2)';
         ctx.stroke();
       }
 
@@ -932,4 +967,19 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('mousemove', updateSpotlight);
     window.addEventListener('touchmove', updateSpotlight, { passive: true });
   }
+
+  /*--------------------------------------------------
+    4. CYBER RONIN CARD SPOTLIGHT HOVER TRACKING
+  --------------------------------------------------*/
+  const spotlightCards = document.querySelectorAll('.arch-card, .fw-card, .neural-telemetry-box, .contact-card-box');
+  spotlightCards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--card-mx', `${x}px`);
+      card.style.setProperty('--card-my', `${y}px`);
+    }, { passive: true });
+  });
 });
+
